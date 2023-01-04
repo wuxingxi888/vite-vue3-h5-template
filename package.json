@@ -1,0 +1,65 @@
+{
+  "name": "vite-vue3-h5-template",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite --mode development",
+    "prod": "vite --mode production",
+    "build:test": "vue-tsc --noEmit && vite build --mode test && esno ./src/utils/build.ts",
+    "build:prod": "vue-tsc --noEmit && vite build --mode production && esno ./src/utils/build.ts",
+    "build": "vue-tsc --noEmit && vite build",
+    "clean:cache": "rm -rf node_modules && rm -rf .eslintcache && pnpm install",
+    "preview": "npm run build:prod && vite preview --port 5050",
+    "preview:dist": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "lint:lint-staged": "lint-staged"
+  },
+  "dependencies": {
+    "@nutui/nutui": "^3.3.1",
+    "@vueuse/core": "^7.5.3",
+    "axios": "^0.24.0",
+    "crypto-js": "^4.1.1",
+    "json-bigint": "^1.0.0",
+    "mitt": "^3.0.0",
+    "pinia": "^2.0.9",
+    "pinia-plugin-persistedstate": "^1.0.3",
+    "vconsole": "^3.14.0",
+    "vue": "^3.2.26",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.1.0",
+    "@types/crypto-js": "^4.1.1",
+    "@types/json-bigint": "^1.0.1",
+    "@types/node": "^16.11.17",
+    "@vitejs/plugin-legacy": "^1.8.2",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "@vitejs/plugin-vue-jsx": "^1.3.3",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^10.0.0",
+    "autoprefixer": "^10.4.2",
+    "consola": "^2.15.3",
+    "eslint": "^8.5.0",
+    "eslint-plugin-vue": "^8.2.0",
+    "lint-staged": "^12.1.7",
+    "postcss": "^8.1.0",
+    "postcss-px-to-viewport-8-plugin": "^1.1.3",
+    "prettier": "^2.5.1",
+    "sass": "^1.52.3",
+    "typescript": "~4.7.3",
+    "unplugin-auto-import": "^0.8.7",
+    "unplugin-vue-components": "^0.19.6",
+    "vite": "^2.9.10",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-imagemin": "^0.6.1",
+    "vite-plugin-style-import": "^2.0.0",
+    "vite-plugin-vconsole": "^1.2.2",
+    "vue-global-api": "^0.4.1",
+    "vue-tsc": "^0.29.8"
+  },
+  "peerDependencies": {
+    "postcss": "^8.1.0"
+  },
+  "resolutions": {
+    "bin-wrapper": "npm:bin-wrapper-china"
+  }
+}
