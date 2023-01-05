@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url'
 import { defineConfig, loadEnv } from 'vite'
 import type { UserConfig, ConfigEnv } from 'vite'
-import { wrapperEnv, getNowTime } from './build/utils'
+import { wrapperEnv, getNowTime, createBuildJson } from './build/utils'
 import { createVitePlugins } from './build/vite/plugin'
 import { createProxy } from './build/vite/proxy'
 import { createBuild } from './build/vite/build'
@@ -21,7 +21,9 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 	const env = loadEnv(mode, root) // 加载env环境
 	const viteEnv = wrapperEnv(env)
 
-	const { VITE_PUBLIC_PATH } = viteEnv
+	const { VITE_PUBLIC_PATH, VITE_ENV } = viteEnv
+
+	createBuildJson(VITE_ENV)
 
 	return {
 		base: VITE_PUBLIC_PATH,
@@ -47,6 +49,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 		},
 		server: {
 			host: true,
+			hmr: true, //开启热更新
 			proxy: createProxy()
 		},
 		build: createBuild(viteEnv),

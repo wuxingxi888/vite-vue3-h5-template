@@ -50,3 +50,24 @@ export const getNowTime = () => {
 	const seconds = now.getSeconds() >= 10 ? now.getSeconds() : `0${now.getSeconds()}`
 	return `${year}年${month}月${date}日 ${hour}:${minutes}:${seconds}`
 }
+
+// 生成项目信息json数据
+export const createBuildJson = (envName: string) => {
+	const oFileName = `env.${envName}.ts`
+	const oFilePath = `./src/config/${oFileName}`
+	fs.readFile(oFilePath, function (err, data) {
+		if (err) {
+			return console.error(err)
+		}
+		const jsonStr = `{${data.toString().split('{')[1]}`
+			.replace(/(\s*?{\s*?|\s*?,\s*?)(['"])?([a-zA-Z0-9]+)(['"])?:/g, '$1"$3":')
+			.replace(/'/g, '"')
+		fs.writeFile('./build.json', jsonStr, 'utf-8', function (err) {
+			if (err) {
+				console.log('errr')
+			} else {
+				console.log('success')
+			}
+		})
+	})
+}

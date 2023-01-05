@@ -13,8 +13,9 @@ const toBack = () => router.back()
 	<nut-navbar
 		@on-click-back="toBack"
 		title="系统信息"
-		left-show
 		fixed
+		border
+		left-show
 		placeholder
 		safe-area-inset-top
 	></nut-navbar>
