@@ -1,6 +1,7 @@
 export interface IConfig {
 	env: string // 开发环境
 	title: string // 项目title
+	version: string // 当前环境的版本号
 	baseUrl?: string // 项目地址
 	baseApi?: string // api请求地址
 }

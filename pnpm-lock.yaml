@@ -17,7 +17,6 @@ specifiers:
   '@vueuse/core': ^7.5.3
   autoprefixer: ^10.4.2
   axios: ^0.24.0
-  consola: ^2.15.3
   crypto-js: ^4.1.1
   eslint: ^8.5.0
   eslint-plugin-vue: ^8.2.0
@@ -34,7 +33,7 @@ specifiers:
   typescript: ~4.7.3
   unplugin-auto-import: ^0.8.7
   unplugin-vue-components: ^0.19.6
-  vconsole: ^3.14.0
+  vconsole: ^3.15.0
   vite: ^2.9.10
   vite-plugin-compression: ^0.5.1
   vite-plugin-imagemin: ^0.6.1
@@ -69,7 +68,6 @@ devDependencies:
   '@vue/eslint-config-prettier': 7.0.0_crnjwcwerrbat3mlbmrsoa543e
   '@vue/eslint-config-typescript': 10.0.0_dc2xsddxj7dh4xaprljhixcuom
   autoprefixer: 10.4.13_postcss@8.4.20
-  consola: 2.15.3
   eslint: 8.31.0
   eslint-plugin-vue: 8.7.1_eslint@8.31.0
   esno: 0.16.3
@@ -1621,6 +1619,7 @@ packages:
 
   /consola/2.15.3:
     resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
+    dev: false
 
   /console-stream/0.1.1:
     resolution: {integrity: sha1-oJX+B7IEZZVfL6/Si11yvM2UnUQ=}

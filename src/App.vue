@@ -1,5 +1,8 @@
 <script setup lang="ts">
 const route = useRoute()
+const router = useRouter()
+
+const transitionName = ref('')
 
 const includeList = ref([] as any)
 
@@ -9,18 +12,32 @@ watch(route, (v) => {
 		includeList.value.push(v.name)
 	}
 })
+
+router.beforeEach((to: any, from: any) => {
+	if (!to.meta.transition.enable) {
+		transitionName.value = ''
+	} else {
+		if (to.meta.transition.name) {
+			transitionName.value = to.meta.transition.name
+		} else if (to.meta.index > from.meta.index) {
+			transitionName.value = 'slide-left'
+		} else if (to.meta.index < from.meta.index) {
+			transitionName.value = 'slide-right'
+		}
+	}
+})
 </script>
 
 <template>
 	<div class="layout-content">
-		<router-view v-slot="{ Component, route }">
-			<!-- <transition :name="route.meta.transition || 'van-fade'"> -->
-			<keep-alive :include="includeList">
-				<div>
-					<component :is="Component" />
-				</div>
-			</keep-alive>
-			<!-- </transition> -->
+		<router-view v-slot="{ Component }">
+			<div>
+				<transition :name="transitionName || ''">
+					<keep-alive :include="includeList">
+						<component :is="Component" />
+					</keep-alive>
+				</transition>
+			</div>
 		</router-view>
 	</div>
 </template>

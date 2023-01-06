@@ -10,3 +10,50 @@
 		color: #000 !important;
 	}
 }
+
+// 页面转场动画
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+	height: 100%;
+	will-change: transform;
+	transition: all 300ms;
+	position: absolute;
+	backface-visibility: hidden;
+}
+.slide-right-enter {
+	opacity: 0;
+	transform: translate3d(-100%, 0, 0);
+}
+.slide-right-leave-active {
+	opacity: 0;
+	transform: translate3d(100%, 0, 0);
+}
+.slide-left-enter {
+	opacity: 0;
+	transform: translate3d(100%, 0, 0);
+}
+.slide-left-leave-active {
+	opacity: 0;
+	transform: translate3d(-100%, 0, 0);
+}
+
+// 淡入淡出
+.fade-enter-from,
+.fade-leave-to {
+	/*定义进入开始和离开结束的透明度为0*/
+	opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+	/*定义进入结束和离开开始的透明度为1*/
+	opacity: 1;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	/*定义进入和离开过渡状态的透明度变化的时间和变化曲线*/
+	transition: opacity 0.5s ease;
+}
