@@ -3,10 +3,10 @@ import { RouteRecordRaw } from 'vue-router'
 export const defaultRouter: Array<RouteRecordRaw> = [
 	{
 		path: '/',
-		name: '',
-		component: () => import('@/views/demo.vue'),
+		name: '/',
+		component: () => import('@/views/home.vue'),
 		meta: {
-			title: '示例',
+			title: '首页',
 			keepAlive: false,
 			index: 1,
 			transition: {
@@ -16,13 +16,13 @@ export const defaultRouter: Array<RouteRecordRaw> = [
 		}
 	},
 	{
-		path: '/test',
-		name: 'test',
-		component: () => import('@/views/test.vue'),
+		path: '/system',
+		name: 'system',
+		component: () => import('@/views/system/index.vue'),
 		meta: {
-			title: '测试',
+			title: '系统信息',
 			keepAlive: false,
-			index: 2,
+			index: 3,
 			transition: {
 				enable: true,
 				name: 'fade'

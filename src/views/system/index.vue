@@ -12,7 +12,7 @@ const toBack = () => router.back()
 const toTest = () => router.push('/test')
 </script>
 <template>
-	<div>
+	<div class="fix-iphone">
 		<nut-navbar
 			@on-click-back="toBack"
 			title="系统信息"

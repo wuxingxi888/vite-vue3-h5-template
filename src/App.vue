@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import Dialog from '@/components/CustomDialog/index'
+import useSystem from '@/hooks/useSystem'
+const { execute } = useSystem()
 const route = useRoute()
 const router = useRouter()
 
@@ -26,18 +29,26 @@ router.beforeEach((to: any, from: any) => {
 		}
 	}
 })
+
+// 调用系统信息
+const openSystem = () => {
+	Dialog.show({
+		title: '开发者模式',
+		message: '请输入密码开启开发者模式，用户请关闭此弹窗'
+	}).then(() => {
+		router.push('/system')
+	})
+}
 </script>
 
 <template>
-	<div class="layout-content">
+	<div class="layout-content" @click.stop="execute(openSystem)">
 		<router-view v-slot="{ Component }">
-			<div>
-				<transition :name="transitionName || ''">
-					<keep-alive :include="includeList">
-						<component :is="Component" />
-					</keep-alive>
-				</transition>
-			</div>
+			<transition :name="transitionName || ''">
+				<keep-alive :include="includeList">
+					<component :is="Component" />
+				</keep-alive>
+			</transition>
 		</router-view>
 	</div>
 </template>

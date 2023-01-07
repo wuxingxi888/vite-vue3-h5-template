@@ -43,8 +43,39 @@
 		position: fixed;
 		bottom: 0 !important;
 		left: 0;
-		height: calc(#{$safe-bottom} + 1px);
+		height: calc(#{$safe-bottom} + 1px); // 这里是重点
 		width: 100%;
 		background: #ffffff;
+	}
+}
+
+/** 
+* 方式一：通过混入
+* iPhone X、iPhone XR、iPhone XS Max、iPhone 11、iPhone 11 Pro、iPhone 11 Pro Max适配 
+**/
+@mixin iphoneAdaptive($name, $n: '') {
+	@if ($name == 'p') {
+		/* 可以通过增加padding-bottom来适配 */
+		padding-bottom: constant(safe-area-inset-bottom); /*兼容 IOS<11.2*/
+		padding-bottom: env(safe-area-inset-bottom); /*兼容 IOS>11.2*/
+	} @else if($name == 'm') {
+		/* 可以通过margin-bottom来适配 */
+		margin-bottom: constant(safe-area-inset-bottom);
+		margin-bottom: env(safe-area-inset-bottom);
+	} @else if($name == 'h') {
+		/* 或者改变高度*/
+		height: calc(#{$n} + constant(safe-area-inset-bottom));
+		height: calc(#{$n} + env(safe-area-inset-bottom));
+	}
+}
+
+/** 
+* 方式二：通过样式隔离 标签加入class 如 <div class="fix-iphone">
+* fix iPhoneX
+**/
+@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+	.fix-iphone {
+		padding-bottom: constant(safe-area-inset-bottom); /*兼容 IOS<11.2*/
+		padding-bottom: env(safe-area-inset-bottom); /*兼容 IOS>11.2*/
 	}
 }

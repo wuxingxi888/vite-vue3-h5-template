@@ -8,7 +8,10 @@ import {
 	BackTop,
 	Toast,
 	Dialog,
-	Avatar
+	Avatar,
+	ShortPassword,
+	Popup,
+	OverLay
 } from '@nutui/nutui'
 
 const components = [
@@ -21,7 +24,10 @@ const components = [
 	BackTop,
 	Toast,
 	Dialog,
-	Avatar
+	Avatar,
+	ShortPassword,
+	Popup,
+	OverLay
 ]
 
 export const nutuiPlugins = (app) => {
