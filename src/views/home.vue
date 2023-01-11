@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-	<div class="wrap fix-iphone">
+	<div class="wrap">
 		<ul>
 			<li v-for="(item, index) in 100" :key="index">{{ item }}</li>
 		</ul>

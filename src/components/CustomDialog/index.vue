@@ -47,6 +47,7 @@ const onTips = () => Toast.text('用户怎么会知道密码呢？')
 <template>
 	<div class="dialog_wrap">
 		<nut-shortpassword
+			@touchmove.prevent
 			v-model="inputValue"
 			v-model:visible="visible"
 			:title="options.title"

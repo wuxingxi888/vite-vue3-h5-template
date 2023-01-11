@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Dialog from '@/components/CustomDialog/index'
 import useSystem from '@/hooks/useSystem'
+import rollingStop from '@/utils/rollingStop'
 const { execute } = useSystem()
 const route = useRoute()
 const router = useRouter()
@@ -39,10 +40,14 @@ const openSystem = () => {
 		router.push('/system')
 	})
 }
+
+onMounted(() => {
+	rollingStop.init()
+})
 </script>
 
 <template>
-	<div class="layout-content" @click.stop="execute(openSystem)">
+	<div class="layout-content fix-iphone" @click.stop="execute(openSystem)">
 		<router-view v-slot="{ Component }">
 			<transition :name="transitionName || ''">
 				<keep-alive :include="includeList">
@@ -56,6 +61,6 @@ const openSystem = () => {
 <style lang="scss" scoped>
 .layout-content {
 	width: 100vw;
-	height: 100vh;
+	// height: 100vh;
 }
 </style>
