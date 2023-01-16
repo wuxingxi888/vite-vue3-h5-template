@@ -57,3 +57,14 @@
 	/*定义进入和离开过渡状态的透明度变化的时间和变化曲线*/
 	transition: opacity 0.5s ease;
 }
+
+@keyframes blur-in {
+	0% {
+		filter: blur(12px);
+		opacity: 0;
+	}
+	100% {
+		filter: blur(0);
+		opacity: 1;
+	}
+}

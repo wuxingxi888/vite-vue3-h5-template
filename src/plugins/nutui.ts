@@ -11,7 +11,8 @@ import {
 	Avatar,
 	ShortPassword,
 	Popup,
-	OverLay
+	OverLay,
+	Image
 } from '@nutui/nutui'
 
 const components = [
@@ -27,7 +28,8 @@ const components = [
 	Avatar,
 	ShortPassword,
 	Popup,
-	OverLay
+	OverLay,
+	Image
 ]
 
 export const nutuiPlugins = (app) => {

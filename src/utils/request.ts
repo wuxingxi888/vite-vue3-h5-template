@@ -8,12 +8,12 @@ import { useAppStore } from '@/store/app'
 import router from '@/router/index'
 
 export class StatusCode {
-	static SUCCESS = 100
+	static SUCCESS = '200'
 	static ERROR = 400
 	static OUTDATE_TOKEN = 1001
 }
 
-export const toast = Toast.loading('加载中...')
+export let toast: any = null
 
 const service = axios.create({
 	timeout: 6000,
@@ -33,7 +33,9 @@ service.interceptors.request.use(
 	(config: AxiosRequestConfig) => {
 		// 加载动画
 		if (config.loading) {
-			toast()
+			toast = Toast.loading('加载中...', {
+				duration: 0
+			})
 		}
 		const appStore = useAppStore()
 		if (appStore.token) {
@@ -50,7 +52,9 @@ service.interceptors.request.use(
 // Response interceptors
 service.interceptors.response.use(
 	async (response: AxiosResponse) => {
-		toast.hide()
+		if (toast !== null) {
+			toast.hide()
+		}
 		const res = response.data
 		if (res.code === StatusCode.SUCCESS) {
 			return response.data
