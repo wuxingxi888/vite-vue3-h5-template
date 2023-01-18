@@ -12,7 +12,9 @@ import {
 	ShortPassword,
 	Popup,
 	OverLay,
-	Image
+	Image,
+	Drag,
+	FixedNav
 } from '@nutui/nutui'
 
 const components = [
@@ -29,7 +31,9 @@ const components = [
 	ShortPassword,
 	Popup,
 	OverLay,
-	Image
+	Image,
+	Drag,
+	FixedNav
 ]
 
 export const nutuiPlugins = (app) => {

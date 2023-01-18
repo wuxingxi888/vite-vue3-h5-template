@@ -1,4 +1,4 @@
-// import screenfull from 'screenfull'
+import screenfull from 'screenfull'
 
 class landscape {
 	evt = 'onorientationchange' in window ? 'orientationchange' : 'resize'
@@ -46,9 +46,9 @@ class landscape {
 		window.location.reload()
 
 		// 切换之后强制全屏
-		// if (screenfull.isEnabled) {
-		// 	screenfull.request()
-		// }
+		if (screenfull.isEnabled) {
+			screenfull.request()
+		}
 	}
 
 	init = () => {

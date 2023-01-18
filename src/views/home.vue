@@ -15,7 +15,7 @@ const getUrl = () => {
 
 onMounted(() => {
 	timer.value = setInterval(() => {
-		if (imageList.value.length > 10) clearInterval(timer.value)
+		if (imageList.value.length > 1) clearInterval(timer.value)
 		getUrl()
 	}, 10)
 })
@@ -37,6 +37,10 @@ onMounted(() => {
 			:key="index"
 			v-lazy="item"
 		></nut-image>
+
+		<nut-drag class="drag" :attract="true">
+			<nut-button type="primary" icon="dongdong"></nut-button>
+		</nut-drag>
 	</div>
 </template>
 
@@ -44,5 +48,10 @@ onMounted(() => {
 .wrap {
 	width: 100%;
 	padding: 15px;
+	.drag {
+		position: fixed;
+		top: 200px;
+		right: 0;
+	}
 }
 </style>

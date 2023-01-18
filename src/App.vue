@@ -2,6 +2,7 @@
 import Dialog from '@/components/CustomDialog/index'
 import useSystem from '@/hooks/useSystem'
 import rollingStop from '@/utils/rollingStop'
+import landscape from '@/utils/landscape'
 const { execute } = useSystem()
 const route = useRoute()
 const router = useRouter()
