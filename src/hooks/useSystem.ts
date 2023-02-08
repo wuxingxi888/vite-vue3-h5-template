@@ -1,4 +1,3 @@
-1
 export type Callback = () => void
 
 export default function useSystem() {

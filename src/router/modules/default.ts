@@ -25,7 +25,7 @@ export const defaultRouter: Array<RouteRecordRaw> = [
 			index: 3,
 			transition: {
 				enable: true,
-				name: 'fade'
+				name: 'van-fade'
 			}
 		}
 	}

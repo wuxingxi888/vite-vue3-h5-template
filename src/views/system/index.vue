@@ -8,50 +8,50 @@ const { dependencies, devDependencies, name, version } = pkg
 const router = useRouter()
 
 const toBack = () => router.back()
-
-const toTest = () => router.push('/test')
 </script>
 <template>
-	<div class="fix-iphone">
-		<nut-navbar
-			@on-click-back="toBack"
+	<div class="sys_wrap">
+		<van-nav-bar
 			title="系统信息"
+			left-arrow
 			fixed
-			border
-			left-show
 			placeholder
 			safe-area-inset-top
-		></nut-navbar>
-		<nut-cell-group title="基本信息">
-			<nut-cell>
-				<template v-slot:icon>
-					<nut-avatar size="normal" :icon="avatar" @active-avatar="toTest"></nut-avatar>
+			@click-left="toBack"
+		/>
+
+		<van-cell-group inset title="基本信息">
+			<van-cell>
+				<template #icon>
+					<van-image width="25" height="25" round :src="avatar" />
 				</template>
-			</nut-cell>
-			<nut-cell title="项目名称" :desc="name" />
-			<nut-cell title="项目版本" :desc="version" />
-			<nut-cell title="最后编译时间" :desc="lastBuildTime" />
-		</nut-cell-group>
-		<nut-cell-group title="生产环境依赖">
-			<nut-cell
+			</van-cell>
+			<van-cell title="项目名称" :value="name" />
+			<van-cell title="项目版本" :value="version" />
+			<van-cell title="最后编译时间" :value="lastBuildTime" />
+		</van-cell-group>
+
+		<van-cell-group inset title="生产环境依赖">
+			<van-cell
 				v-for="([key, value], index) of Object.entries(dependencies)"
 				:key="index"
 				:title="key"
-				:desc="value"
+				:value="value"
 			/>
-		</nut-cell-group>
-		<nut-cell-group title="开发环境依赖">
-			<nut-cell
+		</van-cell-group>
+		<van-cell-group inset title="开发环境依赖">
+			<van-cell
 				v-for="([key, value], index) of Object.entries(devDependencies)"
 				:key="index"
 				:title="key"
-				:desc="value"
+				:value="value"
 			/>
-		</nut-cell-group>
-
-		<nut-backtop></nut-backtop>
-
-		<nut-watermark :z-index="1" :content="name"></nut-watermark>
+		</van-cell-group>
 	</div>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.sys_wrap {
+	width: 100%;
+	height: 100vh;
+}
+</style>
