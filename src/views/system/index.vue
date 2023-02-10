@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import avatar from '@/assets/common/avatar.png'
+import { sessionStorage } from '@/utils/storage'
+import { asyncLoadScript, removeScript } from '@/utils/script'
 // eslint-disable-next-line no-undef
 const { pkg, lastBuildTime } = __APP_INFO__
 
@@ -8,17 +10,30 @@ const { dependencies, devDependencies, name, version } = pkg
 const router = useRouter()
 
 const toBack = () => router.back()
+
+const isDebug = ref(sessionStorage.get('openEruda'))
+
+const debugChange = (value) => {
+	if (value) {
+		asyncLoadScript(this, { src: 'https://cdn.jsdelivr.net/npm/eruda', id: 'debug' })
+			.then(() => {
+				// eslint-disable-next-line no-undef
+				eruda.init();
+			})
+	} else {
+		removeScript('debug')
+			.then(() => {
+				removeScript('eruda')
+			})
+	}
+	sessionStorage.set('openEruda', value)
+}
+
+
 </script>
 <template>
 	<div class="sys_wrap">
-		<van-nav-bar
-			title="系统信息"
-			left-arrow
-			fixed
-			placeholder
-			safe-area-inset-top
-			@click-left="toBack"
-		/>
+		<van-nav-bar title="系统信息" left-arrow fixed placeholder safe-area-inset-top @click-left="toBack" />
 
 		<van-cell-group inset title="基本信息">
 			<van-cell>
@@ -32,26 +47,20 @@ const toBack = () => router.back()
 		</van-cell-group>
 
 		<van-cell-group inset title="生产环境依赖">
-			<van-cell
-				v-for="([key, value], index) of Object.entries(dependencies)"
-				:key="index"
-				:title="key"
-				:value="value"
-			/>
+			<van-cell v-for="([key, value], index) of Object.entries(dependencies)" :key="index" :title="key"
+				:value="value" />
 		</van-cell-group>
 		<van-cell-group inset title="开发环境依赖">
-			<van-cell
-				v-for="([key, value], index) of Object.entries(devDependencies)"
-				:key="index"
-				:title="key"
-				:value="value"
-			/>
+			<van-cell v-for="([key, value], index) of Object.entries(devDependencies)" :key="index" :title="key"
+				:value="value" />
+		</van-cell-group>
+
+		<van-cell-group inset title="设置">
+			<van-cell center title="调试模式">
+				<template #right-icon>
+					<van-switch v-model="isDebug" size="22px" @change="debugChange" />
+				</template>
+			</van-cell>
 		</van-cell-group>
 	</div>
 </template>
-<style lang="scss" scoped>
-.sys_wrap {
-	width: 100%;
-	height: 100vh;
-}
-</style>

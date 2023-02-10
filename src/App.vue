@@ -59,13 +59,12 @@ onMounted(() => {
 				</keep-alive>
 			</transition>
 		</router-view>
-		<van-back-top />
+		<van-back-top  bottom="15vh"/>
 	</div>
 </template>
 
 <style lang="scss" scoped>
 .layout-content {
 	width: 100vw;
-	height: 100vh;
 }
 </style>

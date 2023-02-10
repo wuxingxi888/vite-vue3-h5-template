@@ -1,6 +1,13 @@
-import 'vant/lib/index.css'
+// vant 全局样式
+// import 'vant/lib/index.css'
 
-import { Toast } from 'vant'
+// 函数组件的样式
+import 'vant/es/toast/style'
+import 'vant/es/dialog/style'
+import 'vant/es/notify/style'
+import 'vant/es/image-preview/style'
+
+// import { Toast } from 'vant'
 
 const components = [
 	// Toast

@@ -3,7 +3,8 @@
  */
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 import JSONbig from 'json-bigint' //解决超过 16 位数字精度丢失问题
-import { Dialog, showToast, showLoadingToast, closeToast } from 'vant'
+import { showToast, showLoadingToast, closeToast } from 'vant/lib/toast'
+import { showDialog } from 'vant/lib/dialog'
 import { useAppStore } from '@/store/app'
 import router from '@/router/index'
 
@@ -58,8 +59,9 @@ service.interceptors.response.use(
 		} else {
 			if (res.code === StatusCode.OUTDATE_TOKEN) {
 				// token 失效
-				Dialog.alert({
-					message: '登录失效，请重新登录'
+				showDialog({
+					message: '登录失效，请重新登录',
+					theme: 'round-button'
 				}).then(() => {
 					router.replace('/')
 				})

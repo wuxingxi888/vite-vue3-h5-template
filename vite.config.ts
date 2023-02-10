@@ -2,7 +2,7 @@
  * @Author: 吴星喜 wuxingxi888@163.com
  * @Date: 2023-01-05 16:37:32
  * @LastEditors: 吴星喜 wuxingxi888@163.com
- * @LastEditTime: 2023-02-08 15:54:32
+ * @LastEditTime: 2023-02-10 11:41:55
  * @FilePath: /vite-vue3-h5-template/vite.config.ts
  * @Description:
  *
