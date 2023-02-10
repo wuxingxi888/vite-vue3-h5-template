@@ -1,11 +1,11 @@
 ---
 layout: home
 
-title: Vue-H5-Template
+title: vite-vue3-h5-template
 titleTemplate: 一个快速开发的vue h5移动端脚手架
 
 hero:
-  name: Vue-H5-Template
+  name: vite-vue3-h5-template
   text: 一个快速开发的Vue H5移动端脚手架
   image:
     src: https://cdn.jsdelivr.net/gh/fonghehe/picture/vue-h5-template/logo.png
