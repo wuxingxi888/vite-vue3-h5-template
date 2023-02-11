@@ -5,6 +5,7 @@
   },
   "scripts": {
     "start": "vitepress dev docs --host 0.0.0.0",
-    "build": "vitepress build docs"
+    "build": "vitepress build docs",
+    "deploy": "bash deploy.sh"
   }
 }
