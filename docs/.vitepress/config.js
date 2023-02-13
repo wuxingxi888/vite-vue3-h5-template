@@ -13,21 +13,21 @@ module.exports = {
 	themeConfig: {
 		nav: nav(),
 		sidebar: menu,
-
+		logo: "/logo.svg",
 		socialLinks: [
 			{
 				icon: "github",
-				link: "https://github.com/sunniejs/vue-h5-template",
+				link: "https://github.com/wuxingxi888/vite-vue3-h5-template",
 			},
 		],
 		editLink: {
 			pattern:
-				"https://github.com/sunniejs/vue-h5-template/blob/docs/docs/:path",
+				"https://github.com/wuxingxi888/vite-vue3-h5-template/blob/docs/docs/:path",
 			text: "在GitHub编辑此页",
 		},
 		footer: {
 			message: "Released under the MIT License.",
-			copyright: "Copyright © 2022-present Fonghehe",
+			copyright: "Copyright © 2022-present project contributors",
 		},
 		algolia: {
 			appId: "CV2I8NGBKZ",
@@ -41,9 +41,10 @@ function nav() {
 	return [
 		{ text: "介绍", link: "/guide/" },
 		{ text: "加入我们", link: "/guide/about/" },
+		{ text: "个人网站", link: "http://wuxingxi.top/" },
 		{
 			text: "github仓库",
-			link: "https://github.com/sunniejs/vue-h5-template",
+			link: "https://github.com/wuxingxi888/vite-vue3-h5-template",
 		},
 	];
 }

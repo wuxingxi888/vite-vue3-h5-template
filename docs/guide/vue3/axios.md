@@ -1,67 +1,124 @@
 # axios 封装及接口管理
 
-`utils/request.js` 封装 axios , 开发者需要根据后台接口做修改。
+`utils/request.ts` 封装 axios , 开发者需要根据后台接口做修改。
 
-- `service.interceptors.request.use` 里可以设置请求头，比如设置 `token`
-- `config.hideloading` 是在 api 文件夹下的接口参数里设置，下文会讲
-- `service.interceptors.response.use` 里可以对接口返回数据处理，比如 401 删除本地信息，重新登录
+-   `JSONbig` 解决超过 16 位数字精度丢失问题
+-   `config.loading` 在接口里配置是否开启 loading 动画
+-   `config.headers!.common['Authorization']` 请求头携带 token
+-   `service.interceptors.response.use` 接口响应处理 如 错误提示，重新登陆
 
 ```javascript
-import axios from "axios";
-import store from "@/store";
-import { Toast } from "vant";
-// 根据环境不同引入不同api地址
-import { baseApi } from "@/config";
-// create an axios instance
-const service = axios.create({
-  baseURL: baseApi, // url = base api url + request url
-  withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000, // request timeout
-});
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
+import JSONbig from 'json-bigint' //解决超过 16 位数字精度丢失问题
+import { showToast, showLoadingToast, closeToast } from 'vant/lib/toast'
+import { showDialog } from 'vant/lib/dialog'
+import { useAppStore } from '@/store/app'
+import router from '@/router/index'
 
-// request 拦截器 request interceptor
+export class StatusCode {
+	static SUCCESS = '200'
+	static ERROR = 400
+	static OUTDATE_TOKEN = 1001
+}
+
+const service = axios.create({
+	timeout: 6000,
+	transformResponse: [
+		(data) => {
+			try {
+				return JSON.parse(JSON.stringify(JSONbig.parse(data)))
+			} catch (err) {
+				return { data }
+			}
+		}
+	]
+})
+
+// Request interceptors
 service.interceptors.request.use(
-  (config) => {
-    // 不传递默认开启loading
-    if (!config.hideloading) {
-      // loading
-      Toast.loading({
-        forbidClick: true,
-      });
-    }
-    if (store.getters.token) {
-      config.headers["X-Token"] = "";
-    }
-    return config;
-  },
-  (error) => {
-    // do something with request error
-    console.log(error); // for debug
-    return Promise.reject(error);
-  }
-);
-// respone拦截器
+	(config: AxiosRequestConfig) => {
+		// 加载动画
+		if (config.loading) {
+			showLoadingToast({
+				message: '加载中...',
+				forbidClick: true
+			})
+		}
+		const appStore = useAppStore()
+		if (appStore.token) {
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			config.headers!.common['Authorization'] = appStore.token
+		}
+		return config
+	},
+	(error: any) => {
+		Promise.reject(error)
+	}
+)
+
+// Response interceptors
 service.interceptors.response.use(
-  (response) => {
-    Toast.clear();
-    const res = response.data;
-    if (res.status && res.status !== 200) {
-      // 登录超时,重新登录
-      if (res.status === 401) {
-        store.dispatch("FedLogOut").then(() => {
-          location.reload();
-        });
-      }
-      return Promise.reject(res || "error");
-    } else {
-      return Promise.resolve(res);
-    }
-  },
-  (error) => {
-    Toast.clear();
-    console.log("err" + error); // for debug
-    return Promise.reject(error);
-  }
-);
-export default service;
+	async (response: AxiosResponse) => {
+		closeToast()
+		const res = response.data
+		if (res.code === StatusCode.SUCCESS) {
+			return response.data
+		} else {
+			if (res.code === StatusCode.OUTDATE_TOKEN) {
+				// token 失效
+				showDialog({
+					message: '登录失效，请重新登录',
+					theme: 'round-button'
+				}).then(() => {
+					router.replace('/')
+				})
+				return Promise.reject(res)
+			} else {
+				showToast(res.msg)
+				return Promise.reject(res)
+			}
+		}
+	},
+	(error: any) => {
+		showToast(error.response ? `请求异常${error.response.status}` : '网络超时，请刷新重试')
+		return Promise.reject(error)
+	}
+)
+
+export default service
+```
+
+### 使用
+
+```javascript
+/**
+ * post请求
+ */
+export const fetchAuthCode = (data: AuthCode) => {
+	return (
+		request <
+		IResponseType >
+		{
+			url: envConfig.baseApi + "xxxxx",
+			method: "post",
+			data,
+			loading: true,
+		}
+	);
+};
+
+/**
+ * get请求
+ */
+export const fetchTagList = () => {
+	return (
+		request <
+		IResponseType >
+		{
+			url: envConfig.baseApi + "xxxxxx",
+			method: "get",
+			loading: false,
+		}
+	);
+};
 ```

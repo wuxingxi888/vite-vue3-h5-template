@@ -5,12 +5,20 @@
   --vp-c-green-lighter: #109ef7;
   --vp-c-green-dark: #109ef7;
   --vp-c-green-darker: #109ef7;
+  --vp-home-hero-image-background-image: linear-gradient( -45deg, #4a8dea 30%, #35495e80 );
+  --vp-home-hero-image-filter: blur(56px);
+  --vp-home-hero-name-color: #3975cd;
+  --vp-button-brand-bg:#1e80ff;
+  --vp-button-brand-border: #1e80ff;
 }
 
 .dark {
   --vp-c-bg: #000;
-  --vp-code-block-bg: #111;
   --vp-c-bg-alt: rgba(0, 0, 0, 0.5);
+  --vp-code-block-bg: rgba(0, 0, 0, 0.2);
+  --vp-c-text-code: #c0cec0;
+  /* fix contrast on gray cards: check the same above (this is the default) */
+  --vp-c-text-dark-2: rgba(235, 235, 235, 0.6);
 }
 
 @media (min-width: 960px) {
@@ -18,6 +26,13 @@
     background: rgba(36, 36, 36, 0.1);
   }
 }
+
+@media (min-width: 960px) {
+  .title {
+    font-size: 24px !important;
+  }
+}
+
 
 .Layout::before {
   content: "";
@@ -50,11 +65,7 @@
   z-index: -1;
 }
 
-@media (min-width: 960px) {
-  .title {
-    font-size: 24px !important;
-  }
-}
+
 
 .image-src {
   max-width: 220px !important;

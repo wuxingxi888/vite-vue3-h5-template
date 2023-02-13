@@ -34,18 +34,18 @@ export const nutUiComponents = [Button, Cell, CellGroup];
 
 // 在main.ts文件中引入
 nutUiComponents.forEach((item) => {
-  app.use(item);
+	app.use(item);
 });
 ```
 
-vant 和 varlet 可以使用组件按需加载
+vant 可以使用组件按需加载
 
 在`config/vite/plugins/component.ts`下
 
 ```javascript
-import { VueUseComponentsResolver, VantResolver, VarletUIResolver } from 'unplugin-vue-components/resolvers';
+import { VueUseComponentsResolver, VantResolver } from 'unplugin-vue-components/resolvers';
 ...
-resolvers: [VantResolver(), VarletUIResolver()],
+resolvers: [VantResolver()],
 ...
 ```
 
@@ -53,14 +53,12 @@ resolvers: [VantResolver(), VarletUIResolver()],
 
 nutUI 需删除`src/plugins/nutUI.ts`和`main.ts`文件下的引入
 
-vant 和 varlet 只需删除对应的 resolvers 即可
+vant 只需删除对应的 resolvers 即可
 
 删除后需全局搜索删除不需要的组件，避免报错
 
 ## 参考文档
 
-- [nutUI](https://nutui.jd.com/#/zh-CN/component/button)
+-   [nutUI](https://nutui.jd.com/#/zh-CN/component/button)
 
-- [vant](https://vant-contrib.gitee.io/vant/#/zh-CN)
-
-- [varlet](https://varlet-varletjs.vercel.app/#/zh-CN/button)
+-   [vant](https://vant-contrib.gitee.io/vant/#/zh-CN)

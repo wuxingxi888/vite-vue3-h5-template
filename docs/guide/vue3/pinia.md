@@ -1,8 +1,3 @@
-<!--
- * @Author: Vinton
- * @Date: 2022-08-22 10:39:13
- * @Description: file content
--->
 # Pinia 状态管理
 
 下一代 vuex，使用极其方便，ts 兼容好
@@ -12,85 +7,96 @@
 ```bash
 ├── store
 │   ├── modules
-│   │   └── user.js
+│   │   └── app.ts
 │   ├── index.js
 ```
-目前pinia分为两种编程模式,options API和 Composition API，我们这边都会列举出来实现的业务逻辑效果是一样的，提供大家思路
 
-### options API: 
+目前 pinia 分为两种编程模式,options API 和 Composition API，我们这边都会列举出来实现的业务逻辑效果是一样的，提供大家思路
+
+### options API:
 
 ```javascript
-interface StoreUser {
-  token: string;
-  info: Record<any, any>;
+import { defineStore } from 'pinia'
+import { isEnvProd } from '@/config'
+import { encrypt, decrypt } from '@/utils/encrypt'
+
+export interface IAppState {
+	token: string
+	openInstallInstance: OpenInstall | null
 }
 
-export const useUserStore = defineStore({
-  id: 'app-user',
-  state: (): StoreUser => ({
-    token: token,
-    info: {},
-  }),
-  getters: {
-    getUserInfo(): any {
-      return this.info || {};
-    },
-  },
-  actions: {
-    setInfo(info: any) {
-      this.info = info ? info : '';
-    },
-    login() {
-      return new Promise((resolve) => {
-        const { data } = loginPassword();
-        watch(data, () => {
-          this.setInfo(data.value);
-          // useCookies().set(VITE_TOKEN_KEY as string, data.value.token);
-          resolve(data.value);
-        });
-      });
-    },
-  },
-});
+export const useAppStore = defineStore({
+	id: 'app',
+	state: () =>
+		({
+			token: '',
+			openInstallInstance: null
+		} as IAppState),
+	actions: {
+		setToken(token: string) {
+			this.token = `Bearer ${token}`
+		},
+		setOpenInstall(instance: OpenInstall) {
+			this.openInstallInstance = instance
+		}
+	},
+	// 开启数据缓存
+	persist: {
+		key: 'app',
+		storage: window.sessionStorage,
+		serializer: {
+			serialize: isEnvProd ? encrypt : JSON.stringify,
+			deserialize: isEnvProd ? decrypt : JSON.parse
+		}
+	}
+})
 ```
 
 ### Composition API:
+
 ```javascript
-export const useUserStore = defineStore('app-user', () => {
-  const Token = ref(token);
-  const info = ref<Record<any, any>>({});
-  const setInfo = (info: any) => {
-    info.value = info ? info : '';
-  };
-  const getUserInfo = () => {
-    return info || {};
-  };
-  const login = () => {
-    return new Promise((resolve) => {
-      const { data } = loginPassword();
-      watch(data, () => {
-        setInfo(data.value);
-        // useCookies().set(VITE_TOKEN_KEY as string, data.value.token);
-        resolve(data.value);
-      });
-    });
-  };
-  return {
-    Token,
-    info,
-    setInfo,
-    login,
-    getUserInfo,
-  };
-})
+export const useAppStore = defineStore("app", () => {
+	const token = ref("");
+	const openInstallInstance = (ref < OpenInstall) | (null > {});
+
+	const setToken = (token: any) => {
+		token.value = `Bearer ${token}`;
+	};
+
+	setOpenInstall = (instance: OpenInstall) => {
+		openInstallInstance.value = instance;
+	};
+	return {
+		token,
+		openInstallInstance,
+		setToken,
+		setOpenInstall,
+	};
+});
 ```
 
 使用
 
 ```html
 <script lang="ts" setup>
-  import { useUserStore } from "@/store/modules/user";
-  const userStore = useUserStore();
-  userStore.login();
+	import { useAppStore } from "@/store/modules/app";
+	const appStore = useAppStore();
+	appStore.setToken("");
 </script>
+```
+
+### 数据加密
+
+如果是正式环境下 sessionStorage 或者 localStorage 都会加密
+
+```javascript
+// 开启数据缓存
+	persist: {
+		key: 'app',
+		storage: window.sessionStorage,
+		serializer: {
+			serialize: isEnvProd ? encrypt : JSON.stringify,
+			deserialize: isEnvProd ? decrypt : JSON.parse
+		}
+	}
 ```

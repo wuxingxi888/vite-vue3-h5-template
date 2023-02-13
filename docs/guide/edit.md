@@ -5,15 +5,15 @@
 ```js
 
 // 拉取项目
-git clone https://github.com/sunniejs/vue-h5-template
+git clone https://github.com/wuxingxi888/vite-vue3-h5-template.git
 
 // 切换分支
 git checkout -b docs origin/docs
 
 // 安装依赖
-yarn install
+pnpm install
 
 // 启动项目
-yarn start
+pnpm start
 
 ```
