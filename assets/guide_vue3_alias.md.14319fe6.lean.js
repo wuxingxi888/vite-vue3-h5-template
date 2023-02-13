@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as n,d as l}from"./app.b5806255.js";const _=JSON.parse('{"title":"alias","description":"","frontmatter":{},"headers":[],"relativePath":"guide/vue3/alias.md","lastUpdated":1676283827000}'),o={name:"guide/vue3/alias.md"},p=l("",2),e=[p];function t(c,r,F,i,D,y){return n(),a("div",null,e)}const u=s(o,[["render",t]]);export{_ as __pageData,u as default};
