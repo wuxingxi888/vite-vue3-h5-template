@@ -3,7 +3,8 @@
  */
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 import JSONbig from 'json-bigint' //解决超过 16 位数字精度丢失问题
-import { Dialog, Toast } from '@nutui/nutui'
+import { showToast, showLoadingToast, closeToast } from 'vant/lib/toast'
+import { showDialog } from 'vant/lib/dialog'
 import { useAppStore } from '@/store/app'
 import router from '@/router/index'
 
@@ -12,8 +13,6 @@ export class StatusCode {
 	static ERROR = 400
 	static OUTDATE_TOKEN = 1001
 }
-
-export let toast: any = null
 
 const service = axios.create({
 	timeout: 6000,
@@ -33,8 +32,9 @@ service.interceptors.request.use(
 	(config: AxiosRequestConfig) => {
 		// 加载动画
 		if (config.loading) {
-			toast = Toast.loading('加载中...', {
-				duration: 0
+			showLoadingToast({
+				message: '加载中...',
+				forbidClick: true
 			})
 		}
 		const appStore = useAppStore()
@@ -52,33 +52,28 @@ service.interceptors.request.use(
 // Response interceptors
 service.interceptors.response.use(
 	async (response: AxiosResponse) => {
-		if (toast !== null) {
-			toast.hide()
-		}
+		closeToast()
 		const res = response.data
 		if (res.code === StatusCode.SUCCESS) {
 			return response.data
 		} else {
 			if (res.code === StatusCode.OUTDATE_TOKEN) {
 				// token 失效
-				Dialog({
-					title: '温馨提示',
-					content: '登录失效，请重新登录',
-					noCancelBtn: true,
-					onCancel: () => {
-						console.log('event cancel')
-					},
-					onOk: () => router.replace('/')
+				showDialog({
+					message: '登录失效，请重新登录',
+					theme: 'round-button'
+				}).then(() => {
+					router.replace('/')
 				})
 				return Promise.reject(res)
 			} else {
-				Toast.text(res.msg)
+				showToast(res.msg)
 				return Promise.reject(res)
 			}
 		}
 	},
 	(error: any) => {
-		Toast.text(error.response ? `请求异常${error.response.status}` : '网络超时，请刷新重试')
+		showToast(error.response ? `请求异常${error.response.status}` : '网络超时，请刷新重试')
 		return Promise.reject(error)
 	}
 )

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Dialog from '@/components/CustomDialog/index'
+import Dialog from '@/components/PwdDialog/index'
 import useSystem from '@/hooks/useSystem'
 import rollingStop from '@/utils/rollingStop'
 import landscape from '@/utils/landscape'
@@ -25,20 +25,24 @@ router.beforeEach((to: any, from: any) => {
 		if (to.meta.transition.name) {
 			transitionName.value = to.meta.transition.name
 		} else if (to.meta.index > from.meta.index) {
-			transitionName.value = 'slide-left'
+			transitionName.value = 'van-slide-left'
 		} else if (to.meta.index < from.meta.index) {
-			transitionName.value = 'slide-right'
+			transitionName.value = 'van-slide-right'
 		}
 	}
 })
 
 // 调用系统信息
 const openSystem = () => {
-	Dialog.show({
+	Dialog.alert({
 		title: '开发者模式',
-		message: '请输入密码开启开发者模式，用户请关闭此弹窗'
-	}).then(() => {
-		router.push('/system')
+		message: '请输入开发者密码',
+		inputComplete: async (pwd: string) => {
+			if (pwd === '960413') {
+				Dialog.close()
+				router.push('/system')
+			}
+		}
 	})
 }
 
@@ -56,12 +60,12 @@ onMounted(() => {
 				</keep-alive>
 			</transition>
 		</router-view>
+		<van-back-top  bottom="15vh"/>
 	</div>
 </template>
 
 <style lang="scss" scoped>
 .layout-content {
 	width: 100vw;
-	// height: 100vh;
 }
 </style>

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Toast } from '@nutui/nutui'
-
 const props = defineProps({
 	options: {
 		type: Object,
@@ -19,54 +17,145 @@ const props = defineProps({
 	confirm: {
 		type: Function,
 		default: (fun) => fun()
+	},
+	inputComplete: {
+		type: Function,
+		default: (fun) => fun()
 	}
 })
 
-const inputValue = ref('')
+const pwdValue = ref('')
 
-const visible = ref(true)
+const showKeyboard = ref(false)
 
-const errMsg = ref(props.options.eMsg)
-
-const onChange = (val) => {
-	if (!val) return
-	if (val.length === props.options.pLength) {
-		if (props.options.dePass === val) {
-			props.confirm(val)
-		} else {
-			errMsg.value = '请输入正确的密码'
-		}
+watch(pwdValue, (v) => {
+	if (v.length > 6) {
+		pwdValue.value = v.slice(0, 6)
 	}
+
+	// 密码输入完成
+	if (v.length == 6) {
+		showKeyboard.value = false
+		props.options.inputComplete(pwdValue.value)
+	}
+})
+
+const clearPwd = () => {
+	pwdValue.value = ''
 }
 
-const onClose = () => props.close()
-
-const onTips = () => Toast.text('用户怎么会知道密码呢？')
+defineExpose(['clearPwd'])
 </script>
 
 <template>
 	<div class="dialog_wrap">
-		<nut-shortpassword
-			@touchmove.prevent
-			v-model="inputValue"
-			v-model:visible="visible"
-			:title="options.title"
-			:desc="options.message"
-			:tips="options.tips"
-			:close-on-click-overlay="options.closeOnClickOverlay"
-			:teleportDisable="true"
-			:length="options.pLength"
-			:error-msg="errMsg"
-			@change="onChange"
-			@close="onClose"
-			@tips="onTips"
-		>
-		</nut-shortpassword>
+		<div
+			class="overlay"
+			v-if="props.options?.overlay"
+			@click="props.options.closeOnClickOverlay && close()"
+		></div>
+		<div class="dialog_container fadeIn">
+			<div class="close_btn" v-if="props.options.showClose" @click="close()"></div>
+
+			<span class="title">{{ props.options.title }}</span>
+
+			<p class="message" v-if="props.options.message">{{ props.options.message }}</p>
+
+			<!-- 密码输入框 -->
+			<van-password-input
+				class="pwd_input"
+				:value="pwdValue"
+				:focused="showKeyboard"
+				@focus="showKeyboard = true"
+			/>
+
+			<!-- 数字键盘 -->
+			<van-number-keyboard
+				v-model="pwdValue"
+				:show="showKeyboard"
+				@blur="showKeyboard = false"
+			/>
+		</div>
 	</div>
 </template>
 
 <style lang="scss" scoped>
 .dialog_wrap {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 999;
+	.overlay {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: rgba($color: #000000, $alpha: 0.7);
+	}
+
+	.dialog_container {
+		width: 310px;
+		height: 160px;
+		background-color: #ffffff;
+		border-radius: 10px;
+		text-align: center;
+		padding-top: 25px;
+		position: relative;
+
+		.close_btn {
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			width: 30px;
+			height: 30px;
+			&::before {
+				position: absolute;
+				top: 5px;
+				left: 14px;
+				content: '';
+				display: block;
+				height: 20px;
+				width: 2px;
+				background-color: #999999;
+				transform: rotate(45deg);
+			}
+			&::after {
+				position: absolute;
+				top: 5px;
+				right: 14px;
+				content: '';
+				display: block;
+				height: 20px;
+				width: 2px;
+				background-color: #999999;
+				transform: rotate(-45deg);
+			}
+		}
+
+		.title {
+			font-size: 18px;
+			font-family: Source Han Sans CN-Medium, Source Han Sans CN;
+			font-weight: 500;
+			color: #333333;
+		}
+		.message {
+			font-size: 16px;
+			font-family: Source Han Sans CN-Medium, Source Han Sans CN;
+			font-weight: 500;
+			color: #e84855;
+			margin-top: 18px;
+		}
+		.pwd_input {
+			margin-top: 18px;
+		}
+	}
+
 	.fadeIn {
 		-webkit-animation: fadeInDown 0.3s;
 		animation: fadeInDown 0.3s;

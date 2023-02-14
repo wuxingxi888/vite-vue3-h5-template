@@ -1,19 +1,12 @@
 /**
- *  Introduces component library styles on demand.
- * https://github.com/anncwb/vite-plugin-style-import
+ * @name ConfigRestartPlugin
+ * @description 按需引入样式文件
  */
-import { createStyleImportPlugin } from 'vite-plugin-style-import'
 
-export function configStyleImportPlugin(isBuild: boolean) {
+import { createStyleImportPlugin, VantResolve } from 'vite-plugin-style-import'
+
+export const configStyleImportPlugin = () => {
 	return createStyleImportPlugin({
-		resolves: [
-			{
-				libraryName: '@nutui/nutui',
-				libraryNameChangeCase: 'pascalCase',
-				resolveStyle: (name) => {
-					return `@nutui/nutui/dist/packages/${name.toLowerCase()}/index.scss`
-				}
-			}
-		]
+		resolves: [VantResolve()]
 	})
 }

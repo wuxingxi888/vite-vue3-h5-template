@@ -34,6 +34,6 @@ export const fetchImageUrl = (params: { format: string }) => {
 		url: 'https://api.btstu.cn/sjbz/api.php',
 		method: 'get',
 		params,
-		loading: false
+		loading: true
 	})
 }

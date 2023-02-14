@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import avatar from '@/assets/common/avatar.png'
+import { sessionStorage } from '@/utils/storage'
+import { asyncLoadScript, removeScript } from '@/utils/script'
 // eslint-disable-next-line no-undef
 const { pkg, lastBuildTime } = __APP_INFO__
 
@@ -9,49 +11,56 @@ const router = useRouter()
 
 const toBack = () => router.back()
 
-const toTest = () => router.push('/test')
+const isDebug = ref(sessionStorage.get('openEruda'))
+
+const debugChange = (value) => {
+	if (value) {
+		asyncLoadScript(this, { src: 'https://cdn.jsdelivr.net/npm/eruda', id: 'debug' })
+			.then(() => {
+				// eslint-disable-next-line no-undef
+				eruda.init();
+			})
+	} else {
+		removeScript('debug')
+			.then(() => {
+				removeScript('eruda')
+			})
+	}
+	sessionStorage.set('openEruda', value)
+}
+
+
 </script>
 <template>
-	<div class="fix-iphone">
-		<nut-navbar
-			@on-click-back="toBack"
-			title="系统信息"
-			fixed
-			border
-			left-show
-			placeholder
-			safe-area-inset-top
-		></nut-navbar>
-		<nut-cell-group title="基本信息">
-			<nut-cell>
-				<template v-slot:icon>
-					<nut-avatar size="normal" :icon="avatar" @active-avatar="toTest"></nut-avatar>
+	<div class="sys_wrap">
+		<van-nav-bar title="系统信息" left-arrow fixed placeholder safe-area-inset-top @click-left="toBack" />
+
+		<van-cell-group inset title="基本信息">
+			<van-cell>
+				<template #icon>
+					<van-image width="25" height="25" round :src="avatar" />
 				</template>
-			</nut-cell>
-			<nut-cell title="项目名称" :desc="name" />
-			<nut-cell title="项目版本" :desc="version" />
-			<nut-cell title="最后编译时间" :desc="lastBuildTime" />
-		</nut-cell-group>
-		<nut-cell-group title="生产环境依赖">
-			<nut-cell
-				v-for="([key, value], index) of Object.entries(dependencies)"
-				:key="index"
-				:title="key"
-				:desc="value"
-			/>
-		</nut-cell-group>
-		<nut-cell-group title="开发环境依赖">
-			<nut-cell
-				v-for="([key, value], index) of Object.entries(devDependencies)"
-				:key="index"
-				:title="key"
-				:desc="value"
-			/>
-		</nut-cell-group>
+			</van-cell>
+			<van-cell title="项目名称" :value="name" />
+			<van-cell title="项目版本" :value="version" />
+			<van-cell title="最后编译时间" :value="lastBuildTime" />
+		</van-cell-group>
 
-		<nut-backtop></nut-backtop>
+		<van-cell-group inset title="生产环境依赖">
+			<van-cell v-for="([key, value], index) of Object.entries(dependencies)" :key="index" :title="key"
+				:value="value" />
+		</van-cell-group>
+		<van-cell-group inset title="开发环境依赖">
+			<van-cell v-for="([key, value], index) of Object.entries(devDependencies)" :key="index" :title="key"
+				:value="value" />
+		</van-cell-group>
 
-		<nut-watermark :z-index="1" :content="name"></nut-watermark>
+		<van-cell-group inset title="设置">
+			<van-cell center title="调试模式">
+				<template #right-icon>
+					<van-switch v-model="isDebug" size="22px" @change="debugChange" />
+				</template>
+			</van-cell>
+		</van-cell-group>
 	</div>
 </template>
-<style lang="scss" scoped></style>

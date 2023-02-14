@@ -1,7 +1,15 @@
+/*
+ * @Author: 吴星喜 wuxingxi888@163.com
+ * @Date: 2023-02-08 16:46:20
+ * @LastEditors: 吴星喜 wuxingxi888@163.com
+ * @LastEditTime: 2023-02-08 16:51:12
+ * @FilePath: /vite-vue3-h5-template/src/components/PwdDialog/index.ts
+ * @Description: 密码输入框
+ *
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
+ */
 import { App, createApp } from 'vue'
 import dialog from './index.vue'
-
-import { Icon, Toast, OverLay, ShortPassword, Popup } from '@nutui/nutui'
 
 class Dialog {
 	Instance: App<any> | undefined
@@ -15,19 +23,17 @@ class Dialog {
 		}
 	}
 
-	show = (options) => {
+	alert = (options) => {
 		if (this.Instance !== undefined) this.close()
 
 		return new Promise<string>((resolve, reject) => {
 			const defaultOptions = {
 				title: '提示',
-				message: null,
-				tips: '忘记密码',
-				dePass: '960413',
-				eMsg: '请输入密码',
-				pLength: 6,
+				message: '这里是文字提示',
 				showClose: true,
-				closeOnClickOverlay: false
+				overlay: true,
+				closeOnClickOverlay: false,
+				inputComplete: Function
 			}
 
 			Object.assign(defaultOptions, options)
@@ -39,18 +45,13 @@ class Dialog {
 					this.close()
 					reject('取消')
 				},
-				confirm: (key: string) => {
+				confirm: () => {
 					this.close()
-					resolve(key)
+					resolve('确认')
 				}
 			})
 
-			this.Instance.use(ShortPassword)
-				.use(OverLay)
-				.use(Popup)
-				.use(Toast)
-				.use(Icon)
-				.mount(this.mountNode)
+			this.Instance.mount(this.mountNode)
 			document.body.appendChild(this.mountNode)
 		})
 	}

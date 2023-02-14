@@ -14,44 +14,33 @@ const getUrl = () => {
 }
 
 onMounted(() => {
-	timer.value = setInterval(() => {
-		if (imageList.value.length > 1) clearInterval(timer.value)
-		getUrl()
-	}, 10)
+	// timer.value = setInterval(() => {
+	// 	if (imageList.value.length > 10) clearInterval(timer.value)
+	// 	getUrl()
+	// }, 2000)
 })
 </script>
 
 <template>
 	<div class="wrap">
-		<nut-cell
-			v-for="(item, index) in 10"
-			:key="index"
-			:title="index.toString()"
-			desc="描述文字"
-		></nut-cell>
+		<van-cell-group inset>
+			<van-cell v-for="(item, index) in 10" :key="index" :title="index.toString()" value="描述文字"></van-cell>
+		</van-cell-group>
 
-		<nut-image
+		<!-- <nut-image
 			width="345"
 			height="200"
 			v-for="(item, index) in imageList"
 			:key="index"
 			v-lazy="item"
-		></nut-image>
-
-		<nut-drag class="drag" :attract="true">
-			<nut-button type="primary" icon="dongdong"></nut-button>
-		</nut-drag>
+		></nut-image> -->
 	</div>
 </template>
 
 <style lang="scss" scoped>
 .wrap {
 	width: 100%;
-	padding: 15px;
-	.drag {
-		position: fixed;
-		top: 200px;
-		right: 0;
-	}
+	height: 100vh;
+	padding: 15px 0;
 }
 </style>
