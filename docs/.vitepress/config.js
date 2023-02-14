@@ -6,9 +6,12 @@ module.exports = {
 	base: "/vite-vue3-h5-template/",
 	description: "一个开箱即用的vue h5脚手架",
 	lastUpdated: true,
+	markdown: {
+		lineNumbers: true,
+	},
 	head: [
 		// 添加图标
-		["link", { rel: "icon", href: "/favicon.ico" }],
+		["link", { rel: "icon", href: "/logo.svg" }],
 	],
 	themeConfig: {
 		nav: nav(),
@@ -30,9 +33,11 @@ module.exports = {
 			copyright: "Copyright © 2022-present project contributors",
 		},
 		algolia: {
-			appId: "CV2I8NGBKZ",
-			apiKey: "63c37a467485b00383daacf7340b4ca0",
-			indexName: "vue-h5-template",
+			appId: "YMFP3LUK0J",
+			apiKey: "ad6e6ce40ce3fc1c56e1c20264f88eef",
+			indexName: "vite-vue3-h5-template",
+			placeholder: '请输入关键词',
+			buttonText: '搜索',
 		},
 	},
 };
