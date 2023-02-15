@@ -1,4 +1,4 @@
-# Vue-H5-Template
+# vite-vue3-h5-template
 
 [vite-vue3-h5-template](https://github.com/wuxingxi888/vite-vue3-h5-template)，是基于 vite4 + vue3 + TypeScript + pinia + sass + ( Vant4 or NutUI ) + viewport 适配方案 + axios 封装，构建移动端快速开发模版
 

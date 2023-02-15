@@ -1,47 +1,64 @@
-# vue-h5-template
+# vite-vue3-h5-template
 
-基于 vue3 + vite + （nutui or varlet or vant） + sass + viewport 适配方案 +axios 封装，构建手机端模板脚手架
+[vite-vue3-h5-template](https://github.com/wuxingxi888/vite-vue3-h5-template)，是基于 vite4 + vue3 + TypeScript + pinia + sass + ( Vant4 or NutUI ) + viewport 适配方案 + axios 封装，构建移动端快速开发模版
 
-如果你不熟悉 vue3，想继续使用 vue2 开发的，可以[点这里](https://github.com/sunniejs/vue-h5-template/tree/vue2-h5-template)来获取 vue2-h5-template
+<div style="display: flex; justify-content: center;">
+ <img src="https://s2.loli.net/2023/02/15/UM9QzYfFvLXk7hg.png" width="200" style="display:inline; ">
+</div>
 
-掘金: [移动端适配方案](https://juejin.cn/post/7018433228591595550)
+## node 版本要求
 
-<p>
-  <img src="https://cdn.jsdelivr.net/gh/fonghehe/picture/vue-h5-template/screen.png" width="320" style="display:inline; ">
-</p>
+本示例 Node.js v16.6.0，你也可以使用[nvm](https://github.com/nvm-sh/nvm)或[nvm-windows](https://github.com/coreybutler/nvm-windows)在同一台电脑上管理多个 node 版本。
 
-### Node 版本要求
+## 包管理器
 
-推荐你使用 NodeJs 14+的版本，毕竟技术日新月异。你可以使用 [nvm](https://github.com/nvm-sh/nvm) 或 [nvm-windows](https://github.com/coreybutler/nvm-windows) 在同一台电脑中管理多个 Node 版本。
+本项目采用 pnpm 包管理器,如果没有请先安装 pnpm。
 
-本示例 Node.js 14.19.0
+## 启动项目
 
-### 启动项目(强烈推荐使用 yarn)
+master 分支代码为稳定版本，test 分支代码是最新版
 
-```bash
+```js
 
-git clone https://github.com/sunniejs/vue-h5-template.git
+// 拉取项目
+git clone https://github.com/wuxingxi888/vite-vue3-h5-template.git
 
-cd vue-h5-template
+// 进入项目目录
+cd vite-vue3-h5-template
 
-yarn install
+// 全局安装 pnpm
+npm i -g pnpm
 
-yarn dev
+// 安装依赖
+pnpm install
+
+// 启动项目
+pnpm dev
+
+// 本地预览打包的项目
+pnpm preview
+
+// 打包 test 环境
+pnpm build:test
+
+// 打包 prod 环境
+pnpm build:prod
+
 ```
 
 <span id="top">目录</span>
 
-- [√ vite](#vite)
-- [√ 配置多环境变量](#env)
-- [√ viewport 适配方案](#viewport)
-- [√ 多 UI 组件库供选择](#ui)
-- [√ Pinia 状态管理](#Pinia)
-- [√ vue-router 4](#router)
-- [√ axios 封装及接口管理](#axios)
-- [√ vite.config.ts 基础配置](#base)
-- [√ alias](#alias)
-- [√ proxy 跨域](#proxy)
-- [√ Eslint+Pettier+stylelint 统一开发规范 ](#lint)
+-   [√ vite](#vite)
+-   [√ 配置多环境变量](#env)
+-   [√ viewport 适配方案](#viewport)
+-   [√ 多 UI 组件库供选择](#ui)
+-   [√ Pinia 状态管理](#Pinia)
+-   [√ vue-router 4](#router)
+-   [√ axios 封装及接口管理](#axios)
+-   [√ vite.config.ts 基础配置](#base)
+-   [√ alias](#alias)
+-   [√ proxy 跨域](#proxy)
+-   [√ Eslint+Pettier+stylelint 统一开发规范 ](#lint)
 
 ### <span id="vite">✅ vite </span>
 
@@ -49,31 +66,35 @@ yarn dev
 
 模版集成了如下的 vite 插件
 
-- unplugin-auto-import（按需加载，自动引入）
-- unplugin-vue-components（按需加载，自动引入组件）
-- vite-plugin-compression（开启.gz 压缩）
-- vite-plugin-eruda（控制台，方便移动端调试）
-- vite-plugin-imagemin（图片压缩）
-- vite-plugin-mock（引入 mockjs，本地模拟接口）
-- vite-plugin-pages（动态生成路由）
-- vite-plugin-progress（构建显示进度条）
-- vite-plugin-restart（监听配置文件修改自动重启 Vite）
-- vite-plugin-style-import（按需引入样式文件）
-- vite-plugin-svg-icons（加载 SVG 文件，自动引入）
+-   unplugin-auto-import（按需加载，自动引入）
+-   unplugin-vue-components（按需加载，自动引入组件）
+-   vite-plugin-compression（开启.gz 压缩）
+-   vite-plugin-eruda（控制台，方便移动端调试）
+-   vite-plugin-imagemin（图片压缩）
+-   vite-plugin-progress（构建显示进度条）
+-   vite-plugin-style-import（按需引入样式文件）
+-   rollup-plugin-visualizer（打包体积分析）
 
 ### <span id="env">✅ 配置多环境变量 </span>
 
-`package.json` 里的 `scripts` 配置 `dev` `dev:test` `dev:prod` ，通过 `--mode xxx` 来执行不同环境
+`package.json` 里的 `scripts` 配置 `dev` `prod` `build:test` `build:prod`
 
-- 通过 `yarn dev` 启动本地环境参数 , 执行 `development`
-- 通过 `yarn dev:test` 启动测试环境参数 , 执行 `test`
-- 通过 `yarn dev:prod` 启动正式环境参数 , 执行 `prod`
+通过 `--mode xxx` 来执行不同环境
+
+-   通过 `pnpm dev` 启动本地环境参数 , 执行 `development`
+-   通过 `pnpm prod` 启动正式环境参数 , 执行 `production`
+
+通过 `build --mode  xxx` 来打包不同环境
+
+-   通过 `pnpm build:test` 打包测试环境参数 , 执行 `test`
+-   通过 `pnpm build:prod` 打包正式环境参数 , 执行 `prod`
 
 ```javascript
 "scripts": {
-    "dev": "vite",
-    "dev:test": "vite --mode test",
-    "dev:prod": "vite --mode production",
+    "dev": "vite --mode development",
+    "prod": "vite --mode production",
+    "build:test": "vue-tsc --noEmit && vite build --mode test && esno ./src/utils/build.ts",
+    "build:prod": "vue-tsc --noEmit && vite build --mode production && esno ./src/utils/build.ts",
 }
 ```
 
@@ -81,7 +102,7 @@ yarn dev
 
 不用担心，项目已经配置好了 `viewport` 适配，下面仅做介绍：
 
-- [cnjm-postcss-px-to-viewport](https://github.com/cnjm/postcss-px-to-viewport) 是一款 `postcss` 插件，用于将单位转化为 `vw`， 现在很多浏览器对`vw`的支持都很好，适配首选方案。
+-   [cnjm-postcss-px-to-viewport](https://github.com/cnjm/postcss-px-to-viewport) 是一款 `postcss` 插件，用于将单位转化为 `vw`， 现在很多浏览器对`vw`的支持都很好，适配首选方案。
 
 ##### PostCSS 配置
 
@@ -129,28 +150,28 @@ module.exports = {
 
 举个例子：设计给了你一张 750px \* 1334px 图片，在 iPhone6 上铺满屏幕, 其他机型适配。
 
-- 当`rootValue: 75` , 样式 `width: 750px;height: 1334px;` 图片会撑满 iPhone6 屏幕，这个时候切换其他机型，图片也会跟着撑满。
-- 当`rootValue: 37.5` 的时候，样式 `width: 375px;height: 667px;` 图片会撑满 iPhone6 屏幕。
+-   当`rootValue: 75` , 样式 `width: 750px;height: 1334px;` 图片会撑满 iPhone6 屏幕，这个时候切换其他机型，图片也会跟着撑满。
+-   当`rootValue: 37.5` 的时候，样式 `width: 375px;height: 667px;` 图片会撑满 iPhone6 屏幕。
 
 也就是 iphone 6 下 375px 宽度写 CSS。其他的你就可以根据你设计图，去写对应的样式就可以了。
 
 当然，想要撑满屏幕你可以使用 100%，这里只是举例说明。
 
 ```html
-<img class="image" src="https://www.sunniejs.cn/static/weapp/logo.png" />
+<img class="image" src="https://s2.loli.net/2023/02/15/UM9QzYfFvLXk7hg.png" />
 
 <style>
-  /* rootValue: 75 */
-  .image {
-    width: 750px;
-    height: 1334px;
-  }
+	/* rootValue: 75 */
+	.image {
+		width: 750px;
+		height: 1334px;
+	}
 
-  /* rootValue: 37.5 */
-  .image {
-    width: 375px;
-    height: 667px;
-  }
+	/* rootValue: 37.5 */
+	.image {
+		width: 375px;
+		height: 667px;
+	}
 </style>
 ```
 
@@ -190,18 +211,18 @@ export const nutUiComponents = [Button, Cell, CellGroup];
 
 // 在main.ts文件中引入
 nutUiComponents.forEach((item) => {
-  app.use(item);
+	app.use(item);
 });
 ```
 
-vant 和 varlet 可以使用组件按需加载
+vant 可以使用组件按需加载
 
 在`config/vite/plugins/component.ts`下
 
 ```javascript
-import { VueUseComponentsResolver, VantResolver, VarletUIResolver } from 'unplugin-vue-components/resolvers';
+import { VueUseComponentsResolver, VantResolver } from 'unplugin-vue-components/resolvers';
 ...
-resolvers: [VantResolver(), VarletUIResolver()],
+resolvers: [VantResolver()],
 ...
 ```
 
@@ -209,7 +230,7 @@ resolvers: [VantResolver(), VarletUIResolver()],
 
 nutUI 需删除`src/plugins/nutUI.ts`和`main.ts`文件下的引入
 
-vant 和 varlet 只需删除对应的 resolvers 即可
+vant 只需删除对应的 resolvers 即可
 
 删除后需全局搜索删除不需要的组件，避免报错
 
@@ -230,17 +251,17 @@ vant 和 varlet 只需删除对应的 resolvers 即可
 
 ```html
 <script lang="ts" setup>
-  import { useUserStore } from "@/store/modules/user";
-  const userStore = useUserStore();
-  userStore.login();
+	import { useAppStore } from "@/store/modules/app";
+	const appStore = useAppStore();
+	appStore.setToken("");
 </script>
 ```
 
 ### <span id="router">✅ Vue-router </span>
 
-本案例采用 `hash` 模式，开发者根据需求修改 `mode` `base`
+本案例采用 `history` 模式，开发者根据需求修改 `mode` `base`
 
-**注意**：如果你使用了 `history` 模式， `vue.config.js` 中的 `publicPath` 要做对应的**修改**
+**注意**：如果你使用了 `hash` 模式， `vue.config.js` 中的 `publicPath` 要做对应的**修改**
 
 前往:[vue.config.js 基础配置](#base)
 
@@ -250,17 +271,17 @@ import { createRouter, createWebHistory, Router } from "vue-router";
 
 Vue.use(Router);
 export const router = [
-  {
-    name: "root",
-    path: "/",
-    redirect: "/home",
-    component: () => import("@/layout/basic/index.vue"),
-  },
+	{
+		name: "root",
+		path: "/",
+		redirect: "/home",
+		component: () => import("@/layout/basic/index.vue"),
+	},
 ];
 
 const router: Router = createRouter({
-  history: createWebHistory(),
-  routes: routes,
+	history: createWebHistory(),
+	routes: routes,
 });
 
 export default router;
@@ -270,111 +291,127 @@ export default router;
 
 ### <span id="axios">✅ Axios 封装及接口管理</span>
 
-`utils/request.js` 封装 axios , 开发者需要根据后台接口做修改。
+`utils/request.ts` 封装 axios , 开发者需要根据后台接口做修改。
 
-- `service.interceptors.request.use` 里可以设置请求头，比如设置 `token`
-- `config.hideloading` 是在 api 文件夹下的接口参数里设置，下文会讲
-- `service.interceptors.response.use` 里可以对接口返回数据处理，比如 401 删除本地信息，重新登录
-
-```javascript
-import axios from "axios";
-import store from "@/store";
-import { Toast } from "vant";
-// 根据环境不同引入不同api地址
-import { baseApi } from "@/config";
-// create an axios instance
-const service = axios.create({
-  baseURL: baseApi, // url = base api url + request url
-  withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000, // request timeout
-});
-
-// request 拦截器 request interceptor
-service.interceptors.request.use(
-  (config) => {
-    // 不传递默认开启loading
-    if (!config.hideloading) {
-      // loading
-      Toast.loading({
-        forbidClick: true,
-      });
-    }
-    if (store.getters.token) {
-      config.headers["X-Token"] = "";
-    }
-    return config;
-  },
-  (error) => {
-    // do something with request error
-    console.log(error); // for debug
-    return Promise.reject(error);
-  }
-);
-// respone拦截器
-service.interceptors.response.use(
-  (response) => {
-    Toast.clear();
-    const res = response.data;
-    if (res.status && res.status !== 200) {
-      // 登录超时,重新登录
-      if (res.status === 401) {
-        store.dispatch("FedLogOut").then(() => {
-          location.reload();
-        });
-      }
-      return Promise.reject(res || "error");
-    } else {
-      return Promise.resolve(res);
-    }
-  },
-  (error) => {
-    Toast.clear();
-    console.log("err" + error); // for debug
-    return Promise.reject(error);
-  }
-);
-export default service;
-```
-
-#### 接口管理
-
-在 `src/api` 文件夹下统一管理接口
-
-- 你可以建立多个模块对接接口, 比如 `home.js` 里是首页的接口这里讲解 `user.js`
-- `url` 接口地址，请求的时候会拼接上 `config` 下的 `baseApi`
-- `method` 请求方法
-- `data` 请求参数 `qs.stringify(params)` 是对数据系列化操作
-- `hideloading` 默认 `false`, 设置为 `true` 后，不显示 loading ui 交互中有些接口不需要让用户感知
+-   `JSONbig` 解决超过 16 位数字精度丢失问题
+-   `config.loading` 在接口里配置是否开启 loading 动画
+-   `config.headers!.common['Authorization']` 请求头携带 token
+-   `service.interceptors.response.use` 接口响应处理 如 错误提示，重新登陆
 
 ```javascript
-import qs from "qs";
-// axios
-import request from "@/utils/request";
-//user api
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
+import JSONbig from 'json-bigint' //解决超过 16 位数字精度丢失问题
+import { showToast, showLoadingToast, closeToast } from 'vant/lib/toast'
+import { showDialog } from 'vant/lib/dialog'
+import { useAppStore } from '@/store/app'
+import router from '@/router/index'
 
-// 用户信息
-export function getUserInfo(params) {
-  return request({
-    url: "/user/userinfo",
-    method: "post",
-    data: qs.stringify(params),
-    hideloading: true, // 隐藏 loading 组件
-  });
+export class StatusCode {
+	static SUCCESS = '200'
+	static ERROR = 400
+	static OUTDATE_TOKEN = 1001
 }
+
+const service = axios.create({
+	timeout: 6000,
+	transformResponse: [
+		(data) => {
+			try {
+				return JSON.parse(JSON.stringify(JSONbig.parse(data)))
+			} catch (err) {
+				return { data }
+			}
+		}
+	]
+})
+
+// Request interceptors
+service.interceptors.request.use(
+	(config: AxiosRequestConfig) => {
+		// 加载动画
+		if (config.loading) {
+			showLoadingToast({
+				message: '加载中...',
+				forbidClick: true
+			})
+		}
+		const appStore = useAppStore()
+		if (appStore.token) {
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			config.headers!.common['Authorization'] = appStore.token
+		}
+		return config
+	},
+	(error: any) => {
+		Promise.reject(error)
+	}
+)
+
+// Response interceptors
+service.interceptors.response.use(
+	async (response: AxiosResponse) => {
+		closeToast()
+		const res = response.data
+		if (res.code === StatusCode.SUCCESS) {
+			return response.data
+		} else {
+			if (res.code === StatusCode.OUTDATE_TOKEN) {
+				// token 失效
+				showDialog({
+					message: '登录失效，请重新登录',
+					theme: 'round-button'
+				}).then(() => {
+					router.replace('/')
+				})
+				return Promise.reject(res)
+			} else {
+				showToast(res.msg)
+				return Promise.reject(res)
+			}
+		}
+	},
+	(error: any) => {
+		showToast(error.response ? `请求异常${error.response.status}` : '网络超时，请刷新重试')
+		return Promise.reject(error)
+	}
+)
+
+export default service
 ```
 
-#### 如何调用
+### 使用
 
 ```javascript
-// 请求接口
-import { getUserInfo } from "@/api/user.js";
-
-const params = {
-  user: "sunnie",
+/**
+ * post请求
+ */
+export const fetchAuthCode = (data: AuthCode) => {
+	return (
+		request <
+		IResponseType >
+		{
+			url: envConfig.baseApi + "xxxxx",
+			method: "post",
+			data,
+			loading: true,
+		}
+	);
 };
-getUserInfo(params)
-  .then(() => {})
-  .catch(() => {});
+
+/**
+ * get请求
+ */
+export const fetchTagList = () => {
+	return (
+		request <
+		IResponseType >
+		{
+			url: envConfig.baseApi + "xxxxxx",
+			method: "get",
+			loading: false,
+		}
+	);
+};
 ```
 
 ### <span id="base">✅ vite.config.ts 基础配置 </span>
@@ -388,60 +425,82 @@ publicPath: './',
 如果你的 `Vue Router` 模式是 history 这里的 publicPath 和你的 `Vue Router` `base` **保持一致**
 
 ```javascript
-publicPath: '/app/',
+const { VITE_PUBLIC_PATH, VITE_ENV } = viteEnv
+base: VITE_PUBLIC_PATH,
 ```
 
+项目完整的 vite.config.ts 配置
+
 ```javascript
-export default function ({ command }: ConfigEnv): UserConfigExport {
-  const isProduction = command === "build";
-  return {
-    server: {
-      host: "0.0.0.0",
-    },
-    plugins: [
-      vue(),
-      vueJsx(),
-      createStyleImportPlugin({
-        resolves: [NutuiResolve()],
-      }),
-      eruda(),
-      viteMockServe({
-        mockPath: "./src/mock",
-        localEnabled: command === "serve",
-        logger: true,
-      }),
-    ],
-    css: {
-      preprocessorOptions: {
-        scss: {
-          // 配置 nutui 全局 scss 变量
-          additionalData: `@import "@nutui/nutui/dist/styles/variables.scss";`,
-        },
-      },
-    },
-  };
-}
+import { fileURLToPath } from "url";
+import { defineConfig, loadEnv } from "vite";
+import type { UserConfig, ConfigEnv } from "vite";
+import { wrapperEnv, getNowTime, createBuildJson } from "./build/utils";
+import { createVitePlugins } from "./build/vite/plugin";
+import { createProxy } from "./build/vite/proxy";
+import { createBuild } from "./build/vite/build";
+import pkg from "./package.json";
+
+const { dependencies, devDependencies, name, version } = pkg;
+// 应用信息
+const __APP_INFO__ = {
+	pkg: { dependencies, devDependencies, name, version },
+	lastBuildTime: getNowTime(),
+};
+
+// https://vitejs.dev/config/
+export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
+	const root = process.cwd(); // 当前工作目录
+	const isBuild = command === "build"; // 是否是构建 serve
+	const env = loadEnv(mode, root); // 加载env环境
+	const viteEnv = wrapperEnv(env);
+
+	const { VITE_PUBLIC_PATH, VITE_ENV } = viteEnv;
+
+	createBuildJson(VITE_ENV);
+
+	return {
+		base: VITE_PUBLIC_PATH,
+		root,
+		plugins: createVitePlugins(viteEnv, isBuild, mode),
+		resolve: {
+			alias: {
+				"@": fileURLToPath(new URL("./src", import.meta.url)),
+			},
+		},
+		css: {
+			preprocessorOptions: {
+				scss: {
+					charset: false, // 避免出现: build时的 @charset 必须在第一行的警告
+					additionalData: `
+						@import "@/styles/base.scss";
+						@import "@/styles/mixin.scss";
+						@import "@/styles/variables.scss";
+						@import "@nutui/nutui/dist/styles/variables.scss";
+					`,
+				},
+			},
+		},
+		server: {
+			host: true,
+			hmr: true, //开启热更新
+			proxy: createProxy(),
+		},
+		build: createBuild(viteEnv),
+		define: {
+			__APP_INFO__: JSON.stringify(__APP_INFO__),
+		},
+	};
+});
 ```
 
 ### <span id="alias">✅ 配置 alias 别名 </span>
 
 ```javascript
 resolve: {
-    alias: [{
-            find: 'vue-i18n',
-            replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
-        },
-        // /@/xxxx => src/xxxx
-        {
-            find: /\/@\//,
-            replacement: pathResolve('src') + '/',
-        },
-        // /#/xxxx => types/xxxx
-        {
-            find: /\/#\//,
-            replacement: pathResolve('types') + '/',
-        },
-    ],
+  alias: {
+				'@': fileURLToPath(new URL('./src', import.meta.url))
+			}
 },
 ```
 
@@ -467,12 +526,8 @@ server: {
 
 扫描添加下方的微信并备注加交流群，交流学习，及时获取代码最新动态。
 
- <p>
-  <img src="https://cdn.jsdelivr.net/gh/fonghehe/picture/personal/account.jpg" width="256" style="display:inline; ">
-</p>
-
-<p>
-  <img src="https://cdn.jsdelivr.net/gh/fonghehe/picture/personal/group.jpg" width="256" style="display:inline; ">
-</p>
- 
+ <div style="display: flex; justify-content: flex-start; align-items: center;">
+    <img src="https://s2.loli.net/2023/02/15/BhiFcTgrt5aXvKO.jpg" width="100" style="display:inline; ">
+    <img src="https://s2.loli.net/2023/02/15/6GfBpXMNLZqH7sV.jpg" width="100" style="display:inline; ">
+</div>
 如果对你有帮助送我一颗珍贵的小星星（づ￣3￣）づ╭❤～
