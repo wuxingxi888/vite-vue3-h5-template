@@ -17,8 +17,7 @@ const debugChange = (value) => {
 	if (value) {
 		asyncLoadScript(this, { src: 'https://cdn.jsdelivr.net/npm/eruda', id: 'debug' })
 			.then(() => {
-				// eslint-disable-next-line no-undef
-				eruda.init();
+				window.eruda.init();
 			})
 	} else {
 		removeScript('debug')
@@ -62,5 +61,5 @@ const debugChange = (value) => {
 				</template>
 			</van-cell>
 		</van-cell-group>
-	</div>
+</div>
 </template>

@@ -14,6 +14,7 @@ declare global {
 	declare interface Window {
 		webkit: any
 		NativeCallJs: any
+		eruda: any
 	}
 
 	// vue
