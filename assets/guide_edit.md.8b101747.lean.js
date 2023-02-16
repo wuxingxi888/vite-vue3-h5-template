@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,a as e}from"./app.ab656b34.js";const _=JSON.parse('{"title":"\u53C2\u4E0E\u7F16\u8F91","description":"","frontmatter":{},"headers":[],"relativePath":"guide/edit.md","lastUpdated":1676543375000}'),p={name:"guide/edit.md"},l=e("",3),c=[l];function r(t,i,o,d,b,u){return a(),n("div",null,c)}const y=s(p,[["render",r]]);export{_ as __pageData,y as default};
