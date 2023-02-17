@@ -35,9 +35,9 @@ module.exports = {
 		algolia: {
 			appId: "YMFP3LUK0J",
 			apiKey: "ad6e6ce40ce3fc1c56e1c20264f88eef",
-			indexName: "vite-vue3-h5-template",
-			placeholder: '请输入关键词',
-			buttonText: '搜索',
+			indexName: "catalog",
+			placeholder: "请输入关键词",
+			buttonText: "搜索",
 		},
 	},
 };
