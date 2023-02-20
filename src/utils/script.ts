@@ -2,7 +2,7 @@
  * @Author: 吴星喜 wuxingxi888@163.com
  * @Date: 2023-02-10 12:12:08
  * @LastEditors: 吴星喜 wuxingxi888@163.com
- * @LastEditTime: 2023-02-10 14:08:48
+ * @LastEditTime: 2023-02-16 15:15:54
  * @FilePath: /vite-vue3-h5-template/src/utils/script.ts
  * @Description: 动态添加script标签
  *
@@ -53,7 +53,7 @@ export const asyncLoadScript = (context, { src, id }) => {
 export const removeScript = (id) => {
 	return new Promise<void>(async (resolve) => {
 		const dom = document.getElementById(id) as HTMLScriptElement
-		dom.remove()
+		dom?.remove()
 		resolve()
 	})
 }

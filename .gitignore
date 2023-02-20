@@ -7,7 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-src/components.d.ts
+declare/components.d.ts
 node_modules
 .DS_Store
 dist_stage
@@ -15,9 +15,6 @@ dist
 dist_test
 dist-ssr
 *.local
-
-/cypress/videos/
-/cypress/screenshots/
 
 # Editor directories and files
 .vscode/*

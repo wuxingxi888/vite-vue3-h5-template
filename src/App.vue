@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import Dialog from '@/components/PwdDialog/index'
 import useSystem from '@/hooks/useSystem'
-import rollingStop from '@/utils/rollingStop'
-import landscape from '@/utils/landscape'
 const { execute } = useSystem()
 const route = useRoute()
 const router = useRouter()
@@ -46,9 +44,6 @@ const openSystem = () => {
 	})
 }
 
-onMounted(() => {
-	rollingStop.init()
-})
 </script>
 
 <template>
