@@ -45,6 +45,10 @@ module.exports = {
 function nav() {
 	return [
 		{ text: "介绍", link: "/guide/" },
+		{
+			text: "react版本",
+			link: "https://github.com/wuxingxi888/vite-react-h5-template.git",
+		},
 		{ text: "加入我们", link: "/guide/about/" },
 		{ text: "个人网站", link: "http://wuxingxi.top/" },
 		{
