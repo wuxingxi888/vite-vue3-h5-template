@@ -51,11 +51,13 @@ const openSystem = () => {
 		<router-view v-slot="{ Component }">
 			<transition :name="transitionName || ''">
 				<keep-alive :include="includeList">
-					<component :is="Component" />
+					<div>
+						<component :is="Component" />
+					</div>
 				</keep-alive>
 			</transition>
 		</router-view>
-		<van-back-top  bottom="15vh"/>
+		<van-back-top bottom="15vh" />
 	</div>
 </template>
 
