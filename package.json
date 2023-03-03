@@ -58,7 +58,7 @@
     "unplugin-vue-components": "^0.22.12",
     "vite": "^4.0.4",
     "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-eruda": "^1.0.1",
+    "vite-plugin-eruda-plus": "^1.0.2",
     "vite-plugin-imagemin": "^0.6.1",
     "vite-plugin-progress": "^0.0.6",
     "vite-plugin-style-import": "^2.0.0",
