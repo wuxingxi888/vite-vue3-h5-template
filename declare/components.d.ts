@@ -20,5 +20,6 @@ declare module '@vue/runtime-core' {
     VanNumberKeyboard: typeof import('vant/es')['NumberKeyboard']
     VanPasswordInput: typeof import('vant/es')['PasswordInput']
     VanSwitch: typeof import('vant/es')['Switch']
+    Website: typeof import('./../src/components/Website/index.vue')['default']
   }
 }

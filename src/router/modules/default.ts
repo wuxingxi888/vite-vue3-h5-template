@@ -43,5 +43,19 @@ export const defaultRouter: Array<RouteRecordRaw> = [
 				name: 'van-fade'
 			}
 		}
+	},
+	{
+		path: '/website',
+		name: '/website',
+		component: () => import('@/components/Website/index.vue'),
+		meta: {
+			title: '',
+			keepAlive: false,
+			index: 1,
+			transition: {
+				enable: true,
+				name: 'van-fade'
+			}
+		}
 	}
 ]

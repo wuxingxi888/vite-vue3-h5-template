@@ -36,7 +36,6 @@ watch(pwdValue, (v) => {
 	// 密码输入完成
 	if (v.length == 6) {
 		showKeyboard.value = false
-		props.options.inputComplete(pwdValue.value)
 	}
 })
 
@@ -45,6 +44,13 @@ const clearPwd = () => {
 }
 
 defineExpose(['clearPwd'])
+
+const onConfirm = () => {
+	if (pwdValue.value.length < 6) {
+		return
+	}
+	props.options.inputComplete(pwdValue.value)
+}
 </script>
 
 <template>
@@ -65,9 +71,20 @@ defineExpose(['clearPwd'])
 			<van-password-input
 				class="pwd_input"
 				:value="pwdValue"
+				:gutter="8"
 				:focused="showKeyboard"
 				@focus="showKeyboard = true"
 			/>
+
+			<div class="confirm_btn" @click="onConfirm">确认</div>
+
+			<p
+				class="custom_handle"
+				v-if="props.options.customText"
+				@click="props.options.customHandle"
+			>
+				{{ props.options.customText }}
+			</p>
 
 			<!-- 数字键盘 -->
 			<van-number-keyboard
@@ -89,7 +106,7 @@ defineExpose(['clearPwd'])
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	z-index: 999;
+	z-index: 2000;
 	.overlay {
 		width: 100%;
 		height: 100%;
@@ -101,58 +118,102 @@ defineExpose(['clearPwd'])
 
 	.dialog_container {
 		width: 310px;
-		height: 160px;
+		// height: 160px;
 		background-color: #ffffff;
 		border-radius: 10px;
 		text-align: center;
-		padding-top: 25px;
+		padding: 26px 20px 14px 20px;
 		position: relative;
 
 		.close_btn {
 			position: absolute;
-			top: 15px;
-			right: 15px;
-			width: 30px;
-			height: 30px;
+			top: 10px;
+			right: 10px;
+			width: 20px;
+			height: 20px;
 			&::before {
 				position: absolute;
-				top: 5px;
-				left: 14px;
+				top: 50%;
+				left: 50%;
 				content: '';
 				display: block;
-				height: 20px;
+				height: 15px;
 				width: 2px;
-				background-color: #999999;
-				transform: rotate(45deg);
+				background-color: #3d3d3d;
+				transform: translate(-50%, -50%) rotate(45deg);
 			}
 			&::after {
 				position: absolute;
-				top: 5px;
-				right: 14px;
+				top: 50%;
+				left: 50%;
 				content: '';
 				display: block;
-				height: 20px;
+				height: 15px;
 				width: 2px;
-				background-color: #999999;
-				transform: rotate(-45deg);
+				background-color: #3d3d3d;
+				transform: translate(-50%, -50%) rotate(-45deg);
 			}
 		}
 
 		.title {
 			font-size: 18px;
-			font-family: Source Han Sans CN-Medium, Source Han Sans CN;
+			font-family: PingFang SC-Medium, PingFang SC;
 			font-weight: 500;
-			color: #333333;
+			color: #000000;
+			line-height: 21px;
 		}
 		.message {
 			font-size: 16px;
 			font-family: Source Han Sans CN-Medium, Source Han Sans CN;
 			font-weight: 500;
 			color: #e84855;
-			margin-top: 18px;
+			margin-top: 8px;
 		}
 		.pwd_input {
-			margin-top: 18px;
+			margin-top: 25px;
+
+			:deep(.van-password-input__security) {
+				height: 34px;
+				.van-password-input__item {
+					width: 34px !important;
+					height: 34px;
+					background: #f4f8ff;
+					border-radius: 5px;
+					border: 1px solid #e0ebff;
+				}
+				.van-password-input__item--focus {
+					border: 1px solid #6ba0ff;
+				}
+			}
+		}
+
+		.confirm_btn {
+			width: 211px;
+			height: 42px;
+			line-height: 42px;
+			text-align: center;
+			border-radius: 23px;
+			box-shadow: 0px 2px 19px 0px rgba(208, 246, 255, 1);
+			background-image: linear-gradient(
+				128deg,
+				rgba(60, 201, 255, 1) 0,
+				rgba(108, 159, 255, 1) 100%
+			);
+			font-size: 16px;
+			font-family: PingFang SC-Regular, PingFang SC;
+			font-weight: 400;
+			color: #ffffff;
+			margin: 27px auto 0px;
+		}
+
+		.custom_handle {
+			font-size: 14px;
+			font-family: PingFang SC-Regular, PingFang SC;
+			font-weight: 400;
+			color: #4cbcff;
+			line-height: 16px;
+			margin-top: 12px;
+			text-align: center;
 		}
 	}
 

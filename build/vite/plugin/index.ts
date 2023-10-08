@@ -9,7 +9,6 @@ import { configCompressPlugin } from './compress'
 import { configImgCompressPlugin } from './imgCompress'
 import { ConfigVisualizerConfig } from './visualizer'
 import { ConfigProgressPlugin } from './progress'
-import { ConfigEruda } from './eruda'
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, mode: string) {
 	const { VITE_ENV, VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } = viteEnv
@@ -60,11 +59,6 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, mode: stri
 
 	// 打包分析rollup-plugin-visualizer
 	vitePlugins.push(ConfigVisualizerConfig())
-
-	if (VITE_ENV !== 'production') {
-		// 调试控制台
-		vitePlugins.push(ConfigEruda())
-	}
 
 	// 编译开启
 	if (isBuild) {

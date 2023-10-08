@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import Dialog from '@/components/PwdDialog/index'
 import useSystem from '@/hooks/useSystem'
+import { envConfig } from './config'
+import { asyncLoadScript } from './utils/script'
 const { execute } = useSystem()
 const route = useRoute()
 const router = useRouter()
@@ -30,6 +32,16 @@ router.beforeEach((to: any, from: any) => {
 	}
 })
 
+onMounted(() => {
+	if (envConfig.env != 'production') {
+		asyncLoadScript(this, { src: 'https://cdn.jsdelivr.net/npm/eruda', id: 'debug' }).then(
+			() => {
+				window.eruda.init()
+			}
+		)
+	}
+})
+
 // 调用系统信息
 const openSystem = () => {
 	Dialog.alert({
@@ -43,7 +55,6 @@ const openSystem = () => {
 		}
 	})
 }
-
 </script>
 
 <template>

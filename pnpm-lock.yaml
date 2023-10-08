@@ -38,7 +38,6 @@ specifiers:
   vant: ^4.0.10
   vite: ^4.0.4
   vite-plugin-compression: ^0.5.1
-  vite-plugin-eruda: ^1.0.1
   vite-plugin-imagemin: ^0.6.1
   vite-plugin-progress: ^0.0.6
   vite-plugin-style-import: ^2.0.0
@@ -86,7 +85,6 @@ devDependencies:
   unplugin-vue-components: 0.22.12_vue@3.2.47
   vite: 4.1.1_6rv5onckme5j7y6y4i3w3rn26e
   vite-plugin-compression: 0.5.1_vite@4.1.1
-  vite-plugin-eruda: 1.0.1
   vite-plugin-imagemin: 0.6.1_vite@4.1.1
   vite-plugin-progress: 0.0.6_vite@4.1.1
   vite-plugin-style-import: 2.0.0_vite@4.1.1
@@ -1481,7 +1479,7 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.47
-      vue-demi: 0.13.11_vue@3.2.47
+      vue-demi: 0.14.6_vue@3.2.47
 
   /acorn-jsx/5.3.2_acorn@8.8.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -5607,10 +5605,6 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-eruda/1.0.1:
-    resolution: {integrity: sha512-fZ+N8Cn7XgeE12VSa7Sb2jhwlFVCEYUjJOr4m8ARDVcWNE9qO8PcC1+G1PUFdt5oAOo/RZkF77MjYB4bSQIEcw==}
-    dev: true
-
   /vite-plugin-imagemin/0.6.1_vite@4.1.1:
     resolution: {integrity: sha512-cP7LDn8euPrji7WYtDoNQpJEB9nkMxJHm/A+QZnvMrrCSuyo/clpMy/T1v7suDXPBavsDiDdFdVQB5p7VGD2cg==}
     peerDependencies:
@@ -5838,6 +5832,20 @@ packages:
     dependencies:
       vue: 3.2.47
 
+  /vue-demi/0.14.6_vue@3.2.47:
+    resolution: {integrity: sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.2.47
+
   /vue-eslint-parser/9.1.0_eslint@8.33.0:
     resolution: {integrity: sha512-NGn/iQy8/Wb7RrRa4aRkokyCZfOUWk19OP5HP6JEozQFX5AoS/t+Z0ZN7FY4LlmWc4FNI922V7cvX28zctN8dQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
@@ -5860,7 +5868,7 @@ packages:
     resolution: {integrity: sha512-283vpYOhVHJCpMkjNVEwZdgaAb+Y93zFaXGAWTI378MLoNuwQydjD/BAy1e81QYEmyA+JbxqcmMZVWcM9rbriw==}
     dependencies:
       eslint-config-vue-global-api: 0.4.1
-      vue-demi: 0.13.11_vue@3.2.47
+      vue-demi: 0.14.6_vue@3.2.47
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue

@@ -9,7 +9,7 @@ onMounted(() => {
 	timer.value = setInterval(() => {
 		second.value--
 		if (second.value <= 0) {
-			clearInterval(timer)
+			clearInterval(timer.value)
 			router.back()
 		}
 	}, 1000)
