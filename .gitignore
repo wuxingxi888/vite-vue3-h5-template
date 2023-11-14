@@ -7,7 +7,6 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-declare/components.d.ts
 node_modules
 .DS_Store
 dist_stage
@@ -25,3 +24,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+package-lock.json
+yarn.lock
+
+components.d.ts
+auto-imports.d.ts

@@ -33,7 +33,7 @@ export const defaultRouter: Array<RouteRecordRaw> = [
 	{
 		path: '/404',
 		name: '/404',
-		component: () => import('@/views/404/index.vue'),
+		component: () => import('@/views/404/index'),
 		meta: {
 			title: '404',
 			keepAlive: false,

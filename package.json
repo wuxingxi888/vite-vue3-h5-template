@@ -1,11 +1,23 @@
 {
   "name": "vite-vue3-h5-template",
   "version": "1.0.0",
-  "author": "wuXingXi",
+  "author": {
+    "name": "wuXingXi",
+    "email": "wuxingxi888@gmail.com",
+    "url": "https://github.com/wuxingxi888"
+  },
   "bugs": {
     "url": "https://github.com/wuxingxi888/vite-vue3-h5-template/issues"
   },
   "homepage": "https://github.com/wuxingxi888/vite-vue3-h5-template#readme",
+  "keywords": [
+    "vue3",
+    "typescript",
+    "template",
+    "vite",
+    "pinia",
+    "vant"
+  ],
   "scripts": {
     "dev": "vite --mode development",
     "prod": "vite --mode production",
