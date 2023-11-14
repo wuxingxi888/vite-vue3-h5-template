@@ -1,11 +1,23 @@
 {
   "name": "vite-vue3-h5-template",
   "version": "1.0.0",
-  "author": "wuXingXi",
+  "author": {
+    "name": "wuXingXi",
+    "email": "wuxingxi888@gmail.com",
+    "url": "https://github.com/wuxingxi888"
+  },
   "bugs": {
     "url": "https://github.com/wuxingxi888/vite-vue3-h5-template/issues"
   },
   "homepage": "https://github.com/wuxingxi888/vite-vue3-h5-template#readme",
+  "keywords": [
+    "vue3",
+    "typescript",
+    "template",
+    "vite",
+    "pinia",
+    "vant"
+  ],
   "scripts": {
     "dev": "vite --mode development",
     "prod": "vite --mode production",
@@ -58,7 +70,6 @@
     "unplugin-vue-components": "^0.22.12",
     "vite": "^4.0.4",
     "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-eruda": "^1.0.1",
     "vite-plugin-imagemin": "^0.6.1",
     "vite-plugin-progress": "^0.0.6",
     "vite-plugin-style-import": "^2.0.0",

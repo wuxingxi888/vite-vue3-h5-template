@@ -18,6 +18,7 @@ import { createBuild } from './build/vite/build'
 import pkg from './package.json'
 
 const { dependencies, devDependencies, name, version } = pkg
+
 // 应用信息
 const __APP_INFO__ = {
 	pkg: { dependencies, devDependencies, name, version },
@@ -62,6 +63,10 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 			proxy: createProxy()
 		},
 		build: createBuild(viteEnv),
+		esbuild: {
+			// 使用esbuild来构建去掉console和debugger，
+			drop: mode === 'production' ? ['console', 'debugger'] : []
+		},
 		define: {
 			__APP_INFO__: JSON.stringify(__APP_INFO__)
 		}

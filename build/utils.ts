@@ -98,6 +98,8 @@ export const getBuildObj = async (filePath: string) => {
 
 // 生成项目信息json数据
 export const createBuildJson = async (envName: string) => {
+	if (envName === 'development') return
+
 	const oFileName = `env.${envName}.ts`
 	const oFilePath = `./src/config/${oFileName}`
 

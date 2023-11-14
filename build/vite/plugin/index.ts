@@ -2,7 +2,6 @@ import type { Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacyPlugin from '@vitejs/plugin-legacy'
-import * as path from 'path'
 import { configStyleImportPlugin } from './styleImport'
 import { configAutoImportPlugin } from './autoImport'
 import { configAutoComponentsPlugin } from './autocomponents'
@@ -10,7 +9,6 @@ import { configCompressPlugin } from './compress'
 import { configImgCompressPlugin } from './imgCompress'
 import { ConfigVisualizerConfig } from './visualizer'
 import { ConfigProgressPlugin } from './progress'
-import { ConfigEruda } from './eruda'
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, mode: string) {
 	const { VITE_ENV, VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } = viteEnv
@@ -56,17 +54,6 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, mode: stri
 	// 自动按需引入依赖
 	vitePlugins.push(configAutoImportPlugin())
 
-	// 构建时显示进度条
-	vitePlugins.push(ConfigProgressPlugin())
-
-	// 打包分析rollup-plugin-visualizer
-	vitePlugins.push(ConfigVisualizerConfig())
-
-	if (VITE_ENV !== 'production') {
-		// 调试控制台
-		vitePlugins.push(ConfigEruda())
-	}
-
 	// 编译开启
 	if (isBuild) {
 		// 开启.gz压缩  rollup-plugin-gzip
@@ -77,5 +64,12 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, mode: stri
 		// 图片压缩
 		vitePlugins.push(configImgCompressPlugin())
 	}
+
+	// 构建时显示进度条
+	vitePlugins.push(ConfigProgressPlugin())
+
+	// 打包分析rollup-plugin-visualizer
+	vitePlugins.push(ConfigVisualizerConfig())
+
 	return vitePlugins
 }

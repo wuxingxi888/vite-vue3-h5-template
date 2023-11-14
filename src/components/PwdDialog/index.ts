@@ -1,13 +1,3 @@
-/*
- * @Author: 吴星喜 wuxingxi888@163.com
- * @Date: 2023-02-08 16:46:20
- * @LastEditors: 吴星喜 wuxingxi888@163.com
- * @LastEditTime: 2023-02-08 16:51:12
- * @FilePath: /vite-vue3-h5-template/src/components/PwdDialog/index.ts
- * @Description: 密码输入框
- *
- * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
- */
 import { App, createApp } from 'vue'
 import dialog from './index.vue'
 
@@ -29,11 +19,13 @@ class Dialog {
 		return new Promise<string>((resolve, reject) => {
 			const defaultOptions = {
 				title: '提示',
-				message: '这里是文字提示',
+				message: '',
 				showClose: true,
 				overlay: true,
 				closeOnClickOverlay: false,
-				inputComplete: Function
+				inputComplete: Function,
+				customText: '',
+				customHandle: Function
 			}
 
 			Object.assign(defaultOptions, options)

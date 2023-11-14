@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { StateTree, defineStore } from 'pinia'
 import { isEnvProd } from '@/config'
 import { encrypt, decrypt } from '@/utils/encrypt'
 
@@ -25,10 +25,18 @@ export const useAppStore = defineStore({
 	// 开启数据缓存
 	persist: {
 		key: 'app',
-		storage: window.sessionStorage,
+		storage: window.localStorage,
 		serializer: {
-			serialize: isEnvProd ? encrypt : JSON.stringify,
-			deserialize: isEnvProd ? decrypt : JSON.parse
+			serialize: isEnvProd
+				? (value: StateTree) => {
+						return encrypt(value)
+				  }
+				: JSON.stringify,
+			deserialize: isEnvProd
+				? (value: string) => {
+						return JSON.parse(decrypt(value))
+				  }
+				: JSON.parse
 		}
 	}
 })

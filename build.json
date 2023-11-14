@@ -1,1 +1,1 @@
-{"env":"development","title":"开发","version":"1.20230210.77","baseUrl":"","baseApi":""}
+{ "env": "test", "title": "测试", "version": "1.20231114.1", "baseUrl": "", "baseApi": "" }
