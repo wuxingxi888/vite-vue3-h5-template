@@ -25,7 +25,7 @@ onMounted(() => {
 	<div class="wrap">
 		<van-cell-group inset>
 			<van-cell
-				v-for="(item, index) in 10"
+				v-for="(item, index) in 100"
 				:key="index"
 				:title="index.toString()"
 				value="描述文字"

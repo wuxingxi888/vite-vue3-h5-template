@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import Dialog from '@/components/PwdDialog/index'
+import pwdModal from '@/components/PwdDialog/index'
+import { showConfirmDialog } from 'vant'
+import 'vant/es/dialog/style'
 import useSystem from '@/hooks/useSystem'
 import { envConfig } from './config'
 import { asyncLoadScript } from './utils/script'
+import { Updater } from './utils/updater'
 const { execute } = useSystem()
 const route = useRoute()
 const router = useRouter()
@@ -32,6 +35,33 @@ router.beforeEach((to: any, from: any) => {
 	}
 })
 
+const checkUpdate = () => {
+	if (envConfig.env != 'development') {
+		const updater = new Updater({ timer: 30 * 1000 })
+
+		updater.on('no-update', () => {
+			console.log('未更新')
+		})
+
+		//更新通知
+		updater.on('update', () => {
+			showConfirmDialog({
+				title: '系统升级通知',
+				message: '检测到当前系统版本已更新，请刷新页面后使用新版本',
+				theme: 'round-button',
+				confirmButtonText: '立即刷新',
+				cancelButtonText: '稍后'
+			})
+				.then(() => {
+					window.location.reload()
+				})
+				.catch(() => {
+					updater.stopTiming()
+				})
+		})
+	}
+}
+
 onMounted(() => {
 	if (envConfig.env != 'production') {
 		asyncLoadScript(this, { src: 'https://cdn.jsdelivr.net/npm/eruda', id: 'debug' }).then(
@@ -40,16 +70,18 @@ onMounted(() => {
 			}
 		)
 	}
+
+	checkUpdate()
 })
 
 // 调用系统信息
 const openSystem = () => {
-	Dialog.alert({
+	pwdModal.alert({
 		title: '开发者模式',
 		message: '请输入开发者密码',
 		inputComplete: async (pwd: string) => {
 			if (pwd === '960413') {
-				Dialog.close()
+				pwdModal.close()
 				router.push('/system')
 			}
 		}
