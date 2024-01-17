@@ -3,6 +3,7 @@
 [vite-vue3-h5-template](https://github.com/wuxingxi888/vite-vue3-h5-template)，是基于 vite4 + vue3 + TypeScript + pinia + sass + ( Vant4 or NutUI ) + viewport 适配方案 + axios 封装，构建移动端快速开发模版
 
 <div style="display: flex; justify-content: center;">
+ <img src="https://s2.loli.net/2024/01/17/l9egLiO25ZfF8Qh.png" width="200" style="display:inline; ">
  <img src="https://s2.loli.net/2023/02/15/UM9QzYfFvLXk7hg.png" width="200" style="display:inline; ">
 </div>
 
@@ -205,14 +206,14 @@ nutUI 没有按需加载的 resolvers，style 需要自己配置按需加载
 
 ```javascript
 // 按需全局引入nutUI组件
-import Vue from "vue";
-import { Button, Cell, CellGroup } from "@nutui/nutui";
-export const nutUiComponents = [Button, Cell, CellGroup];
+import Vue from 'vue'
+import { Button, Cell, CellGroup } from '@nutui/nutui'
+export const nutUiComponents = [Button, Cell, CellGroup]
 
 // 在main.ts文件中引入
 nutUiComponents.forEach((item) => {
-	app.use(item);
-});
+	app.use(item)
+})
 ```
 
 vant 可以使用组件按需加载
@@ -251,9 +252,9 @@ vant 只需删除对应的 resolvers 即可
 
 ```html
 <script lang="ts" setup>
-	import { useAppStore } from "@/store/modules/app";
-	const appStore = useAppStore();
-	appStore.setToken("");
+	import { useAppStore } from '@/store/modules/app'
+	const appStore = useAppStore()
+	appStore.setToken('')
 </script>
 ```
 
@@ -266,25 +267,25 @@ vant 只需删除对应的 resolvers 即可
 前往:[vue.config.js 基础配置](#base)
 
 ```javascript
-import Vue from "vue";
-import { createRouter, createWebHistory, Router } from "vue-router";
+import Vue from 'vue'
+import { createRouter, createWebHistory, Router } from 'vue-router'
 
-Vue.use(Router);
+Vue.use(Router)
 export const router = [
 	{
-		name: "root",
-		path: "/",
-		redirect: "/home",
-		component: () => import("@/layout/basic/index.vue"),
-	},
-];
+		name: 'root',
+		path: '/',
+		redirect: '/home',
+		component: () => import('@/layout/basic/index.vue')
+	}
+]
 
 const router: Router = createRouter({
 	history: createWebHistory(),
-	routes: routes,
-});
+	routes: routes
+})
 
-export default router;
+export default router
 ```
 
 更多:[Vue Router](https://router.vuejs.org/zh/introduction.html)
@@ -390,13 +391,13 @@ export const fetchAuthCode = (data: AuthCode) => {
 		request <
 		IResponseType >
 		{
-			url: envConfig.baseApi + "xxxxx",
-			method: "post",
+			url: envConfig.baseApi + 'xxxxx',
+			method: 'post',
 			data,
-			loading: true,
+			loading: true
 		}
-	);
-};
+	)
+}
 
 /**
  * get请求
@@ -406,12 +407,12 @@ export const fetchTagList = () => {
 		request <
 		IResponseType >
 		{
-			url: envConfig.baseApi + "xxxxxx",
-			method: "get",
-			loading: false,
+			url: envConfig.baseApi + 'xxxxxx',
+			method: 'get',
+			loading: false
 		}
-	);
-};
+	)
+}
 ```
 
 ### <span id="base">✅ vite.config.ts 基础配置 </span>
@@ -432,32 +433,32 @@ base: VITE_PUBLIC_PATH,
 项目完整的 vite.config.ts 配置
 
 ```javascript
-import { fileURLToPath } from "url";
-import { defineConfig, loadEnv } from "vite";
-import type { UserConfig, ConfigEnv } from "vite";
-import { wrapperEnv, getNowTime, createBuildJson } from "./build/utils";
-import { createVitePlugins } from "./build/vite/plugin";
-import { createProxy } from "./build/vite/proxy";
-import { createBuild } from "./build/vite/build";
-import pkg from "./package.json";
+import { fileURLToPath } from 'url'
+import { defineConfig, loadEnv } from 'vite'
+import type { UserConfig, ConfigEnv } from 'vite'
+import { wrapperEnv, getNowTime, createBuildJson } from './build/utils'
+import { createVitePlugins } from './build/vite/plugin'
+import { createProxy } from './build/vite/proxy'
+import { createBuild } from './build/vite/build'
+import pkg from './package.json'
 
-const { dependencies, devDependencies, name, version } = pkg;
+const { dependencies, devDependencies, name, version } = pkg
 // 应用信息
 const __APP_INFO__ = {
 	pkg: { dependencies, devDependencies, name, version },
-	lastBuildTime: getNowTime(),
-};
+	lastBuildTime: getNowTime()
+}
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
-	const root = process.cwd(); // 当前工作目录
-	const isBuild = command === "build"; // 是否是构建 serve
-	const env = loadEnv(mode, root); // 加载env环境
-	const viteEnv = wrapperEnv(env);
+	const root = process.cwd() // 当前工作目录
+	const isBuild = command === 'build' // 是否是构建 serve
+	const env = loadEnv(mode, root) // 加载env环境
+	const viteEnv = wrapperEnv(env)
 
-	const { VITE_PUBLIC_PATH, VITE_ENV } = viteEnv;
+	const { VITE_PUBLIC_PATH, VITE_ENV } = viteEnv
 
-	createBuildJson(VITE_ENV);
+	createBuildJson(VITE_ENV)
 
 	return {
 		base: VITE_PUBLIC_PATH,
@@ -465,8 +466,8 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 		plugins: createVitePlugins(viteEnv, isBuild, mode),
 		resolve: {
 			alias: {
-				"@": fileURLToPath(new URL("./src", import.meta.url)),
-			},
+				'@': fileURLToPath(new URL('./src', import.meta.url))
+			}
 		},
 		css: {
 			preprocessorOptions: {
@@ -477,21 +478,21 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 						@import "@/styles/mixin.scss";
 						@import "@/styles/variables.scss";
 						@import "@nutui/nutui/dist/styles/variables.scss";
-					`,
-				},
-			},
+					`
+				}
+			}
 		},
 		server: {
 			host: true,
 			hmr: true, //开启热更新
-			proxy: createProxy(),
+			proxy: createProxy()
 		},
 		build: createBuild(viteEnv),
 		define: {
-			__APP_INFO__: JSON.stringify(__APP_INFO__),
-		},
-	};
-});
+			__APP_INFO__: JSON.stringify(__APP_INFO__)
+		}
+	}
+})
 ```
 
 ### <span id="alias">✅ 配置 alias 别名 </span>
