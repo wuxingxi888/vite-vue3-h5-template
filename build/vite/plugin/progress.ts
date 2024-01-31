@@ -6,6 +6,6 @@
 import { Plugin } from 'vite'
 import progress from 'vite-plugin-progress'
 
-export const ConfigProgressPlugin = () => {
+export const configProgressPlugin = () => {
 	return progress() as Plugin
 }

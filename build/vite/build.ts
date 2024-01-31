@@ -13,8 +13,16 @@ export function createBuild(viteEnv: ViteEnv): BuildOptions {
 		// rollup 打包配置
 		rollupOptions: {
 			output: {
-				chunkFileNames: 'static/js/[name]-[hash].js',
+				// 拆分js到模块文件夹
+				chunkFileNames: (chunkInfo) => {
+					const facadeModuleId = chunkInfo.facadeModuleId
+						? chunkInfo.facadeModuleId.split('/')
+						: []
+					const fileName = facadeModuleId[facadeModuleId.length - 2] || '[name]'
+					return `static/js/${fileName}/[name].[hash].js`
+				},
 				entryFileNames: 'static/js/[name]-[hash].js',
+				// 拆分静态资源文件夹，[ext]表示文件扩展名
 				assetFileNames: (chunkInfo) => {
 					if (chunkInfo.name) {
 						const info = chunkInfo.name.split('.')
@@ -31,7 +39,7 @@ export function createBuild(viteEnv: ViteEnv): BuildOptions {
 					return 'static/[ext]/[name]-[hash].[ext]'
 				},
 				manualChunks(id) {
-					// 静态资源分拆打包
+					// 最小化拆分包
 					if (id.includes('node_modules')) {
 						return id.toString().split('node_modules/')[1].split('/')[0].toString()
 					}

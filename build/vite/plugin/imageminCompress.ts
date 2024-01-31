@@ -1,7 +1,10 @@
+/**
+ * https://github.com/vbenjs/vite-plugin-imagemin/blob/main/README.zh_CN.md
+ */
 import type { Plugin } from 'vite'
 import viteImagemin from 'vite-plugin-imagemin'
 
-export function configImgCompressPlugin(): Plugin | Plugin[] {
+export function configImageminCompressPlugin(): Plugin | Plugin[] {
 	const plugins: Plugin[] = []
 
 	plugins.push(
