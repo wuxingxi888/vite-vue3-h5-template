@@ -18,9 +18,11 @@ export function configCompressPlugin(
 	if (compressList.includes('gzip')) {
 		plugins.push(
 			viteCompression({
-				threshold: 1024 * 10, // 超过10kb开始压缩
+				verbose: true, 			// 打印压缩信息
+				threshold: 1024 * 1000, // 超过1mb开始压缩
+				algorithm: 'gzip', 		// 压缩算法，可选['gzip'，' brotliccompress '，'deflate '，'deflateRaw']
 				ext: '.gz',
-				deleteOriginFile
+				deleteOriginFile        // 源文件压缩后是否删除
 			})
 		)
 	}
@@ -28,10 +30,11 @@ export function configCompressPlugin(
 	if (compressList.includes('brotli')) {
 		plugins.push(
 			viteCompression({
-				threshold: 1024 * 1000, // 超过1mb开始压缩
+				verbose: true, 			    // 打印压缩信息
+				threshold: 1024 * 1000,     // 超过1mb开始压缩
+				algorithm: 'brotliCompress',// 压缩算法，可选['gzip'，' brotliccompress '，'deflate '，'deflateRaw']
 				ext: '.br',
-				algorithm: 'brotliCompress',
-				deleteOriginFile
+				deleteOriginFile            // 源文件压缩后是否删除
 			})
 		)
 	}

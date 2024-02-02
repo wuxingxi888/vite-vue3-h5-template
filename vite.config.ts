@@ -25,6 +25,15 @@ const __APP_INFO__ = {
 	lastBuildTime: getNowTime()
 }
 
+const externalGlobalsObj = {
+	'vue': 'Vue',
+	'vue-demi': 'VueDemi',
+	'vue-router': 'VueRouter',
+	'pinia': 'Pinia',
+	'vant': 'vant',
+	'axios': 'axios'
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 	const root = process.cwd() // 当前工作目录
@@ -39,7 +48,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 	return {
 		base: VITE_PUBLIC_PATH,
 		root,
-		plugins: createVitePlugins(viteEnv, isBuild, mode),
+		plugins: createVitePlugins(viteEnv, isBuild, mode, externalGlobalsObj),
 		resolve: {
 			alias: {
 				'@': fileURLToPath(new URL('./src', import.meta.url))
@@ -62,7 +71,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 			hmr: true, //开启热更新
 			proxy: createProxy()
 		},
-		build: createBuild(viteEnv),
+		build: createBuild(viteEnv, externalGlobalsObj),
 		esbuild: {
 			// 使用esbuild来构建去掉console和debugger，
 			drop: mode === 'production' ? ['console', 'debugger'] : []

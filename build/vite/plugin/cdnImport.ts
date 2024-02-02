@@ -2,42 +2,58 @@
  * @name configCdnImportPlugin
  * @description 生产环境配置cdn
  */
-import { autoComplete, Plugin as importToCDN } from 'vite-plugin-cdn-import';
+import type { Plugin } from 'vite'
+import externalGlobals from 'rollup-plugin-external-globals'
 
+export const configCdnImportPlugin = (externalGlobalsObj): Plugin | Plugin[] => {
 
-export const configCdnImportPlugin = () => {
-    // Tips：如果出现 CDN 配置的资源无法访问需修改配置或者可先不使用 importToCDN 
-    return importToCDN({
-        // prodUrl：可选，默认指向 https://cdn.jsdelivr.net/npm/{name}@{version}/{path}
-        // 可使用这种格式 https://cdn.jsdelivr.net/npm/element-plus@2.2.32 查看是否存在 例如打开浏览器访问得到  https://cdn.jsdelivr.net/npm/element-plus@2.2.32/dist/index.full.js
-        // prodUrl: '/{path}', // 根目录 需要格外注意配置路径是否正确，且需要把资源先down下来
-        // prodUrl: 'https://xxx.com/{name}@{version}/{path}', // 自己的服务器上
-        prodUrl: 'https://unpkg.com/{name}@{version}/{path}', // https://unpkg.com/
-        modules: [
-            autoComplete('vue'),  // 自动解析
-            autoComplete('axios'),
-            {
-                name: 'vant',
-                var: 'vant', // 外部化的依赖提供一个全局变量 同rollupOptions配置中的globals的值
-                path: 'https://fastly.jsdelivr.net/npm/vant@4/lib/vant.min.js',
-                css: 'https://fastly.jsdelivr.net/npm/vant@4/lib/index.css'
-            },
-            {
-                name: 'vue-router',
-                var: 'VueRouter',
-                path: 'dist/vue-router.global.js'
-            },
-            // VueDemi这个是pinia用来判断是vue2还是vue3所需要的，要额外引入一下
-            {
-                name: 'vue-demi',
-                var: 'VueDemi',
-                path: 'https://unpkg.com/vue-demi@0.13.1/lib/index.iife.js'
-            },
-            {
-                name: 'pinia',
-                var: 'Pinia',
-                path: 'dist/pinia.iife.js'
-            },
+    const plugins: Plugin[] = []
+
+    // CDN外链，会插入到index.html中（vue全家桶开启cdn加速意义不大 考虑安全稳定问题 最好是上传到服务器中）
+    const cdn = {
+        css: ["https://cdn.jsdelivr.net/npm/vant@4.8.3/lib/index.min.css"],
+        js: [
+            "https://cdn.jsdelivr.net/npm/vue@3.4.15/dist/vue.global.prod.js",
+            "https://cdn.jsdelivr.net/npm/vant@4.8.3/lib/vant.min.js",
+            "https://cdn.jsdelivr.net/npm/vue-router@4.2.5/dist/vue-router.global.min.js",
+            "https://cdn.jsdelivr.net/npm/vue-demi@0.14.6/lib/index.iife.min.js",
+            'https://cdn.jsdelivr.net/npm/pinia@2.1.7/dist/pinia.iife.min.js',
+            "https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js",
         ],
-    })
+    };
+
+    plugins.push(
+        {
+            name: 'custom-html-transform',
+            transformIndexHtml(html) {
+                // 获取配置中的 CDN 资源
+                const cdnCss = cdn && cdn.css || [];
+                const cdnJs = cdn && cdn.js || [];
+
+                // 生成 CSS 预加载和链接标签
+                const cssTags = cdnCss.map(url => `<link href="${url}" rel="preload" as="style" />
+                                                  <link href="${url}" rel="stylesheet" />`).join('\n');
+
+                // 生成 JS 脚本标签
+                const jsTags = cdnJs.map(url => `<script src="${url}" defer></script>`).join('\n');
+
+                // 替换原始 HTML 中的占位符
+                html = html.replace('<!--CDN_CSS-->', cssTags);
+                html = html.replace('<!--CDN_JS-->', jsTags);
+
+                return html;
+            }
+        }
+    )
+
+    plugins.push(
+        {
+            ...externalGlobals(externalGlobalsObj),
+            enforce: 'post',
+            apply: 'build',
+        },
+    )
+
+
+    return plugins
 }

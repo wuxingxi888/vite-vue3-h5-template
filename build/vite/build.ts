@@ -1,6 +1,6 @@
 import type { BuildOptions } from 'vite'
 
-export function createBuild(viteEnv: ViteEnv): BuildOptions {
+export function createBuild(viteEnv: ViteEnv, externalGlobalsObj): BuildOptions {
 	const { VITE_OUTPUT_DIR } = viteEnv
 	return {
 		sourcemap: false, // 是否启用
@@ -12,15 +12,11 @@ export function createBuild(viteEnv: ViteEnv): BuildOptions {
 		chunkSizeWarningLimit: 2000, // chunk 大小警告的限制（以 kbs 为单位）
 		// rollup 打包配置
 		rollupOptions: {
+			// CDN配置，标志不需要打包的外部依赖项  
+			external: Object.keys(externalGlobalsObj),
 			output: {
 				// 拆分js到模块文件夹
-				chunkFileNames: (chunkInfo) => {
-					const facadeModuleId = chunkInfo.facadeModuleId
-						? chunkInfo.facadeModuleId.split('/')
-						: []
-					const fileName = facadeModuleId[facadeModuleId.length - 2] || '[name]'
-					return `static/js/${fileName}/[name].[hash].js`
-				},
+				chunkFileNames: 'static/js/[name]-[hash].js',
 				entryFileNames: 'static/js/[name]-[hash].js',
 				// 拆分静态资源文件夹，[ext]表示文件扩展名
 				assetFileNames: (chunkInfo) => {

@@ -10,6 +10,14 @@ declare module '@vue/runtime-core' {
     PwdDialog: typeof import('./../src/components/PwdDialog/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VanBackTop: typeof import('vant/es')['BackTop']
+    VanCell: typeof import('vant/es')['Cell']
+    VanCellGroup: typeof import('vant/es')['CellGroup']
+    VanImage: typeof import('vant/es')['Image']
+    VanNavBar: typeof import('vant/es')['NavBar']
+    VanNumberKeyboard: typeof import('vant/es')['NumberKeyboard']
+    VanPasswordInput: typeof import('vant/es')['PasswordInput']
+    VanSwitch: typeof import('vant/es')['Switch']
     Website: typeof import('./../src/components/Website/index.vue')['default']
   }
 }

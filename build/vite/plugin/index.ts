@@ -11,7 +11,8 @@ import { configProgressPlugin } from './progress'
 import { configLegacyPlugin } from './legacy'
 import { configCdnImportPlugin } from './cdnImport'
 
-export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, mode: string) {
+export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, mode: string, externalGlobalsObj) {
+
 	const { VITE_ENV, VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } = viteEnv
 
 	const vitePlugins: (Plugin | Plugin[])[] = [
@@ -34,11 +35,14 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, mode: stri
 	// es兼容性支持
 	vitePlugins.push(configLegacyPlugin())
 
+	// 构建时显示进度条
+	vitePlugins.push(configProgressPlugin())
+
+	// 打包分析rollup-plugin-visualizer
+	vitePlugins.push(configVisualizerConfig())
+
 	// 编译开启
 	if (isBuild) {
-		// CDN导入
-		vitePlugins.push(configCdnImportPlugin())
-
 		// 开启.gz压缩  rollup-plugin-gzip （nginx也需要配合修改）
 		vitePlugins.push(
 			configCompressPlugin(VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE)
@@ -46,13 +50,10 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, mode: stri
 
 		// 图片压缩（此插件需使用魔法下载，根据实际情况使用）
 		vitePlugins.push(configImageminCompressPlugin())
+
+		// CDN导入
+		vitePlugins.push(configCdnImportPlugin(externalGlobalsObj))
 	}
-
-	// 构建时显示进度条
-	vitePlugins.push(configProgressPlugin())
-
-	// 打包分析rollup-plugin-visualizer
-	vitePlugins.push(configVisualizerConfig())
 
 	return vitePlugins
 }
