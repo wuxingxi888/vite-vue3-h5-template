@@ -28,6 +28,8 @@ const pwdValue = ref('')
 
 const showKeyboard = ref(false)
 
+const pwdErrAnim = ref(false)
+
 watch(pwdValue, (v) => {
 	if (v.length > 6) {
 		pwdValue.value = v.slice(0, 6)
@@ -39,11 +41,18 @@ watch(pwdValue, (v) => {
 	}
 })
 
-const clearPwd = () => {
+const onPwdError = () => {
+	pwdErrAnim.value = true
+	setTimeout(() => {
+		pwdErrAnim.value = false
+	}, 500)
+}
+
+const onClearPwd = () => {
 	pwdValue.value = ''
 }
 
-defineExpose(['clearPwd'])
+defineExpose(['onClearPwd', 'onPwdError'])
 
 const onConfirm = () => {
 	if (pwdValue.value.length < 6) {
@@ -55,11 +64,7 @@ const onConfirm = () => {
 
 <template>
 	<div class="dialog_wrap">
-		<div
-			class="overlay"
-			v-if="props.options?.overlay"
-			@click="props.options.closeOnClickOverlay && close()"
-		></div>
+		<div class="overlay" v-if="props.options?.overlay" @click="props.options.closeOnClickOverlay && close()"></div>
 		<div class="dialog_container fadeIn">
 			<div class="close_btn" v-if="props.options.showClose" @click="close()"></div>
 
@@ -68,30 +73,17 @@ const onConfirm = () => {
 			<p class="message" v-if="props.options.message">{{ props.options.message }}</p>
 
 			<!-- 密码输入框 -->
-			<van-password-input
-				class="pwd_input"
-				:value="pwdValue"
-				:gutter="8"
-				:focused="showKeyboard"
-				@focus="showKeyboard = true"
-			/>
+			<van-password-input class="pwd_input" :class="{ 'shake': pwdErrAnim }" :value="pwdValue" :gutter="8"
+				:focused="showKeyboard" @focus="showKeyboard = true" />
 
-			<div class="confirm_btn" @click="onConfirm">确认</div>
+			<div class="confirm_btn" :class="{ 'disabled_btn': pwdValue.length < 6 }" @click="onConfirm">确认</div>
 
-			<p
-				class="custom_handle"
-				v-if="props.options.customText"
-				@click="props.options.customHandle"
-			>
+			<p class="custom_handle" v-if="props.options.customText" @click="props.options.customHandle">
 				{{ props.options.customText }}
 			</p>
 
 			<!-- 数字键盘 -->
-			<van-number-keyboard
-				v-model="pwdValue"
-				:show="showKeyboard"
-				@blur="showKeyboard = false"
-			/>
+			<van-number-keyboard v-model="pwdValue" :show="showKeyboard" @blur="showKeyboard = false" />
 		</div>
 	</div>
 </template>
@@ -107,6 +99,7 @@ const onConfirm = () => {
 	align-items: center;
 	justify-content: center;
 	z-index: 2000;
+
 	.overlay {
 		width: 100%;
 		height: 100%;
@@ -131,6 +124,7 @@ const onConfirm = () => {
 			right: 10px;
 			width: 20px;
 			height: 20px;
+
 			&::before {
 				position: absolute;
 				top: 50%;
@@ -142,6 +136,7 @@ const onConfirm = () => {
 				background-color: #3d3d3d;
 				transform: translate(-50%, -50%) rotate(45deg);
 			}
+
 			&::after {
 				position: absolute;
 				top: 50%;
@@ -162,6 +157,7 @@ const onConfirm = () => {
 			color: #000000;
 			line-height: 21px;
 		}
+
 		.message {
 			font-size: 16px;
 			font-family: Source Han Sans CN-Medium, Source Han Sans CN;
@@ -169,11 +165,13 @@ const onConfirm = () => {
 			color: #e84855;
 			margin-top: 8px;
 		}
+
 		.pwd_input {
 			margin-top: 25px;
 
 			:deep(.van-password-input__security) {
 				height: 34px;
+
 				.van-password-input__item {
 					width: 34px !important;
 					height: 34px;
@@ -181,6 +179,7 @@ const onConfirm = () => {
 					border-radius: 5px;
 					border: 1px solid #e0ebff;
 				}
+
 				.van-password-input__item--focus {
 					border: 1px solid #6ba0ff;
 				}
@@ -194,16 +193,20 @@ const onConfirm = () => {
 			text-align: center;
 			border-radius: 23px;
 			box-shadow: 0px 2px 19px 0px rgba(208, 246, 255, 1);
-			background-image: linear-gradient(
-				128deg,
-				rgba(60, 201, 255, 1) 0,
-				rgba(108, 159, 255, 1) 100%
-			);
+			background-image: linear-gradient(128deg,
+					rgba(60, 201, 255, 1) 0,
+					rgba(108, 159, 255, 1) 100%);
 			font-size: 16px;
 			font-family: PingFang SC-Regular, PingFang SC;
 			font-weight: 400;
 			color: #ffffff;
 			margin: 27px auto 0px;
+		}
+
+		.disabled_btn {
+			background-image: linear-gradient(128deg,
+					rgb(199, 207, 210) 0,
+					rgb(169, 181, 203) 100%);
 		}
 
 		.custom_handle {
@@ -221,6 +224,7 @@ const onConfirm = () => {
 		-webkit-animation: fadeInDown 0.3s;
 		animation: fadeInDown 0.3s;
 	}
+
 	@keyframes fadeInDown {
 		0% {
 			-webkit-transform: translate3d(0, -20%, 0);
@@ -229,17 +233,20 @@ const onConfirm = () => {
 			transform: translate3d(0, -20%, 0);
 			opacity: 0;
 		}
+
 		100% {
 			-webkit-transform: none;
 			transform: none;
 			opacity: 1;
 		}
 	}
+
 	@-webkit-keyframes fadeInDown {
 		0% {
 			-webkit-transform: translate3d(0, -20%, 0);
 			opacity: 0;
 		}
+
 		100% {
 			-webkit-transform: none;
 			opacity: 1;
@@ -250,6 +257,7 @@ const onConfirm = () => {
 		-webkit-animation: fadelogIn 0.4s;
 		animation: fadelogIn 0.4s;
 	}
+
 	@keyframes fadelogIn {
 		0% {
 			-webkit-transform: translate3d(0, 100%, 0);
@@ -257,15 +265,18 @@ const onConfirm = () => {
 			transform: translate3d(0, 100%, 0);
 			transform: translate3d(0, 100%, 0);
 		}
+
 		100% {
 			-webkit-transform: none;
 			transform: none;
 		}
 	}
+
 	@-webkit-keyframes fadelogIn {
 		0% {
 			-webkit-transform: translate3d(0, 100%, 0);
 		}
+
 		100% {
 			-webkit-transform: none;
 		}
@@ -275,6 +286,7 @@ const onConfirm = () => {
 		-webkit-animation: fadeleftIn 0.4s;
 		animation: fadeleftIn 0.4s;
 	}
+
 	@keyframes fadeleftIn {
 		0% {
 			-webkit-transform: translate3d(100%, 0, 0);
@@ -282,15 +294,18 @@ const onConfirm = () => {
 			transform: translate3d(100%, 0, 0);
 			transform: translate3d(100%, 0, 0);
 		}
+
 		100% {
 			-webkit-transform: none;
 			transform: none;
 		}
 	}
+
 	@-webkit-keyframes fadeleftIn {
 		0% {
 			-webkit-transform: translate3d(100%, 0, 0);
 		}
+
 		100% {
 			-webkit-transform: none;
 		}
@@ -302,16 +317,19 @@ const onConfirm = () => {
 		-webkit-animation-name: popIn;
 		animation-name: popIn;
 	}
+
 	@-webkit-keyframes popIn {
 		0% {
 			-webkit-transform: scale3d(0, 0, 0);
 			transform: scale3d(0.5, 0.5, 0.5);
 			opacity: 0;
 		}
+
 		50% {
 			-webkit-animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
 			animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
 		}
+
 		100% {
 			-webkit-transform: scale3d(1, 1, 1);
 			transform: scale3d(1, 1, 1);
@@ -320,22 +338,58 @@ const onConfirm = () => {
 			opacity: 1;
 		}
 	}
+
 	@keyframes popIn {
 		0% {
 			-webkit-transform: scale3d(0, 0, 0);
 			transform: scale3d(0.5, 0.5, 0.5);
 			opacity: 0;
 		}
+
 		50% {
 			-webkit-animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
 			animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
 		}
+
 		100% {
 			-webkit-transform: scale3d(1, 1, 1);
 			transform: scale3d(1, 1, 1);
 			-webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 			animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 			opacity: 1;
+		}
+	}
+
+	//  密码输入错误 密码输入框抖动
+	.shake {
+		-webkit-animation: shake 0.5s;
+		animation: shake 0.5s;
+	}
+
+	@keyframes shake {
+		0% {
+			-webkit-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+		}
+
+		25% {
+			-webkit-transform: translate3d(-10px, 0, 0);
+			transform: translate3d(-10px, 0, 0);
+		}
+
+		50% {
+			-webkit-transform: translate3d(10px, 0, 0);
+			transform: translate3d(10px, 0, 0);
+		}
+
+		75% {
+			-webkit-transform: translate3d(-10px, 0, 0);
+			transform: translate3d(-10px, 0, 0);
+		}
+
+		100% {
+			-webkit-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
 		}
 	}
 }

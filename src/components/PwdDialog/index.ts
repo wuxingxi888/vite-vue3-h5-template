@@ -1,52 +1,93 @@
-import { App, createApp } from 'vue'
-import dialog from './index.vue'
+import { App, createApp } from 'vue';
+import DialogComponent from './index.vue'; // 组件重命名为DialogComponent
+import { PasswordInput, NumberKeyboard } from 'vant';
+
+interface DialogOptions {
+	title?: string;
+	message?: string;
+	showClose?: boolean;
+	overlay?: boolean;
+	closeOnClickOverlay?: boolean;
+	inputComplete?: (value: string) => void;
+	customText?: string;
+	customHandle?: () => void;
+}
 
 class Dialog {
-	Instance: App<any> | undefined
-	mountNode = document.createElement('div')
+	private instance: App<any> | undefined;
+	private mountNode: HTMLDivElement;
 
-	close = () => {
-		if (this.Instance !== undefined) {
-			this.Instance.unmount()
-			document.body.removeChild(this.mountNode)
-			this.Instance = undefined
-		}
+	constructor() {
+		this.mountNode = document.createElement('div');
 	}
 
-	alert = (options) => {
-		if (this.Instance !== undefined) this.close()
+	public close = () => {
+		if (this.instance) {
+			this.instance.unmount();
+			this.mountNode.innerHTML = ''; // 清空内部HTML以避免潜在的内存泄漏
+			document.body.removeChild(this.mountNode);
+			this.instance = undefined;
+		}
+	};
+
+	public clearPwd = () => {
+		// 未实现
+	}
+
+	public pwdError = () => {
+		// 未实现
+	}
+
+	public alert = (options: DialogOptions): Promise<string> => {
+		if (this.instance) this.close();
+
+		const defaultOptions: DialogOptions = {
+			title: '提示',
+			message: '提示信息',
+			showClose: true,
+			overlay: true,
+			closeOnClickOverlay: false,
+			inputComplete: () => { },
+			customText: '',
+			customHandle: () => { },
+		};
+
+		const dialogOptions = { ...defaultOptions, ...options };
+
+		// 校验options，确保其不包含不合法的值 (示例中未实现具体的校验逻辑)
+		if (!this.validateOptions(dialogOptions)) {
+			throw new Error('Invalid dialog options');
+		}
 
 		return new Promise<string>((resolve, reject) => {
-			const defaultOptions = {
-				title: '提示',
-				message: '',
-				showClose: true,
-				overlay: true,
-				closeOnClickOverlay: false,
-				inputComplete: Function,
-				customText: '',
-				customHandle: Function
-			}
-
-			Object.assign(defaultOptions, options)
-
-			this.Instance = createApp(dialog, {
-				options: defaultOptions,
+			this.instance = createApp(DialogComponent, {
+				options: dialogOptions,
 				close: this.close,
 				cancel: () => {
-					this.close()
-					reject('取消')
+					this.close();
+					reject('取消');
 				},
 				confirm: () => {
-					this.close()
-					resolve('确认')
-				}
-			})
+					this.close();
+					resolve('确认');
+				},
+			});
 
-			this.Instance.mount(this.mountNode)
-			document.body.appendChild(this.mountNode)
-		})
+			this.instance.use(PasswordInput);
+			this.instance.use(NumberKeyboard);
+
+			document.body.appendChild(this.mountNode);
+			this.instance.mount(this.mountNode);
+		}).catch(error => {
+			console.error('Dialog alert error:', error);
+			throw error; // 保持原有的异常抛出行为
+		});
+	};
+
+	private validateOptions(options: DialogOptions): boolean {
+		// 添加对options的校验逻辑，这里留空作为示例
+		return true;
 	}
 }
 
-export default new Dialog()
+export default new Dialog();

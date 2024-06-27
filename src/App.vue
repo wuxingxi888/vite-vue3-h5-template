@@ -39,6 +39,9 @@ const openSystem = () => {
 			if (pwd === '960413') {
 				pwdModal.close()
 				router.push('/system')
+			} else {
+				pwdModal.pwdError()
+				pwdModal.clearPwd()
 			}
 		}
 	})
