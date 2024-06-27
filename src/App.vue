@@ -1,77 +1,33 @@
 <script setup lang="ts">
 import pwdModal from '@/components/PwdDialog/index'
-import { showConfirmDialog } from 'vant'
 import 'vant/es/dialog/style'
 import useSystem from '@/hooks/useSystem'
-import { envConfig } from './config'
-import { asyncLoadScript } from './utils/script'
-import { Updater } from './utils/updater'
+
 const { execute } = useSystem()
-const route = useRoute()
+
 const router = useRouter()
 
 const transitionName = ref('')
 
 const includeList = ref([] as any)
 
-watch(route, (v) => {
-	//监听路由变化，把配置路由中keepAlive为true的name添加到include动态数组中
-	if (v.meta.keepAlive && includeList.value.indexOf(v.name) === -1) {
-		includeList.value.push(v.name)
-	}
-})
-
-router.beforeEach((to: any, from: any) => {
+function setTransitionName(to: any, from: any) {
 	if (!to.meta.transition.enable) {
-		transitionName.value = ''
+		transitionName.value = '';
+	} else if (to.meta.transition.name) {
+		transitionName.value = to.meta.transition.name;
 	} else {
-		if (to.meta.transition.name) {
-			transitionName.value = to.meta.transition.name
-		} else if (to.meta.index > from.meta.index) {
-			transitionName.value = 'van-slide-left'
-		} else if (to.meta.index < from.meta.index) {
-			transitionName.value = 'van-slide-right'
-		}
-	}
-})
-
-const checkUpdate = () => {
-	if (envConfig.env != 'development') {
-		const updater = new Updater({ timer: 30 * 1000 })
-
-		updater.on('no-update', () => {
-			console.log('未更新')
-		})
-
-		//更新通知
-		updater.on('update', () => {
-			showConfirmDialog({
-				title: '系统升级通知',
-				message: '检测到当前系统版本已更新，请刷新页面后使用新版本',
-				theme: 'round-button',
-				confirmButtonText: '立即刷新',
-				cancelButtonText: '稍后'
-			})
-				.then(() => {
-					window.location.reload()
-				})
-				.catch(() => {
-					updater.stopTiming()
-				})
-		})
+		transitionName.value = to.meta.index > from.meta.index ? 'go' : 'back';
 	}
 }
 
-onMounted(() => {
-	if (envConfig.env != 'production') {
-		asyncLoadScript(this, { src: 'https://cdn.jsdelivr.net/npm/eruda', id: 'debug' }).then(
-			() => {
-				window.eruda.init()
-			}
-		)
+router.beforeEach((to: any, from: any) => {
+	//监听路由变化，把配置路由中keepAlive为true的name添加到include动态数组中
+	if (to.meta.keepAlive && includeList.value.indexOf(to.path) === -1) {
+		includeList.value.push(to.path)
 	}
 
-	checkUpdate()
+	setTransitionName(to, from)
 })
 
 // 调用系统信息
@@ -92,11 +48,9 @@ const openSystem = () => {
 <template>
 	<div class="layout-content fix-iphone" @click.stop="execute(openSystem)">
 		<router-view v-slot="{ Component }">
-			<transition :name="transitionName || ''">
+			<transition :name="transitionName">
 				<keep-alive :include="includeList">
-					<div>
-						<component :is="Component" />
-					</div>
+					<component :is="Component" />
 				</keep-alive>
 			</transition>
 		</router-view>
@@ -107,5 +61,46 @@ const openSystem = () => {
 <style lang="scss" scoped>
 .layout-content {
 	width: 100vw;
+}
+
+.go-enter-from {
+	transform: translate3d(100%, 0, 0);
+}
+
+//最终状态
+.back-enter-to,
+.back-enter-from,
+.go-enter-to,
+.go-leave-from {
+	transform: translate3d(0, 0, 0);
+}
+
+.go-leave-to {
+	transform: translate3d(-100%, 0, 0);
+}
+
+.go-enter-active,
+.go-leave-active,
+.back-enter-active,
+.back-leave-active {
+	transition: all 0.3s;
+}
+
+.back-enter-from {
+	transform: translate3d(-100%, 0, 0);
+}
+
+.back-leave-to {
+	transform: translate3d(100%, 0, 0);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
 }
 </style>
