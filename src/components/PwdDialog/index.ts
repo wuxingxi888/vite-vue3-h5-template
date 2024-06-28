@@ -31,11 +31,15 @@ class Dialog {
 	};
 
 	public clearPwd = () => {
-		// 未实现
+		if (this.instance) {
+			(this.instance._instance as any).exposed.onClearPwd();
+		}
 	}
 
-	public pwdError = () => {
-		// 未实现
+	public pwdError = (msg: string) => {
+		if (this.instance) {
+			(this.instance._instance as any).exposed.onPwdError(msg);
+		}
 	}
 
 	public alert = (options: DialogOptions): Promise<string> => {

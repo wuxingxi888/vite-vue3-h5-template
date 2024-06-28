@@ -30,6 +30,8 @@ const showKeyboard = ref(false)
 
 const pwdErrAnim = ref(false)
 
+const pwdTips = ref(props.options.message)
+
 watch(pwdValue, (v) => {
 	if (v.length > 6) {
 		pwdValue.value = v.slice(0, 6)
@@ -41,8 +43,9 @@ watch(pwdValue, (v) => {
 	}
 })
 
-const onPwdError = () => {
+const onPwdError = (msg: string) => {
 	pwdErrAnim.value = true
+	pwdTips.value = msg
 	setTimeout(() => {
 		pwdErrAnim.value = false
 	}, 500)
@@ -52,7 +55,10 @@ const onClearPwd = () => {
 	pwdValue.value = ''
 }
 
-defineExpose(['onClearPwd', 'onPwdError'])
+defineExpose({
+	onClearPwd,
+	onPwdError
+});
 
 const onConfirm = () => {
 	if (pwdValue.value.length < 6) {
@@ -60,6 +66,22 @@ const onConfirm = () => {
 	}
 	props.options.inputComplete(pwdValue.value)
 }
+
+const disableScroll = () => {
+	document.body.style.overflow = 'hidden';
+};
+
+const enableScroll = () => {
+	document.body.style.overflow = '';
+};
+
+onMounted(() => {
+	disableScroll();
+});
+
+onBeforeUnmount(() => {
+	enableScroll();
+});
 </script>
 
 <template>
@@ -70,7 +92,7 @@ const onConfirm = () => {
 
 			<span class="title">{{ props.options.title }}</span>
 
-			<p class="message" v-if="props.options.message">{{ props.options.message }}</p>
+			<p class="message" v-if="props.options.message">{{ pwdTips }}</p>
 
 			<!-- 密码输入框 -->
 			<van-password-input class="pwd_input" :class="{ 'shake': pwdErrAnim }" :value="pwdValue" :gutter="8"

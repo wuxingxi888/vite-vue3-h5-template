@@ -40,7 +40,7 @@ const openSystem = () => {
 				pwdModal.close()
 				router.push('/system')
 			} else {
-				pwdModal.pwdError()
+				pwdModal.pwdError("密码错误")
 				pwdModal.clearPwd()
 			}
 		}
