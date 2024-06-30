@@ -15,6 +15,8 @@ import { wrapperEnv, getNowTime, createBuildJson } from './build/utils'
 import { createVitePlugins } from './build/vite/plugin'
 import { createProxy } from './build/vite/proxy'
 import { createBuild } from './build/vite/build'
+import autoprefixer from 'autoprefixer'
+import { postcssPxToViewProtConfig } from './build/vite/plugin/postcssPxToView'
 import pkg from './package.json'
 
 const { dependencies, devDependencies, name, version } = pkg
@@ -64,7 +66,16 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 						@import "@/styles/variables.scss";
 					`
 				}
-			}
+			},
+			postcss: {
+				plugins: [
+					autoprefixer({
+						// 用来给不同的浏览器自动添加相应前缀，如-webkit-，-moz-等等
+						overrideBrowserslist: ['Android 4.1', 'iOS 7.1', 'Chrome > 31', 'ff > 31', 'ie >= 8']
+					}),
+					postcssPxToViewProtConfig()
+				],
+			},
 		},
 		server: {
 			host: true,
