@@ -62,9 +62,9 @@ const openSystem = () => {
 </template>
 
 <style lang="scss" scoped>
-.layout-content {
-	width: 100vw;
-}
+// .layout-content {
+// 	width: 100%;
+// }
 
 .go-enter-from {
 	transform: translate3d(100%, 0, 0);
