@@ -1,9 +1,18 @@
 :deep(.van-nav-bar) {
- .van-icon{
-	color: #000;
-	font-size: 16px;
-	font-weight: bold;
- }
+	.van-icon {
+		color: #000;
+		font-size: 16px;
+		font-weight: bold;
+	}
+}
+
+.base-page {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	overflow: auto;
 }
 
 // 渐显动画

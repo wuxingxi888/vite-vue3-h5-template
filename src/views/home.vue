@@ -27,13 +27,7 @@ onMounted(() => {
 			<van-cell v-for="(item, index) in 100" :key="index" :title="index.toString()" value="描述文字"></van-cell>
 		</van-cell-group>
 
-		<!-- <nut-image
-			width="345"
-			height="200"
-			v-for="(item, index) in imageList"
-			:key="index"
-			v-lazy="item"
-		></nut-image> -->
+		<!-- <img width="345" height="200" v-for="(item, index) in imageList" :key="index" v-lazy="item" /> -->
 	</div>
 </template>
 
@@ -42,5 +36,6 @@ onMounted(() => {
 	width: 100%;
 	height: 100%;
 	padding: 15px 0;
+	padding-bottom: 200px;
 }
 </style>

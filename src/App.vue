@@ -62,9 +62,25 @@ const openSystem = () => {
 </template>
 
 <style lang="scss" scoped>
-// .layout-content {
-// 	width: 100%;
-// }
+.layout-content {
+	height: 100%;
+	overflow: scroll;
+}
+
+@media screen and (min-width: 500px) {
+
+	body,
+	html {
+		background-color: red;
+	}
+
+	#app {
+		width: 500px !important;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
 
 .go-enter-from {
 	transform: translate3d(100%, 0, 0);

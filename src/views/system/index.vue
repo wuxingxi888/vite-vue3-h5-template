@@ -29,15 +29,8 @@ const debugChange = (value) => {
 }
 </script>
 <template>
-	<div class="sys_wrap">
-		<van-nav-bar
-			title="系统信息"
-			left-arrow
-			fixed
-			placeholder
-			safe-area-inset-top
-			@click-left="toBack"
-		/>
+	<div class="sys_wrap base-page">
+		<van-nav-bar title="系统信息" left-arrow fixed placeholder safe-area-inset-top @click-left="toBack" />
 
 		<van-cell-group inset title="基本信息">
 			<van-cell>
@@ -51,20 +44,12 @@ const debugChange = (value) => {
 		</van-cell-group>
 
 		<van-cell-group inset title="生产环境依赖">
-			<van-cell
-				v-for="([key, value], index) of Object.entries(dependencies)"
-				:key="index"
-				:title="key"
-				:value="value"
-			/>
+			<van-cell v-for="([key, value], index) of Object.entries(dependencies)" :key="index" :title="key"
+				:value="value" />
 		</van-cell-group>
 		<van-cell-group inset title="开发环境依赖">
-			<van-cell
-				v-for="([key, value], index) of Object.entries(devDependencies)"
-				:key="index"
-				:title="key"
-				:value="value"
-			/>
+			<van-cell v-for="([key, value], index) of Object.entries(devDependencies)" :key="index" :title="key"
+				:value="value" />
 		</van-cell-group>
 
 		<van-cell-group inset title="设置">

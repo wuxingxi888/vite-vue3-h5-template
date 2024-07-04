@@ -36,23 +36,14 @@ export function postcssPxToViewProtConfig() {
     return viewport({
         appSelector: '#app', // 根元素选择器，用于设置桌面端和横屏时的居中样式
         maxDisplayWidth: 560, // 桌面端最大展示宽度
-        minDisplayWidth: 320,
-        unitToConvert: 'px',       // 要转化的单位
         viewportWidth: getFileWidth,  // UI设计稿的宽度
         unitPrecision: 5, // 转换后的精度，即小数点位数
         propList: ['*'], // 指定转换的css属性的单位，*代表全部css属性的单位都进行转换
-        // viewportUnit: 'vw', // 指定需要转换成的视窗单位，默认vw
         mobileUnit: 'vw', // 指定需要转换成的视口单位，建议使用 vw
-        fontViewportUnit: 'vw', // 指定字体需要转换成的视窗单位，默认vw
         selectorBlackList: ['keep-px'], // 指定不转换为视窗单位的类名 配置表示类名中含有'keep-px'都不会被转换，
-        minPixelValue: 1, // 默认值1，小于或等于1px则不进行转换
-        mediaQuery: false, // 是否在媒体查询的css代码中也进行转换，默认false
-        replace: true, // 是否转换后直接更换属性值
         valueBlackList: ['1px solid'], // 表示属性值包含 '1px solid' 的内容不会转换
         exclude: [/node_modules/], // 忽略某些文件夹下的文件或特定文件，例如 'node_modules' 下的文件
         include: [/src/], // 如果设置了include，那将只有匹配到的文件才会被转换
-        landscape: false, // 是否处理横屏情况
-        landscapeUnit: 'vw',
         landscapeWidth: 1024,
         rootContainingBlockSelectorList: ['van-popup--bottom'], // 指定包含块是根包含块的选择器，这种选择器的定位通常是 `fixed`，但是选择器内没有 `position: fixed`
         border: true,
