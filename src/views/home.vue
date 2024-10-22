@@ -14,10 +14,10 @@ const getUrl = () => {
 }
 
 onMounted(() => {
-	// timer.value = setInterval(() => {
-	// 	if (imageList.value.length > 10) clearInterval(timer.value)
-	// 	getUrl()
-	// }, 2000)
+	timer.value = setInterval(() => {
+		if (imageList.value.length > 10) clearInterval(timer.value)
+		getUrl()
+	}, 2000)
 })
 </script>
 
@@ -27,7 +27,7 @@ onMounted(() => {
 			<van-cell v-for="(item, index) in 100" :key="index" :title="index.toString()" value="描述文字"></van-cell>
 		</van-cell-group>
 
-		<!-- <img width="345" height="200" v-for="(item, index) in imageList" :key="index" v-lazy="item" /> -->
+		<img width="345" height="200" v-for="(item, index) in imageList" :key="index" v-lazy="item" />
 	</div>
 </template>
 
@@ -36,6 +36,5 @@ onMounted(() => {
 	width: 100%;
 	height: 100%;
 	padding: 15px 0;
-	padding-bottom: 200px;
 }
 </style>

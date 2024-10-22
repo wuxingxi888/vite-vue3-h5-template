@@ -6,7 +6,7 @@ export interface IConfig {
 	baseApi?: string // api请求地址
 }
 const envMap = {}
-const globalModules = import.meta.globEager('./*.ts')
+const globalModules = import.meta.glob('./*.ts', { eager: true });
 
 Object.entries(globalModules).forEach(([key, value]) => {
 	// key.match(/\.\/env\.(\S*)\.ts/)
