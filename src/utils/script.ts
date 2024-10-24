@@ -21,12 +21,12 @@ export const checkIsLoadScript = (context, src) => {
 	return false
 }
 
-//异步加载script脚本
+// 异步加载script脚本
 export const asyncLoadScript = (context, { src, id }) => {
 	return new Promise<void>(async (resolve) => {
 		const isLoad = await checkIsLoadScript(this, src)
 		if (isLoad) {
-			//若script标签存在，则先删除
+			// 若script标签存在，则先删除
 			const dom = document.getElementById(id) as HTMLScriptElement
 			if (dom && dom.src == src) {
 				console.log('删除成功')

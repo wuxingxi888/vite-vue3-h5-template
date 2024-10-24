@@ -4,7 +4,9 @@ class landscape {
 	evt = 'onorientationchange' in window ? 'orientationchange' : 'resize'
 
 	width = document.documentElement.clientWidth
+
 	height = document.documentElement.clientHeight
+
 	body = document.body
 
 	constructor() {
@@ -27,7 +29,7 @@ class landscape {
 
 		if (window.orientation === 180 || window.orientation === 0) {
 			console.log('竖屏状态')
-			//竖屏状态
+			// 竖屏状态
 			this.body.setAttribute(
 				'style',
 				`top:${(height - width) / 2}px;left:${
@@ -36,7 +38,7 @@ class landscape {
 			)
 		} else if (window.orientation === 90 || window.orientation === -90) {
 			console.log('横屏状态')
-			//横屏状态
+			// 横屏状态
 			this.body.setAttribute(
 				'style',
 				`top:0;left:0;transform:'none';transform-origin:'50% 50%';width:${height}px;height:${width}px`

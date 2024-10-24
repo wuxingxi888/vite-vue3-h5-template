@@ -8,7 +8,7 @@ const encrypt = (data: object | string): string => {
 		try {
 			data = JSON.stringify(data)
 		} catch (e) {
-			throw new Error('encrypt error' + e)
+			throw new Error(`encrypt error${e}`)
 		}
 	}
 	const dataHex = CryptoJS.enc.Utf8.parse(data)

@@ -4,7 +4,7 @@ export default class NativeCallJs {
 	static judgeSystem() {
 		const u = navigator.userAgent
 		const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1
-		const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+		const isIOS = Boolean(u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/))
 		return { isAndroid, isIOS }
 	}
 

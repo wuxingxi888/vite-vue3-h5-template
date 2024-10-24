@@ -1,6 +1,5 @@
 import request from '@/utils/request'
-import { IResponseType } from './interface'
-import { AuthCode } from '@/api/interface'
+import type { IResponseType, AuthCode } from './interface'
 import { envConfig } from '../config'
 
 /**
@@ -8,7 +7,7 @@ import { envConfig } from '../config'
  */
 export const fetchAuthCode = (data: AuthCode) => {
 	return request<IResponseType>({
-		url: envConfig.baseApi + 'xxxxx',
+		url: `${envConfig.baseApi}xxxxx`,
 		method: 'post',
 		data,
 		loading: true
@@ -20,7 +19,7 @@ export const fetchAuthCode = (data: AuthCode) => {
  */
 export const fetchTagList = () => {
 	return request<IResponseType>({
-		url: envConfig.baseApi + 'xxxxxx',
+		url: `${envConfig.baseApi}xxxxxx`,
 		method: 'get',
 		loading: false
 	})

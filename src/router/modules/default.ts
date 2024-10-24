@@ -1,26 +1,26 @@
-import { Component } from 'vue';
+import type { Component } from 'vue'
 
 // 定义路由过渡配置的类型
 interface TransitionConfig {
-	enable: boolean;  	// 是否启用过渡效果
-	name?: string; 		// 过渡效果的名称，默认可以为空
+	enable: boolean // 是否启用过渡效果
+	name?: string // 过渡效果的名称，默认可以为空
 }
 
 // 定义路由元信息 (meta) 的类型
 interface MetaInfo {
-	title?: string; 				// 页面标题，
-	keepAlive: boolean; 			// 缓存
-	index: number; 					// 页面层级索引
-	transition: TransitionConfig; 	// 过渡动画配置
+	title?: string // 页面标题，
+	keepAlive: boolean // 缓存
+	index: number // 页面层级索引
+	transition: TransitionConfig // 过渡动画配置
 }
 
 // 定义带有 meta 的 RouteRecordRaw 类型
 export interface RouteRecordWithMeta {
-	path: string;
-	name?: string;
-	redirect?: string;
-	component?: Component;
-	meta?: MetaInfo;
+	path: string
+	name?: string
+	redirect?: string
+	component?: Component
+	meta?: MetaInfo
 }
 
 // 定义一个共享的 transition 配置
@@ -30,11 +30,16 @@ const sharedTransition = {
 }
 
 // 定义一个函数用于生成 meta 配置
-function generateMeta(title: string, keepAlive: boolean, index: number, transitionConfig: TransitionConfig): MetaInfo {
+function generateMeta(
+	title: string,
+	keepAlive: boolean,
+	index: number,
+	transitionConfig: TransitionConfig
+): MetaInfo {
 	return {
 		title: title || '默认页面标题',
-		keepAlive: keepAlive,
-		index: index,
+		keepAlive,
+		index,
 		transition: transitionConfig
 	}
 }

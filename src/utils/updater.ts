@@ -4,8 +4,11 @@ interface Options {
 
 export class Updater {
 	oldScript: string[] // 存储第一次值也就是script 的hash 信息
+
 	newScript: string[] // 获取新的值 也就是新的script 的hash信息
+
 	dispatch: Record<string, Array<() => void>> // 小型发布订阅通知用户更新了
+
 	timer: NodeJS.Timeout | null = null
 
 	constructor(options: Options) {
@@ -49,7 +52,7 @@ export class Updater {
 			this.dispatch['no-update']?.forEach((fn) => fn())
 		} else {
 			// 否则通知更新
-			this.dispatch['update']?.forEach((fn) => fn())
+			this.dispatch.update?.forEach((fn) => fn())
 		}
 	}
 

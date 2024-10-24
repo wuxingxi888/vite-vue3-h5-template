@@ -1,4 +1,4 @@
-import { IConfig } from '@/config'
+import type { IConfig } from '@/config'
 import fs from 'fs'
 import path from 'path'
 
@@ -58,10 +58,10 @@ export const getCurrentDate = () => {
 	const a = time.toLocaleDateString()
 	const x = a.split('/')
 	if (x[1].length < 2) {
-		x[1] = '0' + x[1]
+		x[1] = `0${x[1]}`
 	}
 	if (x[2].length < 2) {
-		x[2] = '0' + x[2]
+		x[2] = `0${x[2]}`
 	}
 	return x.join('')
 }
@@ -70,7 +70,7 @@ export const getCurrentDate = () => {
 export const updateVersion = (build: IConfig): IConfig => {
 	if (getCurrentDate() === String(build.version.split('.')[1])) {
 		let x = Number(build.version.split('.')[2])
-		x = x + 1
+		x += 1
 		build.version = `1.${getCurrentDate()}.${x}`
 	} else {
 		build.version = `1.${getCurrentDate()}.1`
@@ -109,7 +109,7 @@ export const createBuildJson = async (envName: string) => {
 		const newBuffer = prefix + JSON.stringify(result)
 
 		// 改变原始数据
-		fs.writeFile(oFilePath, newBuffer, 'utf-8', function (err) {
+		fs.writeFile(oFilePath, newBuffer, 'utf-8', (err) => {
 			if (err) {
 				console.log('err', err)
 			} else {
@@ -118,7 +118,7 @@ export const createBuildJson = async (envName: string) => {
 		})
 
 		// 生成可读取的json文件
-		fs.writeFile('./build.json', JSON.stringify(result), 'utf-8', function (err) {
+		fs.writeFile('./build.json', JSON.stringify(result), 'utf-8', (err) => {
 			if (err) {
 				console.log('errr')
 			} else {

@@ -24,10 +24,22 @@ onMounted(() => {
 <template>
 	<div class="wrap">
 		<van-cell-group inset>
-			<van-cell v-for="(item, index) in 100" :key="index" :title="index.toString()" value="描述文字"></van-cell>
+			<van-cell
+				v-for="(item, index) in 100"
+				:key="index"
+				:title="index.toString()"
+				value="描述文字"
+			>
+			</van-cell>
 		</van-cell-group>
 
-		<img width="345" height="200" v-for="(item, index) in imageList" :key="index" v-lazy="item" />
+		<img
+			v-for="(item, index) in imageList"
+			:key="index"
+			v-lazy="item"
+			width="345"
+			height="200"
+		/>
 	</div>
 </template>
 

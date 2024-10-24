@@ -8,11 +8,11 @@ export function createBuild(viteEnv: ViteEnv, externalGlobalsObj): BuildOptions 
 		cssCodeSplit: false, // 禁用 CSS 代码拆分,将整个项目中的所有 CSS 将被提取到一个 CSS 文件中
 		target: 'modules', // esnext
 		minify: 'esbuild', // 项目压缩 :boolean | 'terser' | 'esbuild'
-		assetsInlineLimit: 4096, //小于此阈值的导入或引用资源将内联为 base64 编码，以避免额外的 http 请求。设置为 0 可以完全禁用此项
+		assetsInlineLimit: 4096, // 小于此阈值的导入或引用资源将内联为 base64 编码，以避免额外的 http 请求。设置为 0 可以完全禁用此项
 		chunkSizeWarningLimit: 2000, // chunk 大小警告的限制（以 kbs 为单位）
 		// rollup 打包配置
 		rollupOptions: {
-			// CDN配置，标志不需要打包的外部依赖项  
+			// CDN配置，标志不需要打包的外部依赖项
 			external: Object.keys(externalGlobalsObj),
 			output: {
 				// 拆分js到模块文件夹

@@ -14,3 +14,4 @@ dist
 .local
 /bin
 Dockerfile
+.npmrc

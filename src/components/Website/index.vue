@@ -33,7 +33,7 @@ onMounted(() => {
 				frameborder="0"
 			></iframe>
 
-			<div class="empty" v-else>
+			<div v-else class="empty">
 				<img :src="image" alt="" />
 				<span>{{ tips }}</span>
 			</div>
@@ -66,7 +66,9 @@ onMounted(() => {
 
 		.title {
 			font-size: 16px;
-			font-family: PingFang SC-Regular, PingFang SC;
+			font-family:
+				PingFang SC-Regular,
+				PingFang SC;
 			font-weight: 400;
 			color: #2f2f2f;
 			line-height: 19px;
@@ -99,7 +101,9 @@ onMounted(() => {
 
 			span {
 				font-size: 16px;
-				font-family: PingFang SC-Medium, PingFang SC;
+				font-family:
+					PingFang SC-Medium,
+					PingFang SC;
 				font-weight: 500;
 				color: #333333;
 				line-height: 19px;

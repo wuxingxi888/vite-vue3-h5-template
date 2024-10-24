@@ -1,6 +1,8 @@
 class inputTop {
 	page = document.querySelector('#app')
+
 	currentInput: any // 当前聚焦的输入框
+
 	lastInnerHeight = window.innerHeight
 
 	calcScrollTop = (visualHeight, scrollObj) => {

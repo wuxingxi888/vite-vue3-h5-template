@@ -15,9 +15,9 @@ export const judgeSystem = () => {
 	const isPresto = userAgent.indexOf('Presto') > -1 // opera内核
 	const isWebKit = userAgent.indexOf('AppleWebKit') > -1 // 苹果、谷歌内核
 	const isGecko = userAgent.indexOf('Gecko') > -1 && userAgent.indexOf('KHTML') === -1 // 火狐内核
-	const isMobile = !!userAgent.match(/AppleWebKit.*Mobile.*/) // 是否为移动终端
+	const isMobile = Boolean(userAgent.match(/AppleWebKit.*Mobile.*/)) // 是否为移动终端
 	const isAndroid = userAgent.indexOf('Android') > -1 || userAgent.indexOf('Linux') > -1 // android
-	const isIOS = !!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) // ios
+	const isIOS = Boolean(userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) // ios
 	const isIPhone = userAgent.indexOf('iPhone') > -1 // 是否为iPhone或者QQHD浏览器
 	const isIPad = userAgent.indexOf('iPad') > -1 // 是否iPad
 	const isWebApp = userAgent.indexOf('Safari') === -1 // 是否web应该程序，没有头部与底部
@@ -44,7 +44,7 @@ export const getParamByKey = (paramName: string) => {
 		`{"${decodeURI(URL.split('?')[1])
 			.replace(/"/g, '\\"')
 			.replace(/&/g, '","')
-			.replace(/=/g, '":"')}"}`
+			.replace(/[=]/g, '":"')}"}`
 	)
 	if (params[paramName] === undefined) {
 		return ''

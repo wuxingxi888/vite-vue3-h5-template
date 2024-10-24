@@ -1,4 +1,5 @@
-import { StateTree, defineStore } from 'pinia'
+import type { StateTree } from 'pinia'
+import { defineStore } from 'pinia'
 import { isEnvProd } from '@/config'
 import { encrypt, decrypt } from '@/utils/encrypt'
 
@@ -13,7 +14,7 @@ export const useAppStore = defineStore({
 		({
 			token: '',
 			openInstallInstance: null
-		} as IAppState),
+		}) as IAppState,
 	actions: {
 		setToken(token: string) {
 			this.token = `Bearer ${token}`
@@ -30,12 +31,12 @@ export const useAppStore = defineStore({
 			serialize: isEnvProd
 				? (value: StateTree) => {
 						return encrypt(value)
-				  }
+					}
 				: JSON.stringify,
 			deserialize: isEnvProd
 				? (value: string) => {
 						return JSON.parse(decrypt(value))
-				  }
+					}
 				: JSON.parse
 		}
 	}

@@ -14,7 +14,7 @@ export default defineComponent({
 		onMounted(() => {
 			clearInterval(timer.value)
 			timer.value = setInterval(() => {
-				second.value = second.value - 1
+				second.value -= 1
 
 				if (second.value <= 0) {
 					clearInterval(timer.value)

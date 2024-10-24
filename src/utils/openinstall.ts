@@ -18,15 +18,15 @@ export default function initOpenInstall(appKey: string) {
 
 	new OpenInstall(
 		{
-			/*appKey必选参数，平台为每个应用分配的ID*/
-			appKey: appKey,
-			/*直接指定渠道编号，默认通过当前页url中的channelCode参数自动检测渠道编号*/
-			//channelCode:"渠道编号",
-			/*自定义遮罩的html*/
-			//mask:function(){
+			/* appKey必选参数，平台为每个应用分配的ID */
+			appKey,
+			/* 直接指定渠道编号，默认通过当前页url中的channelCode参数自动检测渠道编号 */
+			// channelCode:"渠道编号",
+			/* 自定义遮罩的html */
+			// mask:function(){
 			//  return "<div id='_shadow' style='position:fixed;left:0;top:0;background:rgba(0,255,0,0.5);filter:alpha(opacity=50);width:100%;height:100%;z-index:10000;'></div>"
-			//},
-			onready: function () {
+			// },
+			onready() {
 				openInstallComplete = true
 				clearTimeout(timeId)
 				appStore.setOpenInstall(this)

@@ -1,5 +1,5 @@
-import { App, nextTick } from 'vue'
-import type { Directive } from 'vue'
+import { nextTick } from 'vue'
+import type { Directive, App } from 'vue'
 
 export function directives(app: App) {
 	lazyDirective(app)
@@ -157,12 +157,14 @@ function dragDirective(app: App) {
 				// 注意在ie中 第一次获取到的值为组件自带50% 移动之后赋值为px
 				if (styL.includes('%')) {
 					// eslint-disable-next-line no-useless-escape
-					styL = +document.body.clientWidth * (+styL.replace(/\%/g, '') / 100)
+					styL =
+						Number(document.body.clientWidth) * (Number(styL.replace(/%/g, '')) / 100)
 					// eslint-disable-next-line no-useless-escape
-					styT = +document.body.clientHeight * (+styT.replace(/\%/g, '') / 100)
+					styT =
+						Number(document.body.clientHeight) * (Number(styT.replace(/%/g, '')) / 100)
 				} else {
-					styL = +styL.replace(/\px/g, '')
-					styT = +styT.replace(/\px/g, '')
+					styL = Number(styL.replace(/\px/g, ''))
+					styT = Number(styT.replace(/\px/g, ''))
 				}
 
 				return {

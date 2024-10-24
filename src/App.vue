@@ -13,16 +13,16 @@ const includeList = ref([] as any)
 
 function setTransitionName(to: any, from: any) {
 	if (!to.meta.transition.enable) {
-		transitionName.value = '';
+		transitionName.value = ''
 	} else if (to.meta.transition.name) {
-		transitionName.value = to.meta.transition.name;
+		transitionName.value = to.meta.transition.name
 	} else {
-		transitionName.value = to.meta.index > from.meta.index ? 'go' : 'back';
+		transitionName.value = to.meta.index > from.meta.index ? 'go' : 'back'
 	}
 }
 
 router.beforeEach((to: any, from: any) => {
-	//监听路由变化，把配置路由中keepAlive为true的name添加到include动态数组中
+	// 监听路由变化，把配置路由中keepAlive为true的name添加到include动态数组中
 	if (to.meta.keepAlive && includeList.value.indexOf(to.path) === -1) {
 		includeList.value.push(to.path)
 	}
@@ -40,7 +40,7 @@ const openSystem = () => {
 				pwdModal.close()
 				router.push('/system')
 			} else {
-				pwdModal.pwdError("密码错误")
+				pwdModal.pwdError('密码错误')
 				pwdModal.clearPwd()
 			}
 		}
@@ -68,7 +68,6 @@ const openSystem = () => {
 }
 
 @media screen and (min-width: 500px) {
-
 	body,
 	html {
 		background-color: red;

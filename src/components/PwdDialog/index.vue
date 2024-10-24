@@ -58,7 +58,7 @@ const onClearPwd = () => {
 defineExpose({
 	onClearPwd,
 	onPwdError
-});
+})
 
 const onConfirm = () => {
 	if (pwdValue.value.length < 6) {
@@ -68,44 +68,68 @@ const onConfirm = () => {
 }
 
 const disableScroll = () => {
-	document.body.style.overflow = 'hidden';
-};
+	document.body.style.overflow = 'hidden'
+}
 
 const enableScroll = () => {
-	document.body.style.overflow = '';
-};
+	document.body.style.overflow = ''
+}
 
 onMounted(() => {
-	disableScroll();
-});
+	disableScroll()
+})
 
 onBeforeUnmount(() => {
-	enableScroll();
-});
+	enableScroll()
+})
 </script>
 
 <template>
 	<div class="dialog_wrap">
-		<div class="overlay" v-if="props.options?.overlay" @click="props.options.closeOnClickOverlay && close()"></div>
+		<div
+			v-if="props.options?.overlay"
+			class="overlay"
+			@click="props.options.closeOnClickOverlay && close()"
+		></div>
 		<div class="dialog_container fadeIn">
-			<div class="close_btn" v-if="props.options.showClose" @click="close()"></div>
+			<div v-if="props.options.showClose" class="close_btn" @click="close()"></div>
 
 			<span class="title">{{ props.options.title }}</span>
 
-			<p class="message" v-if="props.options.message">{{ pwdTips }}</p>
+			<p v-if="props.options.message" class="message">{{ pwdTips }}</p>
 
 			<!-- 密码输入框 -->
-			<van-password-input class="pwd_input" :class="{ 'shake': pwdErrAnim }" :value="pwdValue" :gutter="8"
-				:focused="showKeyboard" @focus="showKeyboard = true" />
+			<van-password-input
+				class="pwd_input"
+				:class="{ shake: pwdErrAnim }"
+				:value="pwdValue"
+				:gutter="8"
+				:focused="showKeyboard"
+				@focus="showKeyboard = true"
+			/>
 
-			<div class="confirm_btn" :class="{ 'disabled_btn': pwdValue.length < 6 }" @click="onConfirm">确认</div>
+			<div
+				class="confirm_btn"
+				:class="{ disabled_btn: pwdValue.length < 6 }"
+				@click="onConfirm"
+			>
+				确认
+			</div>
 
-			<p class="custom_handle" v-if="props.options.customText" @click="props.options.customHandle">
+			<p
+				v-if="props.options.customText"
+				class="custom_handle"
+				@click="props.options.customHandle"
+			>
 				{{ props.options.customText }}
 			</p>
 
 			<!-- 数字键盘 -->
-			<van-number-keyboard v-model="pwdValue" :show="showKeyboard" @blur="showKeyboard = false" />
+			<van-number-keyboard
+				v-model="pwdValue"
+				:show="showKeyboard"
+				@blur="showKeyboard = false"
+			/>
 		</div>
 	</div>
 </template>
@@ -174,7 +198,9 @@ onBeforeUnmount(() => {
 
 		.title {
 			font-size: 18px;
-			font-family: PingFang SC-Medium, PingFang SC;
+			font-family:
+				PingFang SC-Medium,
+				PingFang SC;
 			font-weight: 500;
 			color: #000000;
 			line-height: 21px;
@@ -182,7 +208,9 @@ onBeforeUnmount(() => {
 
 		.message {
 			font-size: 16px;
-			font-family: Source Han Sans CN-Medium, Source Han Sans CN;
+			font-family:
+				Source Han Sans CN-Medium,
+				Source Han Sans CN;
 			font-weight: 500;
 			color: #e84855;
 			margin-top: 8px;
@@ -215,25 +243,33 @@ onBeforeUnmount(() => {
 			text-align: center;
 			border-radius: 23px;
 			box-shadow: 0px 2px 19px 0px rgba(208, 246, 255, 1);
-			background-image: linear-gradient(128deg,
-					rgba(60, 201, 255, 1) 0,
-					rgba(108, 159, 255, 1) 100%);
+			background-image: linear-gradient(
+				128deg,
+				rgba(60, 201, 255, 1) 0,
+				rgba(108, 159, 255, 1) 100%
+			);
 			font-size: 16px;
-			font-family: PingFang SC-Regular, PingFang SC;
+			font-family:
+				PingFang SC-Regular,
+				PingFang SC;
 			font-weight: 400;
 			color: #ffffff;
 			margin: 27px auto 0px;
 		}
 
 		.disabled_btn {
-			background-image: linear-gradient(128deg,
-					rgb(199, 207, 210) 0,
-					rgb(169, 181, 203) 100%);
+			background-image: linear-gradient(
+				128deg,
+				rgb(199, 207, 210) 0,
+				rgb(169, 181, 203) 100%
+			);
 		}
 
 		.custom_handle {
 			font-size: 14px;
-			font-family: PingFang SC-Regular, PingFang SC;
+			font-family:
+				PingFang SC-Regular,
+				PingFang SC;
 			font-weight: 400;
 			color: #4cbcff;
 			line-height: 16px;

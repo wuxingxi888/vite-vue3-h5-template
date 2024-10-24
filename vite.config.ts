@@ -28,12 +28,12 @@ const __APP_INFO__ = {
 }
 
 const externalGlobalsObj = {
-	'vue': 'Vue',
+	vue: 'Vue',
 	'vue-demi': 'VueDemi',
 	'vue-router': 'VueRouter',
-	'pinia': 'Pinia',
-	'vant': 'vant',
-	'axios': 'axios'
+	pinia: 'Pinia',
+	vant: 'vant',
+	axios: 'axios'
 }
 
 // https://vitejs.dev/config/
@@ -71,15 +71,21 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 				plugins: [
 					autoprefixer({
 						// 用来给不同的浏览器自动添加相应前缀，如-webkit-，-moz-等等
-						overrideBrowserslist: ['Android 4.1', 'iOS 7.1', 'Chrome > 31', 'ff > 31', 'ie >= 8']
+						overrideBrowserslist: [
+							'Android 4.1',
+							'iOS 7.1',
+							'Chrome > 31',
+							'ff > 31',
+							'ie >= 8'
+						]
 					}),
 					postcssPxToViewProtConfig()
-				],
-			},
+				]
+			}
 		},
 		server: {
 			host: true,
-			hmr: true, //开启热更新
+			hmr: true, // 开启热更新
 			proxy: createProxy()
 		},
 		build: createBuild(viteEnv, externalGlobalsObj),

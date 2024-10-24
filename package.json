@@ -24,12 +24,14 @@
     "build:test": "vue-tsc --noEmit && vite build --mode test && esno ./src/utils/build.ts",
     "build:prod": "vue-tsc --noEmit && vite build --mode production && esno ./src/utils/build.ts",
     "build": "vue-tsc --noEmit && vite build",
-    "clean:cache": "rm -rf node_modules && rm -rf .eslintcache && pnpm install",
+    "clean:cache": "rm -rf node_modules && rm -rf .eslintcache && rm -rf dist && pnpm install",
     "preview": "pnpm run build:prod && vite preview --port 5050",
     "preview:dist": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "lint:lint-staged": "lint-staged",
-    "preinstall": "npx only-allow pnpm"
+    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install",
+    "commit": "git-cz"
   },
   "dependencies": {
     "@vueuse/core": "^11.1.0",
@@ -45,6 +47,8 @@
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
     "@rushstack/eslint-patch": "^1.1.0",
     "@types/crypto-js": "^4.1.1",
     "@types/json-bigint": "^1.0.1",
@@ -52,13 +56,16 @@
     "@vitejs/plugin-legacy": "^5.4.2",
     "@vitejs/plugin-vue": "^5.1.4",
     "@vitejs/plugin-vue-jsx": "^4.0.1",
-    "@vue/eslint-config-prettier": "^10.0.0",
-    "@vue/eslint-config-typescript": "^14.1.2",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^11.0.2",
     "autoprefixer": "^10.4.2",
+    "commitizen": "^4.3.1",
     "consola": "^3.2.3",
-    "eslint": "^9.13.0",
-    "eslint-plugin-vue": "^9.29.1",
+    "cz-git": "^1.10.1",
+    "eslint": "^8.57.1",
+    "eslint-plugin-vue": "^9.9.0",
     "esno": "^4.8.0",
+    "husky": "^8.0.0",
     "lint-staged": "^15.2.10",
     "postcss": "^8.4.32",
     "postcss-mobile-forever": "^4.2.2",
@@ -83,5 +90,11 @@
   },
   "resolutions": {
     "bin-wrapper": "npm:bin-wrapper-china"
-  }
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "packageManager": "pnpm@9.11.0+sha1.4cd20e68438613738e8f2bc9aece61eaa6b3e649"
 }
