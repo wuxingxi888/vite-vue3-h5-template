@@ -6,7 +6,7 @@ export default defineConfig({
     title: "Miracle Vue3 H5 Template",
     lang: "zh-CN",
     description: "基于 Turborepo 的 Monorepo 项目模板",
-    base: "/miracle-vue3-h5-template/",
+    base: "/vite-vue3-h5-template/",
     lastUpdated: true,
     markdown: {
         lineNumbers: true,
@@ -20,7 +20,7 @@ export default defineConfig({
             {
                 icon: "github",
                 ariaLabel: "GitHub",
-                link: "https://github.com/wuxingxi888/miracle-vue3-h5-template",
+                link: "https://github.com/wuxingxi888/vite-vue3-h5-template",
             },
             {
                 icon: "blog",

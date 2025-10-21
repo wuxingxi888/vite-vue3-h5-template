@@ -8,9 +8,21 @@ importers:
 
   .:
     devDependencies:
+      '@commitlint/cli':
+        specifier: ^19.8.1
+        version: 19.8.1(@types/node@24.8.1)(typescript@5.9.3)
+      '@commitlint/config-conventional':
+        specifier: ^19.6.0
+        version: 19.8.1
+      cz-git:
+        specifier: ^1.12.0
+        version: 1.12.0
       husky:
         specifier: ^9.1.7
         version: 9.1.7
+      lint-staged:
+        specifier: ^16.1.6
+        version: 16.2.4
       rimraf:
         specifier: ^5.0.0
         version: 5.0.10
@@ -93,12 +105,6 @@ importers:
         specifier: ^4.5.1
         version: 4.6.3(vue@3.5.22)
     devDependencies:
-      '@commitlint/cli':
-        specifier: ^19.8.1
-        version: 19.8.1(@types/node@24.8.1)(typescript@5.9.3)
-      '@commitlint/config-conventional':
-        specifier: ^19.6.0
-        version: 19.8.1
       '@eslint/js':
         specifier: ^9.35.0
         version: 9.38.0
@@ -159,9 +165,6 @@ importers:
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.6)
-      cz-git:
-        specifier: ^1.12.0
-        version: 1.12.0
       eslint:
         specifier: ^9.35.0
         version: 9.38.0
@@ -177,12 +180,6 @@ importers:
       globals:
         specifier: ^16.4.0
         version: 16.4.0
-      husky:
-        specifier: ^9.1.7
-        version: 9.1.7
-      lint-staged:
-        specifier: ^16.1.6
-        version: 16.2.4
       plop:
         specifier: ^4.0.2
         version: 4.0.4(@types/node@24.8.1)
@@ -7786,15 +7783,15 @@ packages:
     dev: true
 
   /lodash.snakecase@4.1.1:
-    resolution: {integrity: sha1-OdcUo1NXFHg3rv1ktdy7Fr7Nj40=}
+    resolution: {integrity: sha512-QZ1d4xoBHYUeuouhEq3lk3Uq7ldgyFXGBhg04+oRLnIz8o9T65Eh+8YdroUwn846zchkA9yDsDl5CVVaV2nqYw==}
     dev: true
 
   /lodash.startcase@4.4.0:
-    resolution: {integrity: sha1-lDbjTtJgk+1/+uGTYUQ1CRXZrdg=}
+    resolution: {integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==}
     dev: true
 
   /lodash.uniq@4.5.0:
-    resolution: {integrity: sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=}
+    resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
     dev: true
 
   /lodash.upperfirst@4.3.1:

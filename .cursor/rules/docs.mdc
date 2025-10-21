@@ -5,7 +5,7 @@ alwaysApply: false
 
 # 项目描述
 
-该项目是一个基于 VitePress 构建的技术文档站点，用于记录和展示 miracle-vue3-h5-template 项目的使用说明、技术细节和最佳实践。
+该项目是一个基于 VitePress 构建的技术文档站点，用于记录和展示 vite-vue3-h5-template 项目的使用说明、技术细节和最佳实践。
 
 # 项目目录结构说明
 

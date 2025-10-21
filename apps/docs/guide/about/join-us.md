@@ -55,7 +55,7 @@
 ### 2. 克隆项目
 
 ```bash
-git clone https://github.com/your-username/miracle-vue3-h5-template.git
+git clone https://github.com/your-username/vite-vue3-h5-template.git
 ```
 
 ### 3. 创建分支
@@ -66,7 +66,7 @@ git checkout -b your-branch-name
 
 ### 4. 编写文档
 
-在 [apps/docs/guide/](file:///Users/wuxingxi/Desktop/miracle-vue3-h5-template/apps/docs/guide)
+在 [apps/docs/guide/](file:///Users/wuxingxi/Desktop/vite-vue3-h5-template/apps/docs/guide)
 目录下创建或修改文档文件。
 
 ### 5. 提交更改

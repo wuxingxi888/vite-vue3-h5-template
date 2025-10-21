@@ -11,8 +11,11 @@ node_modules/
 
 # Build outputs
 dist/
-build/
 *.tsbuildinfo
+
+# VitePress cache
+.vitepress/cache/
+.vitepress/cache_temp/
 
 # Environment
 .env

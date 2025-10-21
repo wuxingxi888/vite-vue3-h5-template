@@ -17,7 +17,7 @@
 ## 封装结构
 
 项目中的 Axios 封装主要位于
-[src/utils/http/](file:///Users/wuxingxi/Desktop/miracle-vue3-h5-template/apps/h5-template/src/utils/http)
+[src/utils/http/](file:///Users/wuxingxi/Desktop/vite-vue3-h5-template/apps/h5-template/src/utils/http)
 目录下：
 
 ```
@@ -30,9 +30,9 @@ src/utils/http/
 ### 核心封装 (index.ts)
 
 项目基于
-[@miracle-web/utils](file:///Users/wuxingxi/Desktop/miracle-vue3-h5-template/apps/h5-template/package.json#L35-L35)
+[@miracle-web/utils](file:///Users/wuxingxi/Desktop/vite-vue3-h5-template/apps/h5-template/package.json#L35-L35)
 中的
-[MAxios](file:///Users/wuxingxi/Desktop/miracle-vue3-h5-template/node_modules/.pnpm/@miracle-web+utils@0.0.6/node_modules/@miracle-web/utils/es/axios/index.d.mts#L54-L54)
+[MAxios](file:///Users/wuxingxi/Desktop/vite-vue3-h5-template/node_modules/.pnpm/@miracle-web+utils@0.0.6/node_modules/@miracle-web/utils/es/axios/index.d.mts#L54-L54)
 类进行了二次封装，主要包含以下几个部分：
 
 #### 请求转换器 (transform)
@@ -181,7 +181,7 @@ export enum ContentTypeEnum {
 
 ### API 接口定义
 
-在 [src/api/](file:///Users/wuxingxi/Desktop/miracle-vue3-h5-template/apps/h5-template/src/api)
+在 [src/api/](file:///Users/wuxingxi/Desktop/vite-vue3-h5-template/apps/h5-template/src/api)
 目录下按模块定义 API 接口：
 
 ```ts
