@@ -1,0 +1,55 @@
+body,
+html {
+	height: 100%;
+	width: 100%;
+
+	// 禁止选择文字
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	box-sizing: content-box;
+}
+
+body {
+	line-height: 1.5;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	@include scrollbar;
+
+	@include useTheme() {
+		background-color: getVar('main-bg-color');
+		color: getVar('main-text-color');
+
+		.my-card {
+			backdrop-filter: blur(10px);
+			background-color: getVar('main-card-color');
+		}
+	}
+}
+
+#app {
+	height: 100%;
+	width: 100%;
+}
+
+@media screen and (min-width: 576px) {
+	body {
+		box-sizing: content-box;
+		padding-top: 30px;
+		overflow: hidden !important;
+		border: 5px solid #000;
+		border-radius: 30px;
+		transform: scale(0.8) !important;
+
+		@include scrollbar;
+	}
+
+	:deep(.mi-nav-bar--fixed) {
+		top: 30px !important;
+	}
+}

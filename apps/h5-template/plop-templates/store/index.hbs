@@ -1,0 +1,13 @@
+import { acceptHMRUpdate, defineStore, type StateTree } from 'pinia' import { store } from '@/store' import {
+encryptAES, decryptAES } from '@miracle-web/utils' import { useEnv } from '@/hooks/useEnv' export interface I{{properCase
+	name
+}}State { openEruda: boolean } const { isProdMode } = useEnv() export const use{{properCase name}}Store = defineStore({
+id: 'app-{{camelCase name}}-store', state: (): I{{properCase name}}State => ({ openEruda: false }), getters: {
+getOpenEruda(): boolean { return this.openEruda } }, actions: { setOpenEruda(openEruda: boolean) { this.openEruda =
+openEruda } }, // 开启数据缓存 persist: { key: 'APP-{{constantCase name}}-STORE', storage: window.localStorage,
+serializer: { serialize: isProdMode() ? (value: StateTree) => { return encryptAES(value) } : JSON.stringify,
+deserialize: isProdMode() ? (value: string) => { return JSON.parse(decryptAES(value)) } : JSON.parse } } }) if
+(import.meta.hot) { import.meta.hot.accept(acceptHMRUpdate(use{{properCase name}}Store, import.meta.hot)) } // Need to
+be used outside the setup export function use{{properCase name}}StoreWidthOut() { return use{{properCase
+	name
+}}Store(store) }

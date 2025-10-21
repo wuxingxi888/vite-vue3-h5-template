@@ -1,0 +1,25 @@
+{
+    "name": "miracle-vue3-h5-template",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "prepare": "husky",
+        "dev": "turbo run dev",
+        "build": "turbo run build",
+        "dev:docs": "turbo run dev --filter=docs",
+        "dev:h5": "turbo run dev --filter=h5-template",
+        "build:docs": "turbo run build --filter=docs",
+        "build:h5": "turbo run build --filter=h5-template",
+        "clean": "turbo run clean",
+        "clean:modules": "rimraf apps/*/node_modules && rimraf packages/*/node_modules && rimraf node_modules",
+        "type-check": "turbo run type-check"
+    },
+    "devDependencies": {
+        "husky": "^9.1.7",
+        "rimraf": "^5.0.0",
+        "turbo": "^2.5.8",
+        "typescript": "^5.9.3"
+    },
+    "packageManager": "pnpm@8.15.6"
+}

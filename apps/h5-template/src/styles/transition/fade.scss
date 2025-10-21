@@ -1,0 +1,97 @@
+// ///////////////////////////////////////////////
+// Fade  淡入淡出动画                             //
+// ///////////////////////////////////////////////
+
+/**
+ * fade-enter
+ * 淡入淡出过渡动画
+ */
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.2s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+
+/**
+ * fade-bottom
+ * 底部淡入，底部淡出过渡动画
+ */
+.fade-bottom-enter-active,
+.fade-bottom-leave-active {
+	transition:
+		opacity 0.25s,
+		transform 0.3s;
+}
+
+.fade-bottom-enter-from {
+	opacity: 0;
+	transform: translateY(-10%);
+}
+
+.fade-bottom-leave-to {
+	opacity: 0;
+	transform: translateY(10%);
+}
+
+/**
+ * fade-top
+ * 顶部淡入，顶部淡出过渡动画
+ */
+.fade-top-enter-active,
+.fade-top-leave-active {
+	transition:
+		opacity 0.2s,
+		transform 0.25s;
+}
+
+.fade-top-enter-from {
+	opacity: 0;
+	transform: translateY(8%);
+}
+
+.fade-top-leave-to {
+	opacity: 0;
+	transform: translateY(-8%);
+}
+
+/**
+ * fade-scale
+ * 放大状态淡入，缩小淡出过渡动画
+ */
+.fade-scale-leave-active,
+.fade-scale-enter-active {
+	transition: all 0.28s;
+}
+
+.fade-scale-enter-from {
+	opacity: 0;
+	transform: scale(1.2);
+}
+
+.fade-scale-leave-to {
+	opacity: 0;
+	transform: scale(0.8);
+}
+
+/**
+ * fade-slide
+ * 从左侧淡入，右侧淡出过渡动画
+ */
+.fade-slide-leave-active,
+.fade-slide-enter-active {
+	transition: all 0.3s;
+}
+
+.fade-slide-enter-from {
+	opacity: 0;
+	transform: translateX(-30px);
+}
+
+.fade-slide-leave-to {
+	opacity: 0;
+	transform: translateX(30px);
+}

@@ -1,0 +1,10 @@
+// @miracle-web/ui 主题变量
+// 要更改全部主题色只能通过 body 选择器修改，但是无法 js 修改.
+// ConfigProvider 虽然也能修改但是效率太低还要一个一个找对应组件的样式变量(目前采用这种方式)
+body {
+	--mi-primary-color: @primaryColor;
+}
+
+.mi-action-sheet__cancel {
+	color: var(--mi-primary-color) !important;
+}

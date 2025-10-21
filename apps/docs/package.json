@@ -1,0 +1,24 @@
+{
+    "name": "docs",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vitepress dev",
+        "build": "vitepress build",
+        "preview": "vitepress preview",
+        "clean": "rimraf .vitepress/dist",
+        "type-check": "vue-tsc --noEmit"
+    },
+    "devDependencies": {
+        "@miracle/prettier-config": "*",
+        "@miracle/typescript-config": "*",
+        "@types/node": "^24.4.0",
+        "rimraf": "^5.0.0",
+        "typescript": "^5.9.3",
+        "vitepress": "^1.6.4",
+        "vue": "^3.5.12",
+        "vue-tsc": "^3.0.7"
+    },
+    "prettier": "@miracle/prettier-config"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@miracle/prettier-config",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "prettier": "^3.6.2"
+  }
+}

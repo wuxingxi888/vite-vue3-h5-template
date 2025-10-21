@@ -1,0 +1,270 @@
+```
+h5-template.mdc
+---
+globs: apps/h5-template/src/**/*.ts,apps/h5-template/src/**/*.tsx,apps/h5-template/src/**/*.vue,apps/h5-template/src/**/*.js,apps/h5-template/src/**/*.jsx,apps/h5-template/types/**/*.d.ts
+alwaysApply: false
+---
+
+# 项目描述
+
+该项目是一个基于 Vue3、TypeScript、Vite 构建的移动端 H5 模板项目，集成了现代化的前端技术栈和工程化配置。
+
+# 项目目录结构说明
+
+1. apps/h5-template 为 H5 项目根目录
+2. apps/h5-template/src 为源码目录
+3. apps/h5-template/src/api 为接口请求相关代码
+4. apps/h5-template/src/assets 为静态资源目录
+5. apps/h5-template/src/components 为通用组件目录
+6. apps/h5-template/src/hooks 为自定义 Hooks 目录
+7. apps/h5-template/src/layout 为布局组件目录
+8. apps/h5-template/src/plugins 为插件配置目录
+9. apps/h5-template/src/router 为路由配置目录
+10. apps/h5-template/src/store 为状态管理目录
+11. apps/h5-template/src/styles 为样式文件目录
+12. apps/h5-template/src/utils 为工具函数目录
+13. apps/h5-template/src/views 为页面组件目录
+
+# 禁止事项
+
+1. 禁止使用 var 声明变量，必须使用 const 或 let
+2. 禁止在组件中直接操作 DOM，应使用 ref 或响应式数据
+3. 禁止在业务代码中直接使用 any 类型，应明确指定类型
+4. 禁止在模板中使用内联样式，应使用 class 或 CSS 变量
+5. 禁止在组件中直接修改 props，应通过 emit 通知父组件修改
+6. 禁止在 setup 中使用 this，应使用 Composition API
+7. 禁止在代码中使用中文注释，应使用英文注释
+8. 禁止在业务代码中使用 console.log，应使用专门的日志工具
+9. 禁止在组件中直接操作全局状态，应通过 store 或 provide/inject
+10. 禁止在路由组件中直接操作浏览器历史记录，应使用 vue-router API
+
+# 鼓励事项
+
+1. 鼓励使用 Composition API 和 Composition Function 模式
+2. 鼓励使用 TypeScript 明确类型定义
+3. 鼓励使用 Pinia 进行状态管理
+4. 鼓励使用 Vue Router 进行路由管理
+5. 鼓励使用自定义 Hooks 封装复用逻辑
+6. 鼓励使用 mitt 进行跨组件通信
+7. 鼓励使用 @miracle-web/ui 组件库
+8. 鼓励使用 UnoCSS 进行样式编写
+9. 鼓励使用 auto-import 自动导入 API
+10. 鼓励编写单元测试和集成测试
+
+# 对 AI 的指令
+
+1. 生成代码时必须遵循项目现有的 ESLint 和 Prettier 配置
+2. 必须使用 TypeScript 编写代码，明确指定类型
+3. 必须遵循 Composition API 模式，避免使用 Options API
+4. 必须使用项目中已有的工具函数和组件
+5. 必须遵循项目目录结构，将文件放在正确位置
+6. 必须使用项目中已有的状态管理模式（Pinia）
+7. 必须使用项目中已有的路由管理模式（Vue Router）
+8. 必须使用项目中已有的 UI 组件库（@miracle-web/ui）
+9. 必须使用项目中已有的样式方案（UnoCSS）
+10. 必须使用项目中已有的自动导入配置
+
+# 项目代码规范
+
+## 语言规范
+
+1. 必须使用 TypeScript 编写所有代码
+2. 必须明确指定变量、函数参数和返回值的类型
+3. 必须使用 Composition API 而不是 Options API
+4. 必须使用 ES6+ 语法特性
+5. 必须使用 async/await 处理异步操作
+6. 必须使用模板字符串而不是字符串拼接
+7. 必须使用解构赋值获取对象属性
+8. 必须使用箭头函数定义回调函数
+
+## 组件规范
+
+1. 组件必须使用单文件组件（SFC）格式
+2. 组件必须使用 setup 语法糖
+3. 组件必须明确指定 props 类型
+4. 组件必须使用 emits 选项声明事件
+5. 组件必须合理使用 computed 和 watch
+6. 组件必须正确处理生命周期
+7. 组件必须合理拆分逻辑和视图
+8. 组件必须提供适当的注释说明
+
+## 代码风格规范
+
+1. 缩进使用 4 个空格（根据 prettier.config.js 配置）
+2. 语句末尾不加分号（根据 prettier.config.js 配置）
+3. 字符串使用单引号（根据 prettier.config.js 配置）
+4. 最大行宽为 120 字符（根据 prettier.config.js 配置）
+5. 使用制表符而不是空格缩进行（根据 prettier.config.js 配置）
+6. 对象的大括号内需要有空格（根据 prettier.config.js 配置）
+7. 每行只允许一个属性（根据 prettier.config.js 配置）
+8. 箭头函数参数始终包含括号（根据 prettier.config.js 配置）
+
+## ESLint 规则
+
+1. 禁止使用 var 声明变量（no-var: error）
+2. 不允许多个空行（no-multiple-empty-lines: ['warn', { max: 1 }]）
+3. 禁止空余的多行（no-unexpected-multiline: error）
+4. 禁止定义未使用的变量（@typescript-eslint/no-unused-vars: warn）
+5. 禁止使用 @ts-ignore（@typescript-eslint/prefer-ts-expect-error: error）
+6. 组件名称可以不使用多单词（vue/multi-word-component-names: off）
+7. 允许组件 prop 的改变（vue/no-mutating-props: off）
+8. 缩进使用 4 个空格（indent: ['error', 4]）
+9. 语句末尾不加分号（semi: ['error', 'never']）
+10. 允许未使用的变量（no-unused-vars: off）
+
+## 目录和文件命名规范
+
+1. 目录命名使用小驼峰命名法（camelCase）
+2. Vue 组件文件使用大驼峰命名法（PascalCase）
+3. 其他文件使用小驼峰命名法（camelCase）
+4. 组件文件必须以 .vue 为后缀
+5. TypeScript 文件必须以 .ts 为后缀
+6. TypeScript 类型定义文件必须以 .d.ts 为后缀
+
+## 导入导出规范
+
+1. 使用 ES6 模块系统（import/export）
+2. 导入路径使用别名（@）而不是相对路径
+3. 类型导入使用 import type 语法
+4. 按需导入第三方库功能
+5. 导入语句按功能分组并按字母顺序排列
+
+## 注释规范
+
+1. 使用英文编写注释
+2. 函数和类必须有 JSDoc 注释
+3. 复杂逻辑必须有行内注释说明
+4. 组件必须有功能描述注释
+5. 重要常量必须有注释说明用途
+
+# 项目配置信息
+
+## 构建工具
+
+1. 使用 Vite 作为构建工具
+2. 使用 TypeScript 进行类型检查
+3. 使用 Vue 3 Composition API
+4. 使用 Pinia 进行状态管理
+5. 使用 Vue Router 进行路由管理
+
+## 开发工具
+
+1. 使用 ESLint 进行代码检查
+2. 使用 Prettier 进行代码格式化
+3. 使用 Husky 和 lint-staged 进行 Git 钩子检查
+4. 使用 Commitizen 进行规范提交
+5. 使用 Commitlint 进行提交信息检查
+
+## 样式工具
+
+1. 使用 UnoCSS 进行原子化 CSS
+2. 使用 Sass 作为 CSS 预处理器
+3. 使用 CSS 变量进行主题定制
+4. 使用 postcss-mobile-forever 进行移动端适配
+
+## 代码示例
+
+### Vue 组件示例
+
+```vue
+<template>
+    <div class="component-container">
+        <h1>{{ title }}</h1>
+        <button @click="handleClick">{{ buttonText }}</button>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+
+interface Props {
+    title: string
+    initialCount?: number
+}
+
+interface Emits {
+    (e: 'change', value: number): void
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    initialCount: 0
+})
+
+const emit = defineEmits<Emits>()
+
+const count = ref(props.initialCount)
+
+const buttonText = computed(() => `Count: ${count.value}`)
+
+const handleClick = () => {
+    count.value++
+    emit('change', count.value)
+}
+</script>
+
+<style scoped lang="scss">
+.component-container {
+    padding: 16px;
+}
+</style>
+```
+
+### TypeScript 工具函数示例
+
+```ts
+/**
+ * 格式化日期
+ * @param date - 日期对象
+ * @param format - 格式化字符串
+ * @returns 格式化后的日期字符串
+ */
+export function formatDate(date: Date, format: string = 'YYYY-MM-DD'): string {
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+
+    return format
+        .replace('YYYY', String(year))
+        .replace('MM', month)
+        .replace('DD', day)
+}
+```
+
+### Pinia Store 示例
+
+```ts
+import { defineStore } from 'pinia'
+
+interface UserState {
+    name: string
+    email: string
+    isLoggedIn: boolean
+}
+
+export const useUserStore = defineStore('user', {
+    state: (): UserState => ({
+        name: '',
+        email: '',
+        isLoggedIn: false
+    }),
+
+    getters: {
+        displayName: (state) => state.name || state.email
+    },
+
+    actions: {
+        login(userInfo: Partial<UserState>) {
+            this.name = userInfo.name || this.name
+            this.email = userInfo.email || this.email
+            this.isLoggedIn = true
+        },
+
+        logout() {
+            this.name = ''
+            this.email = ''
+            this.isLoggedIn = false
+        }
+    }
+})
+```
+```

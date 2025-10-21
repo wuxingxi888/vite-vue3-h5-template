@@ -1,0 +1,10 @@
+{
+  "extends": "@miracle/typescript-config/vitepress.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "**/*.vue", ".vitepress/**/*"]
+}

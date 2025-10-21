@@ -1,0 +1,7 @@
+{
+  "extends": "./base.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["docs/**/*.md", "docs/.vitepress/**/*.ts"]
+}
