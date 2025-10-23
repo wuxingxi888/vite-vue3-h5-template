@@ -1,0 +1,51 @@
+{
+    // 设置文件换行符为 LF (\n)
+    "files.eol": "\n",
+    // 指定 TypeScript SDK 的路径
+    "typescript.tsdk": "node_modules/typescript/lib",
+    // 启用工作区 TypeScript SDK 提示
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    // 设置 TypeScript 模块导入规范为非相对路径
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    // 设置 JavaScript 模块导入规范为非相对路径
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    // 添加拼写检查例外词汇
+    "cSpell.words": ["lawyeah", "Validaterules", "VITE"],
+    // 指定 Prettier 配置文件路径
+    "prettier.configPath": "prettier.config.js",
+    // 启用 Prettier 调试日志
+    "prettier.enableDebugLogs": true,
+    // 指定 Prettier 忽略文件路径
+    "prettier.ignorePath": ".prettierignore",
+    // 设置每个 JSX 属性独占一行
+    "prettier.singleAttributePerLine": true,
+    // 设置使用单引号而不是双引号
+    "prettier.singleQuote": true,
+    // 设置 JSX 中使用单引号
+    "prettier.jsxSingleQuote": true,
+    // 设置文本换行方式
+    "prettier.proseWrap": "preserve",
+    // 设置默认格式化工具
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // 保存时自动格式化
+    "editor.formatOnSave": true,
+    // 为不同语言设置特定的格式化工具
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    }
+}
