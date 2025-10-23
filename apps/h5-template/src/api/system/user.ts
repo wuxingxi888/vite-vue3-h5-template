@@ -1,4 +1,4 @@
-import { http } from '@/utils/http'
+import { http } from "@/utils/http"
 
 export interface BasicResponseModel<T = any> {
     code: number
@@ -12,12 +12,12 @@ export interface BasicResponseModel<T = any> {
 export function login(params: any) {
     return http.request<BasicResponseModel>(
         {
-            url: '/login',
-            method: 'POST',
+            url: "/login",
+            method: "POST",
             params
         },
         {
-            successMessageText: '登录成功，即将进入系统'
+            successMessageText: "登录成功，即将进入系统"
         }
     )
 }
@@ -27,8 +27,8 @@ export function login(params: any) {
  */
 export function getUserInfo() {
     return http.request({
-        url: '/getUserInfo',
-        method: 'get'
+        url: "/getUserInfo",
+        method: "get"
     })
 }
 
@@ -37,7 +37,7 @@ export function getUserInfo() {
  */
 export function doLogout() {
     return http.request({
-        url: '/logouti',
-        method: 'POST'
+        url: "/logouti",
+        method: "POST"
     })
 }

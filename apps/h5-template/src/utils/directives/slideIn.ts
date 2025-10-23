@@ -1,4 +1,4 @@
-import type { Directive } from 'vue'
+import type { Directive } from "vue"
 
 //动画距离
 const DISTANCE = 100
@@ -52,7 +52,7 @@ const slideIn: Directive = {
                 ],
                 {
                     duration: DURATION,
-                    easing: 'ease'
+                    easing: "ease"
                 }
             )
             animation.pause()

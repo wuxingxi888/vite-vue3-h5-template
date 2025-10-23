@@ -1,14 +1,14 @@
-import { acceptHMRUpdate, defineStore, type StateTree } from 'pinia'
-import { store } from '@/store'
-import { setting, type IThemeState } from '@/utils/const/theme'
-import { encryptAES, decryptAES } from '@miracle-web/utils'
-import { useEnv } from '@/hooks/useEnv'
+import { acceptHMRUpdate, defineStore, type StateTree } from "pinia"
+import { store } from "@/store"
+import { setting, type IThemeState } from "@/utils/const/theme"
+import { encryptAES, decryptAES } from "@miracle-web/utils"
+import { useEnv } from "@/hooks/useEnv"
 
 const { themeMode, themeColor, themeColorList, isPageAnimate, pageAnimateType } = setting
 
 const { isProdMode } = useEnv()
 
-export const useThemeStore = defineStore('app-theme-store', {
+export const useThemeStore = defineStore("app-theme-store", {
     state: (): IThemeState => ({
         themeMode,
         themeColor,
@@ -17,7 +17,7 @@ export const useThemeStore = defineStore('app-theme-store', {
         pageAnimateType
     }),
     getters: {
-        getThemeMode(): 'light' | 'dark' {
+        getThemeMode(): "light" | "dark" {
             return this.themeMode
         },
         getThemeColor(): string {
@@ -34,7 +34,7 @@ export const useThemeStore = defineStore('app-theme-store', {
         }
     },
     actions: {
-        setThemeMode(mode: 'light' | 'dark'): void {
+        setThemeMode(mode: "light" | "dark"): void {
             this.themeMode = mode
         },
         setPageAnimateType(type: string): void {
@@ -43,7 +43,7 @@ export const useThemeStore = defineStore('app-theme-store', {
     },
     // 开启数据缓存
     persist: {
-        key: 'THEME-SETTING',
+        key: "THEME-SETTING",
         storage: window.localStorage,
         serializer: {
             serialize: isProdMode()

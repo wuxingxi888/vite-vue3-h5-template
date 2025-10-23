@@ -1,6 +1,6 @@
-import { acceptHMRUpdate, defineStore } from 'pinia'
-import type { RouteRecordRaw } from 'vue-router'
-import { store } from '@/store'
+import { acceptHMRUpdate, defineStore } from "pinia"
+import type { RouteRecordRaw } from "vue-router"
+import { store } from "@/store"
 
 export interface IRouteState {
     menus: RouteRecordRaw[]
@@ -8,7 +8,7 @@ export interface IRouteState {
     keepAliveComponents: string[]
 }
 
-export const useRouteStore = defineStore('app-route-store', {
+export const useRouteStore = defineStore("app-route-store", {
     state: (): IRouteState => ({
         menus: [],
         routers: [],

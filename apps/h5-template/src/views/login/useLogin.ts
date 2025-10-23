@@ -1,4 +1,4 @@
-import type { FieldRule } from '@miracle-web/ui'
+import type { FieldRule } from "@miracle-web/ui"
 
 export enum LoginStateEnum {
     LOGIN,
@@ -23,22 +23,22 @@ export function useLoginState() {
 }
 
 export function useFormRules(formData?: Recordable) {
-    const getUsernameFormRule = computed(() => createRule('请输入用户名'))
-    const getPasswordFormRule = computed(() => createRule('请输入密码'))
-    const getSmsFormRule = computed(() => createRule('请输入短信验证码'))
-    const getMobileFormRule = computed(() => createRule('请输入手机号码'))
+    const getUsernameFormRule = computed(() => createRule("请输入用户名"))
+    const getPasswordFormRule = computed(() => createRule("请输入密码"))
+    const getSmsFormRule = computed(() => createRule("请输入短信验证码"))
+    const getMobileFormRule = computed(() => createRule("请输入手机号码"))
 
     const validatePolicy = async (value: any) => {
-        return !value ? Promise.resolve('勾选后才能注册') : Promise.resolve(true)
+        return !value ? Promise.resolve("勾选后才能注册") : Promise.resolve(true)
     }
 
     const validateConfirmPassword = (password: string) => {
         return async (value: string) => {
             if (!value) {
-                return Promise.resolve('请输入确认密码')
+                return Promise.resolve("请输入确认密码")
             }
             if (value !== password) {
-                return Promise.resolve('两次输入密码不一致')
+                return Promise.resolve("两次输入密码不一致")
             }
             return Promise.resolve(true)
         }
@@ -60,8 +60,8 @@ export function useFormRules(formData?: Recordable) {
                 return {
                     username: usernameFormRule,
                     password: passwordFormRule,
-                    confirmPassword: [{ validator: validateConfirmPassword(formData?.password), trigger: 'onChange' }],
-                    policy: [{ validator: validatePolicy, trigger: 'onBlur' }],
+                    confirmPassword: [{ validator: validateConfirmPassword(formData?.password), trigger: "onChange" }],
+                    policy: [{ validator: validatePolicy, trigger: "onBlur" }],
                     ...mobileRule
                 }
 
@@ -88,7 +88,7 @@ function createRule(message: string): FieldRule[] {
         {
             required: true,
             message,
-            trigger: 'onBlur'
+            trigger: "onBlur"
         }
     ]
 }

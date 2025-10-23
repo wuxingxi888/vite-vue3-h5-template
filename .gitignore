@@ -13,10 +13,6 @@ node_modules/
 dist/
 *.tsbuildinfo
 
-# VitePress cache
-.vitepress/cache/
-.vitepress/cache_temp/
-
 # Environment
 .env
 .env.local

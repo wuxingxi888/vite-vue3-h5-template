@@ -1,5 +1,5 @@
-import router from '@/router'
-import { judgeSystem } from '@miracle-web/utils'
+import router from "@/router"
+import { judgeSystem } from "@miracle-web/utils"
 
 const { isAndroid, isiOS, isMobile } = judgeSystem()
 
@@ -7,7 +7,7 @@ const { isAndroid, isiOS, isMobile } = judgeSystem()
  * @description: 封装js调用原生App的方法
  */
 export default class JsCallNative {
-    static AppKey = 'android'
+    static AppKey = "android"
 
     /**
      * @description: 返回

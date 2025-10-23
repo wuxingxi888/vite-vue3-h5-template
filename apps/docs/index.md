@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: 'Miracle Vue3 H5 Template'
-  text: '现代化的 H5 开发解决方案'
+  name: "Vite Vue3 H5 Template"
+  text: "现代化的 H5 开发解决方案"
   tagline:
     专为移动端 H5 开发打造，采用 Turborepo Monorepo 架构，集成 Vue 3 与
     Vite。提供开箱即用的高标准工程模板，助力项目快速启动。

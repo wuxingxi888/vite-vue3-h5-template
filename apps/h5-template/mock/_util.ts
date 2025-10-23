@@ -1,7 +1,7 @@
-import Mock from 'mockjs'
-import { ResultEnum } from '@/utils/http/httpEnum'
+import Mock from "mockjs"
+import { ResultEnum } from "@/utils/http/httpEnum"
 
-export function resultSuccess<T = Recordable>(data: T, { message = '请求成功' } = {}) {
+export function resultSuccess<T = Recordable>(data: T, { message = "请求成功" } = {}) {
     return Mock.mock({
         code: ResultEnum.SUCCESS,
         data,
@@ -9,7 +9,7 @@ export function resultSuccess<T = Recordable>(data: T, { message = '请求成功
     })
 }
 
-export function resultPageSuccess<T = any>(page: number, pageSize: number, list: T[], { message = '请求成功' } = {}) {
+export function resultPageSuccess<T = any>(page: number, pageSize: number, list: T[], { message = "请求成功" } = {}) {
     const pageData = pagination(page, pageSize, list)
 
     return {
@@ -23,7 +23,7 @@ export function resultPageSuccess<T = any>(page: number, pageSize: number, list:
     }
 }
 
-export function resultError(message = '请求失败', { code = ResultEnum.ERROR, data = null } = {}) {
+export function resultError(message = "请求失败", { code = ResultEnum.ERROR, data = null } = {}) {
     return {
         code,
         data,

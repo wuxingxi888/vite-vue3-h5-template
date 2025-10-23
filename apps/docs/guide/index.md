@@ -2,7 +2,7 @@
 
 ## 关于项目
 
-Miracle Vue3 H5 Template 是一个基于 [Turborepo](https://turbo.build/repo)
+Vite Vue3 H5 Template 是一个基于 [Turborepo](https://turbo.build/repo)
 的 Monorepo 项目模板，专为移动端 H5 开发而设计。它结合了现代前端技术栈的最佳实践，提供了一套完整的开发解决方案，帮助开发者快速构建高质量的移动端 Web 应用。
 
 ## 核心特性

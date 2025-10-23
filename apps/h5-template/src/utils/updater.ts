@@ -24,12 +24,12 @@ export class Updater {
             const html: string = await this.getHtml()
             this.oldScript = this.parseScript(html)
         } catch (error) {
-            console.error('Error initializing Updater:', error)
+            console.error("Error initializing Updater:", error)
         }
     }
 
     async getHtml(): Promise<string> {
-        const html = await fetch('/').then(res => res.text()) // 读取index html
+        const html = await fetch("/").then(res => res.text()) // 读取index html
         return html
     }
 
@@ -39,7 +39,7 @@ export class Updater {
     }
 
     // 发布订阅通知
-    on(key: 'no-update' | 'update', fn: () => void): this {
+    on(key: "no-update" | "update", fn: () => void): this {
         ;(this.dispatch[key] || (this.dispatch[key] = [])).push(fn)
         return this
     }
@@ -49,7 +49,7 @@ export class Updater {
         const arr = Array.from(new Set(oldArr.concat(newArr)))
         // 如果新旧length一样无更新
         if (arr.length === base) {
-            this.dispatch['no-update']?.forEach(fn => fn())
+            this.dispatch["no-update"]?.forEach(fn => fn())
         } else {
             // 否则通知更新
             this.dispatch.update?.forEach(fn => fn())
@@ -64,7 +64,7 @@ export class Updater {
                 this.newScript = this.parseScript(newHtml)
                 this.compare(this.oldScript, this.newScript)
             } catch (error) {
-                console.error('Error during polling:', error)
+                console.error("Error during polling:", error)
             }
         }, time)
     }

@@ -1,4 +1,4 @@
-import { GlobConfig, GlobEnvConfig } from '#/config'
+import { GlobConfig, GlobEnvConfig } from "#/config"
 
 export function useEnv() {
     const getEnvConfig = (): Readonly<GlobConfig> => {

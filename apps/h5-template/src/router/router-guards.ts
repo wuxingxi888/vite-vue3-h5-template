@@ -1,11 +1,11 @@
-import type { Router } from 'vue-router'
-import { isNavigationFailure } from 'vue-router'
-import NProgress from 'nprogress'
-import { useRouteStoreWidthOut } from '@/store/modules/route'
-import { useUserStore } from '@/store/modules/user'
-import { PageEnum } from '@/enums/pageEnum'
+import type { Router } from "vue-router"
+import { isNavigationFailure } from "vue-router"
+import NProgress from "nprogress"
+import { useRouteStoreWidthOut } from "@/store/modules/route"
+import { useUserStore } from "@/store/modules/user"
+import { PageEnum } from "@/enums/pageEnum"
 
-NProgress.configure({ parent: '#app' })
+NProgress.configure({ parent: "#app" })
 
 // 路由白名单
 const whitePathList = [PageEnum.BASE_LOGIN]
@@ -34,7 +34,7 @@ export function createRouterGuards(router: Router) {
         document.title = (to?.meta?.title as string) || document.title
 
         if (isNavigationFailure(failure)) {
-            console.warn('failed navigation', failure)
+            console.warn("failed navigation", failure)
         }
 
         const routeStore = useRouteStoreWidthOut()
@@ -65,6 +65,6 @@ export function createRouterGuards(router: Router) {
     })
 
     router.onError(error => {
-        console.error(error, '路由错误')
+        console.error(error, "路由错误")
     })
 }

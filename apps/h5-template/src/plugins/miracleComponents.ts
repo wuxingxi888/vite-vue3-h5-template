@@ -2,13 +2,13 @@
 // import '@miracle-web/ui/lib/index.css'
 
 // 函数组件的样式
-import '@miracle-web/ui/es/toast/style'
-import '@miracle-web/ui/es/dialog/style'
-import '@miracle-web/ui/es/notify/style'
-import '@miracle-web/ui/es/image-preview/style'
+import "@miracle-web/ui/es/toast/style"
+import "@miracle-web/ui/es/dialog/style"
+import "@miracle-web/ui/es/notify/style"
+import "@miracle-web/ui/es/image-preview/style"
 
 // 组件桌面端适配
-import '@miracle-web/touch-emulator'
+import "@miracle-web/touch-emulator"
 
 // import { Toast } from '@miracle-web/ui'
 

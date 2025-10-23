@@ -5,12 +5,11 @@
  */
 
 // 使用import来加载共享配置
-import baseConfig from "@miracle/prettier-config"
+import baseConfig from "./packages/prettier-config/index.js"
 
 // Prettier配置对象，用于定义代码格式化规则
 const config = {
     ...baseConfig,
-    // h5-template项目的特定配置覆盖
     printWidth: 120,
     tabWidth: 4,
     useTabs: false,

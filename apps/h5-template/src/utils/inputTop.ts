@@ -1,6 +1,6 @@
 // 解决H5软键盘弹出时遮挡输入框
 class inputTop {
-    page = document.querySelector('#app')
+    page = document.querySelector("#app")
 
     currentInput: any // 当前聚焦的输入框
 
@@ -54,10 +54,10 @@ class inputTop {
 
     init = () => {
         if (/iphone|ipad|ipod|ios/i.test(navigator.userAgent)) {
-            window.addEventListener('focusin', this.focusinPage)
+            window.addEventListener("focusin", this.focusinPage)
         } else {
-            window.addEventListener('click', this.handleClickPage, true)
-            window.addEventListener('resize', this.handleAndroidResize)
+            window.addEventListener("click", this.handleClickPage, true)
+            window.addEventListener("resize", this.handleAndroidResize)
         }
     }
 }

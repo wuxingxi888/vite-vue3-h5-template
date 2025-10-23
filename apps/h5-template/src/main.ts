@@ -1,8 +1,8 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router, { setupRouter } from './router'
-import { setupStore } from '@/store'
-import { setupPlugins } from '@/plugins'
+import { createApp } from "vue"
+import App from "./App.vue"
+import router, { setupRouter } from "./router"
+import { setupStore } from "@/store"
+import { setupPlugins } from "@/plugins"
 
 async function bootstrap() {
     const app = createApp(App)
@@ -15,7 +15,7 @@ async function bootstrap() {
 
     await router.isReady()
     // 路由准备就绪后挂载APP实例
-    app.mount('#app', true)
+    app.mount("#app", true)
 }
 
 void bootstrap()

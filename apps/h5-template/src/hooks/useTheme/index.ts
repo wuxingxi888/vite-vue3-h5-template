@@ -1,7 +1,7 @@
-import { computed } from 'vue'
-import { darken, lighten } from '@miracle-web/utils'
-import { useThemeStore } from '@/store/modules/theme'
-import type { ConfigProviderThemeVars } from '@miracle-web/ui'
+import { computed } from "vue"
+import { darken, lighten } from "@miracle-web/utils"
+import { useThemeStore } from "@/store/modules/theme"
+import type { ConfigProviderThemeVars } from "@miracle-web/ui"
 
 export function useTheme() {
     const themeStore = useThemeStore()
@@ -62,12 +62,12 @@ export function useTheme() {
 
     // 切换主题
     const toggleTheme = computed({
-        get: () => getThemeMode.value === 'dark',
+        get: () => getThemeMode.value === "dark",
         set: () => {
             const htmlRoot = document.documentElement
-            htmlRoot.classList.toggle('light')
-            htmlRoot.classList.toggle('dark')
-            themeStore.setThemeMode(getThemeMode.value === 'light' ? 'dark' : 'light')
+            htmlRoot.classList.toggle("light")
+            htmlRoot.classList.toggle("dark")
+            themeStore.setThemeMode(getThemeMode.value === "light" ? "dark" : "light")
         }
     })
 

@@ -1,4 +1,4 @@
-import scrollUtil from './scrollUtil'
+import scrollUtil from "./scrollUtil"
 
 /**
  * useScrollCache 页面缓存（支持水平和垂直滚动）
@@ -25,7 +25,7 @@ export function useScrollCache(dom, animeStatus = false) {
 
     if (!route.meta.keepAlive) {
         try {
-            throw new Error('当前页面没有keepAlive属性')
+            throw new Error("当前页面没有keepAlive属性")
         } catch (error) {
             console.error(error)
         }

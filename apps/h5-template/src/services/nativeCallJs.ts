@@ -1,5 +1,5 @@
-import emitter from '@/utils/emit'
-import { judgeSystem } from '@miracle-web/utils'
+import emitter from "@/utils/emit"
+import { judgeSystem } from "@miracle-web/utils"
 
 const { isAndroid, isiOS } = judgeSystem()
 
@@ -14,10 +14,10 @@ export default class NativeCallJs {
      */
     static xxx(data: string) {
         if (isAndroid) {
-            emitter.emit('xxx', JSON.parse(data))
+            emitter.emit("xxx", JSON.parse(data))
         }
         if (isiOS) {
-            emitter.emit('xxx', data)
+            emitter.emit("xxx", data)
         }
     }
 }

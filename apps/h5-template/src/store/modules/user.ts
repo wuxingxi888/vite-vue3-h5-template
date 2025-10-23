@@ -1,10 +1,10 @@
-import { acceptHMRUpdate, defineStore, type StateTree } from 'pinia'
-import { store } from '@/store'
-import { doLogout, getUserInfo, login } from '@/api/system/user'
-import { PageEnum } from '@/enums/pageEnum'
-import router from '@/router'
-import { encryptAES, decryptAES } from '@miracle-web/utils'
-import { useEnv } from '@/hooks/useEnv'
+import { acceptHMRUpdate, defineStore, type StateTree } from "pinia"
+import { store } from "@/store"
+import { doLogout, getUserInfo, login } from "@/api/system/user"
+import { PageEnum } from "@/enums/pageEnum"
+import router from "@/router"
+import { encryptAES, decryptAES } from "@miracle-web/utils"
+import { useEnv } from "@/hooks/useEnv"
 
 interface UserInfo {
     userId: string | number
@@ -30,18 +30,18 @@ interface LoginParams {
 
 const { isProdMode } = useEnv()
 
-export const useUserStore = defineStore('app-user-store', {
+export const useUserStore = defineStore("app-user-store", {
     state: (): IUserState => ({
         userInfo: {
-            userId: '',
-            username: '',
-            nickname: '',
-            avatar: '',
-            cover: '',
+            userId: "",
+            username: "",
+            nickname: "",
+            avatar: "",
+            cover: "",
             gender: 0,
-            phone: ''
+            phone: ""
         },
-        token: ''
+        token: ""
     }),
     getters: {
         getUserInfo: state => state.userInfo,
@@ -49,7 +49,7 @@ export const useUserStore = defineStore('app-user-store', {
     },
     actions: {
         setToken(token: string) {
-            this.token = token || ''
+            this.token = token || ""
         },
         setUserInfo(info: UserInfo) {
             this.userInfo = info
@@ -83,10 +83,10 @@ export const useUserStore = defineStore('app-user-store', {
                 try {
                     await doLogout()
                 } catch {
-                    console.error('注销Token失败')
+                    console.error("注销Token失败")
                 }
             }
-            this.setToken('')
+            this.setToken("")
             this.setUserInfo({} as UserInfo)
             router.push(PageEnum.BASE_LOGIN)
             location.reload()
@@ -94,7 +94,7 @@ export const useUserStore = defineStore('app-user-store', {
     },
     // 开启数据缓存
     persist: {
-        key: 'CURRENT-USER',
+        key: "CURRENT-USER",
         storage: window.localStorage,
         serializer: {
             serialize: isProdMode()

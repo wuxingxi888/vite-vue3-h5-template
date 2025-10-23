@@ -1,7 +1,7 @@
 // axios配置  可自行根据项目进行更改，只需更改该文件即可，其他文件可以不动
-import { showDialog, showFailToast, showSuccessToast } from '@miracle-web/ui'
-import { MAxios, axios, formatRequestDate, joinTimestamp } from '@miracle-web/utils'
-import { setObjToUrlParams, deepMerge, urlReg, isString, BrowserType } from '@miracle-web/utils'
+import { showDialog, showFailToast, showSuccessToast } from "@miracle-web/ui"
+import { MAxios, axios, formatRequestDate, joinTimestamp } from "@miracle-web/utils"
+import { setObjToUrlParams, deepMerge, urlReg, isString, BrowserType } from "@miracle-web/utils"
 import type {
     AxiosResponse,
     InternalAxiosRequestConfig,
@@ -9,17 +9,17 @@ import type {
     CreateAxiosOptions,
     RequestOptions,
     Result
-} from '@miracle-web/utils'
-import { ContentTypeEnum, RequestEnum, ResultEnum } from '@/utils/http/httpEnum'
-import { PageEnum } from '@/enums/pageEnum'
+} from "@miracle-web/utils"
+import { ContentTypeEnum, RequestEnum, ResultEnum } from "@/utils/http/httpEnum"
+import { PageEnum } from "@/enums/pageEnum"
 
-import { useEnv } from '@/hooks/useEnv'
+import { useEnv } from "@/hooks/useEnv"
 
-import { useUserStoreWidthOut } from '@/store/modules/user'
+import { useUserStoreWidthOut } from "@/store/modules/user"
 
 const { getEnvConfig } = useEnv()
 
-const urlPrefix = getEnvConfig().urlPrefix || ''
+const urlPrefix = getEnvConfig().urlPrefix || ""
 
 const transform: AxiosTransform = {
     /**
@@ -52,7 +52,7 @@ const transform: AxiosTransform = {
             if (!isString(params)) {
                 formatDate && formatRequestDate(params)
                 if (
-                    Reflect.has(config, 'data') &&
+                    Reflect.has(config, "data") &&
                     config.data &&
                     (Object.keys(config.data).length > 0 || config.data instanceof FormData)
                 ) {
@@ -81,7 +81,7 @@ const transform: AxiosTransform = {
      */
     requestSuccessResult: (response: AxiosResponse<Result>, options: RequestOptions) => {
         if (!response.data) {
-            throw new Error(' Request has no return value')
+            throw new Error(" Request has no return value")
         }
 
         const {
@@ -96,17 +96,17 @@ const transform: AxiosTransform = {
 
         const { code, data, message } = response.data
 
-        const hasSuccess = Reflect.has(response.data, 'code') && code === ResultEnum.SUCCESS
+        const hasSuccess = Reflect.has(response.data, "code") && code === ResultEnum.SUCCESS
         // 消息处理
         if (isShowMessage) {
             // 自定义成功消息
             if (hasSuccess && (successMessageText || isShowSuccessMessage)) {
-                showSuccessToast(successMessageText || message || '操作成功！')
+                showSuccessToast(successMessageText || message || "操作成功！")
             }
 
             // 自定义错误消息
             if (!hasSuccess && (errorMessageText || isShowErrorMessage)) {
-                showFailToast(message || errorMessageText || '操作失败！')
+                showFailToast(message || errorMessageText || "操作失败！")
             }
         }
 
@@ -144,8 +144,8 @@ const transform: AxiosTransform = {
 
         // platform
         const { platform, system } = BrowserType()
-        config.headers['mi-platform'] = platform
-        config.headers['mi-system'] = system
+        config.headers["mi-platform"] = platform
+        config.headers["mi-system"] = system
 
         return config
     },
@@ -169,8 +169,8 @@ const transform: AxiosTransform = {
 
         if (code === ResultEnum.TOKEN_EXPIRED) {
             showDialog({
-                title: '提示',
-                message: '登录身份已失效，请重新登录!'
+                title: "提示",
+                message: "登录身份已失效，请重新登录!"
             })
                 .then(() => {
                     window.location.href = PageEnum.BASE_LOGIN
@@ -188,12 +188,12 @@ const transform: AxiosTransform = {
      */
     responseInterceptorsCatch: error => {
         const err: string = error.toString()
-        console.log('%c [ err ]-184', 'font-size:13px; background:pink; color:#bf2c9f;', err)
+        console.log("%c [ err ]-184", "font-size:13px; background:pink; color:#bf2c9f;", err)
 
-        if (err && err.includes('Network Error')) {
+        if (err && err.includes("Network Error")) {
             showDialog({
-                title: '网络异常',
-                message: '请检查您的网络连接是否正常'
+                title: "网络异常",
+                message: "请检查您的网络连接是否正常"
             })
                 .then(() => {})
                 .catch(() => {})
@@ -203,7 +203,7 @@ const transform: AxiosTransform = {
         // 请求是否被取消
         if (axios.isCancel(error)) {
             // 自定义返回内容
-            return Promise.resolve({ data: error, code: -1, message: '取消重复请求' })
+            return Promise.resolve({ data: error, code: -1, message: "取消重复请求" })
         }
 
         return Promise.reject(error)
@@ -216,12 +216,12 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
             {
                 timeout: 10 * 1000,
                 // token 前缀 Bearer
-                authenticationScheme: '',
+                authenticationScheme: "",
                 // 接口前缀
                 prefixUrl: urlPrefix,
 
                 // 如果是json格式
-                headers: { 'Content-Type': ContentTypeEnum.JSON },
+                headers: { "Content-Type": ContentTypeEnum.JSON },
 
                 // 数据处理方式
                 transform,

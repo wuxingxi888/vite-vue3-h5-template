@@ -1,4 +1,4 @@
-import { asyncLoadScript } from '@/utils/script'
+import { asyncLoadScript } from "@/utils/script"
 export function useOpenInstall(appKey: string) {
     const openInstall = ref<OpenInstall | null>()
 
@@ -11,7 +11,7 @@ export function useOpenInstall(appKey: string) {
                 appKey,
                 onready(this: OpenInstall) {
                     openInstall.value = this
-                    console.log('OpenInstall OI success')
+                    console.log("OpenInstall OI success")
                 }
             },
             data
@@ -19,7 +19,7 @@ export function useOpenInstall(appKey: string) {
     }
 
     onMounted(() => {
-        asyncLoadScript({ src: `https://res.openinstall.com/openinstall-${appKey}.js`, id: 'openInstall' }).then(() => {
+        asyncLoadScript({ src: `https://res.openinstall.com/openinstall-${appKey}.js`, id: "openInstall" }).then(() => {
             initOpenInstall()
         })
     })

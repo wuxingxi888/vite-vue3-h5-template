@@ -1,4 +1,4 @@
-import type { Directive } from 'vue'
+import type { Directive } from "vue"
 
 interface ElType extends HTMLElement {
     parentNode: HTMLElement
@@ -12,8 +12,8 @@ interface ElType extends HTMLElement {
  */
 const draggable: Directive = {
     mounted: function (el: ElType) {
-        el.style.cursor = 'move'
-        el.style.position = 'absolute'
+        el.style.cursor = "move"
+        el.style.position = "absolute"
 
         function startDrag(e: MouseEvent | TouchEvent, isTouch: boolean) {
             const startX = isTouch ? (e as TouchEvent).touches[0].pageX : (e as MouseEvent).pageX
@@ -68,15 +68,15 @@ const draggable: Directive = {
                     }
 
                     requestAnimationFrame(() => {
-                        el.style.left = newX + 'px'
-                        el.style.top = newY + 'px'
+                        el.style.left = newX + "px"
+                        el.style.top = newY + "px"
                     })
                 }
             }
 
             function endDrag(e: MouseEvent | TouchEvent) {
-                document.removeEventListener(isTouch ? 'touchmove' : 'mousemove', move)
-                document.removeEventListener(isTouch ? 'touchend' : 'mouseup', endDrag)
+                document.removeEventListener(isTouch ? "touchmove" : "mousemove", move)
+                document.removeEventListener(isTouch ? "touchend" : "mouseup", endDrag)
 
                 // 如果是点击而非拖拽，则触发元素的点击事件
                 if (!isDragging && (e.target as HTMLElement).click) {
@@ -85,12 +85,12 @@ const draggable: Directive = {
             }
 
             // 阻止父容器滚动
-            document.addEventListener(isTouch ? 'touchmove' : 'mousemove', move, { passive: false })
-            document.addEventListener(isTouch ? 'touchend' : 'mouseup', endDrag)
+            document.addEventListener(isTouch ? "touchmove" : "mousemove", move, { passive: false })
+            document.addEventListener(isTouch ? "touchend" : "mouseup", endDrag)
         }
 
-        el.addEventListener('touchstart', e => startDrag(e, true))
-        el.addEventListener('mousedown', e => startDrag(e, false))
+        el.addEventListener("touchstart", e => startDrag(e, true))
+        el.addEventListener("mousedown", e => startDrag(e, false))
     }
 }
 
