@@ -35,19 +35,19 @@
 ```ts
 export function postcssPxToViewProtConfig(): Plugin {
   return viewport({
-    appSelector: '#app', // 根元素选择器，用于设置桌面端和横屏时的居中样式
+    appSelector: "#app", // 根元素选择器，用于设置桌面端和横屏时的居中样式
     maxDisplayWidth: 500, // 桌面端最大展示宽度
     viewportWidth: 375, // UI设计稿的宽度
     unitPrecision: 5, // 转换后的精度，即小数点位数
-    propList: ['*'], // 指定转换的css属性的单位，*代表全部css属性的单位都进行转换
-    mobileUnit: 'vw', // 指定需要转换成的视口单位，建议使用 vw
-    selectorBlackList: ['keep-px'], // 指定不转换为视窗单位的类名
-    valueBlackList: ['1px solid'], // 表示属性值包含 '1px solid' 的内容不会转换
+    propList: ["*"], // 指定转换的css属性的单位，*代表全部css属性的单位都进行转换
+    mobileUnit: "vw", // 指定需要转换成的视口单位，建议使用 vw
+    selectorBlackList: ["keep-px"], // 指定不转换为视窗单位的类名
+    valueBlackList: ["1px solid"], // 表示属性值包含 '1px solid' 的内容不会转换
     exclude: [/node_modules/], // 忽略某些文件夹下的文件
-    rootContainingBlockSelectorList: ['.mi-popup--bottom'],
+    rootContainingBlockSelectorList: [".mi-popup--bottom"],
     border: true,
-    appContainingBlock: 'auto',
-    necessarySelectorWhenAuto: 'body',
+    appContainingBlock: "auto",
+    necessarySelectorWhenAuto: "body",
   });
 }
 ```

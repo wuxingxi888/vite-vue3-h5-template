@@ -1,6 +1,6 @@
-import * as echarts from "echarts/core"
+import * as echarts from 'echarts/core';
 
-import { BarChart, GaugeChart, LineChart, MapChart, PictorialBarChart, PieChart, RadarChart } from "echarts/charts"
+import { BarChart, GaugeChart, LineChart, MapChart, PictorialBarChart, PieChart, RadarChart } from 'echarts/charts';
 
 import {
     AriaComponent,
@@ -16,10 +16,10 @@ import {
     TitleComponent,
     ToolboxComponent,
     TooltipComponent,
-    VisualMapComponent
-} from "echarts/components"
+    VisualMapComponent,
+} from 'echarts/components';
 
-import { SVGRenderer } from "echarts/renderers"
+import { SVGRenderer } from 'echarts/renderers';
 
 echarts.use([
     LegendComponent,
@@ -43,7 +43,7 @@ echarts.use([
     VisualMapComponent,
     TimelineComponent,
     CalendarComponent,
-    MarkLineComponent
-])
+    MarkLineComponent,
+]);
 
-export default echarts
+export default echarts;

@@ -1,10 +1,5 @@
 <template>
-    <mi-form
-        v-if="getShow"
-        ref="formRef"
-        class="flex flex-col items-center"
-        @submit="handleSubmit"
-    >
+    <mi-form v-if="getShow" ref="formRef" class="flex flex-col items-center" @submit="handleSubmit">
         <mi-field
             v-model="formData.username"
             class="enter-y mb-4 items-center !rounded-md"
@@ -29,36 +24,20 @@
                 <i class="i-iconamoon:lock-bold mr-2 text-lg" />
             </template>
             <template #right-icon>
-                <i
-                    v-if="switchPassType"
-                    class="i-mdi:eye-outline mr-2 text-lg"
-                />
-                <i
-                    v-else
-                    class="i-mdi:eye-off mr-2 text-lg"
-                />
+                <i v-if="switchPassType" class="i-mdi:eye-outline mr-2 text-lg" />
+                <i v-else class="i-mdi:eye-off mr-2 text-lg" />
             </template>
         </mi-field>
 
         <div class="enter-y mb-10 w-full flex justify-between px-5px">
             <div class="flex items-center">
-                <mi-switch
-                    v-model="rememberMe"
-                    size="18px"
-                    class="mr-8px"
-                />
+                <mi-switch v-model="rememberMe" size="18px" class="mr-8px" />
                 <span>记住我</span>
             </div>
             <a @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">忘记密码?</a>
         </div>
 
-        <mi-button
-            class="enter-y !mb-4 !rounded-md"
-            type="primary"
-            block
-            native-type="submit"
-            :loading="loading"
-        >
+        <mi-button class="enter-y !mb-4 !rounded-md" type="primary" block native-type="submit" :loading="loading">
             登 录
         </mi-button>
         <mi-button
@@ -74,54 +53,54 @@
 </template>
 
 <script setup lang="ts">
-    import type { FormInstance } from '@miracle-web/ui'
-    import { LoginStateEnum, useFormRules, useLoginState } from './useLogin'
-    import { useUserStore } from '@/store/modules/user'
-    import { PageEnum } from '@/enums/pageEnum'
+    import type { FormInstance } from '@miracle-web/ui';
+    import { LoginStateEnum, useFormRules, useLoginState } from './useLogin';
+    import { useUserStore } from '@/store/modules/user';
+    import { PageEnum } from '@/enums/pageEnum';
 
-    const { setLoginState, getLoginState } = useLoginState()
-    const { getFormRules } = useFormRules()
-    const userStore = useUserStore()
-    const router = useRouter()
-    const route = useRoute()
+    const { setLoginState, getLoginState } = useLoginState();
+    const { getFormRules } = useFormRules();
+    const userStore = useUserStore();
+    const router = useRouter();
+    const route = useRoute();
 
-    const formRef = ref<FormInstance>()
-    const loading = ref(false)
-    const rememberMe = ref(false)
-    const switchPassType = ref(true)
+    const formRef = ref<FormInstance>();
+    const loading = ref(false);
+    const rememberMe = ref(false);
+    const switchPassType = ref(true);
     const formData = reactive({
         username: 'admin',
-        password: '123456'
-    })
+        password: '123456',
+    });
 
-    const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN)
+    const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
 
     function handleSubmit() {
         formRef.value
             ?.validate()
             .then(async () => {
                 try {
-                    loading.value = true
+                    loading.value = true;
                     await userStore.Login({
                         username: formData.username,
-                        password: formData.password
-                    })
-                    const toPath = decodeURIComponent((route.query?.redirect || '/') as string)
+                        password: formData.password,
+                    });
+                    const toPath = decodeURIComponent((route.query?.redirect || '/') as string);
                     if (route.name === PageEnum.BASE_LOGIN_NAME) {
-                        router.replace('/')
+                        router.replace('/');
                     } else {
-                        router.replace(toPath)
+                        router.replace(toPath);
                     }
                 } finally {
-                    loading.value = false
+                    loading.value = false;
                 }
             })
             .catch(() => {
-                console.error('验证失败')
-            })
+                console.error('验证失败');
+            });
     }
 
-    onMounted(() => {})
+    onMounted(() => {});
 </script>
 
 <style scoped lang="scss"></style>

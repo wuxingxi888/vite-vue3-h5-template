@@ -41,16 +41,16 @@ ESLint 是一个可插拔的 JavaScript 代码检查工具，用于识别和报�
 项目在 [eslint.config.js] 中配置了 ESLint 规则：
 
 ```js
-import globals from 'globals';
-import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import pluginVue from 'eslint-plugin-vue';
-import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import tseslint from "typescript-eslint";
+import pluginVue from "eslint-plugin-vue";
+import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 
 export default [
   // 指定文件匹配模式和语言选项
   {
-    files: ['**/*.{js,jsx,mjs,cjs,ts,tsx,vue}'],
+    files: ["**/*.{js,jsx,mjs,cjs,ts,tsx,vue}"],
   },
   // 指定全局变量和环境
   {
@@ -60,8 +60,8 @@ export default [
         ...globals.node,
         ...autoImportConfig.globals, // 合并自动导入的 globals
       },
-      ecmaVersion: 'latest', // 使用最新的 ECMAScript 语法
-      sourceType: 'module', // 代码是 ECMAScript 模块
+      ecmaVersion: "latest", // 使用最新的 ECMAScript 语法
+      sourceType: "module", // 代码是 ECMAScript 模块
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
@@ -77,40 +77,40 @@ export default [
   /** ts推荐配置 */
   ...tseslint.configs.recommended,
   /** vue推荐配置 */
-  ...pluginVue.configs['flat/essential'],
+  ...pluginVue.configs["flat/essential"],
 
   // 自定义规则
   {
     rules: {
-      'no-var': 'error', // 要求使用 let 或 const 而不是 var
-      'no-multiple-empty-lines': ['warn', { max: 1 }], // 不允许多个空行
-      'no-unexpected-multiline': 'error', // 禁止空余的多行
-      'no-useless-escape': 'off', // 禁止不必要的转义字符
+      "no-var": "error", // 要求使用 let 或 const 而不是 var
+      "no-multiple-empty-lines": ["warn", { max: 1 }], // 不允许多个空行
+      "no-unexpected-multiline": "error", // 禁止空余的多行
+      "no-useless-escape": "off", // 禁止不必要的转义字符
 
       // typeScript (https://typescript-eslint.io/rules)
-      '@typescript-eslint/no-unused-vars': 'warn', // 禁止定义未使用的变量
-      '@typescript-eslint/prefer-ts-expect-error': 'error', // 禁止使用 @ts-ignore
-      '@typescript-eslint/no-explicit-any': 'off', // 禁止使用 any 类型
-      '@typescript-eslint/no-non-null-assertion': 'off',
-      '@typescript-eslint/no-namespace': 'off', // 禁止使用自定义 TypeScript 模块和命名空间。
-      '@typescript-eslint/semi': 'off',
-      '@typescript-eslint/no-unsafe-function-type': 'off', // 禁止使用 Function 作为 type。
-      '@typescript-eslint/no-unused-expressions': 'off', // 禁止无用的表达式。
+      "@typescript-eslint/no-unused-vars": "warn", // 禁止定义未使用的变量
+      "@typescript-eslint/prefer-ts-expect-error": "error", // 禁止使用 @ts-ignore
+      "@typescript-eslint/no-explicit-any": "off", // 禁止使用 any 类型
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/no-namespace": "off", // 禁止使用自定义 TypeScript 模块和命名空间。
+      "@typescript-eslint/semi": "off",
+      "@typescript-eslint/no-unsafe-function-type": "off", // 禁止使用 Function 作为 type。
+      "@typescript-eslint/no-unused-expressions": "off", // 禁止无用的表达式。
 
       // eslint-plugin-vue (https://eslint.vuejs.org/rules/)
-      'vue/multi-word-component-names': 'off', // 要求组件名称始终为 "-" 链接的单词
-      'vue/no-mutating-props': 'off', // 不允许组件 prop的改变
-      'vue/attribute-hyphenation': 'off', // 对模板中的自定义组件强制执行属性命名样式
-      'vue/html-indent': ['error', 4],
-      indent: ['error', 4], // 缩进使用4个空格
-      semi: ['error', 'never'], //语句末尾不加分号
-      'no-unused-vars': 'off',
+      "vue/multi-word-component-names": "off", // 要求组件名称始终为 "-" 链接的单词
+      "vue/no-mutating-props": "off", // 不允许组件 prop的改变
+      "vue/attribute-hyphenation": "off", // 对模板中的自定义组件强制执行属性命名样式
+      "vue/html-indent": ["error", 4],
+      indent: ["error", 4], // 缩进使用4个空格
+      semi: ["error", "never"], //语句末尾不加分号
+      "no-unused-vars": "off",
     },
   },
 
   // 忽略文件
   {
-    ignores: ['**/dist', '**/node_modules', '**/*.d.ts', '/public', '/plop-templates'],
+    ignores: ["**/dist", "**/node_modules", "**/*.d.ts", "/public", "/plop-templates"],
   },
 
   /**
@@ -169,33 +169,33 @@ const config = {
   // 使用单引号而不是双引号
   singleQuote: true,
   // 引用对象中的属性时，仅在需要时在对象属性周围添加引号。
-  quoteProps: 'as-needed',
+  quoteProps: "as-needed",
   // 在对象文字中的括号之间打印空格。
   bracketSpacing: true,
   // "none":没有尾随逗号。"es5": 在 ES5 中有效的尾随逗号（对象、数组等），TypeScript 中的类型参数中没有尾随逗号。"all"- 尽可能使用尾随逗号。
-  trailingComma: 'none',
+  trailingComma: "none",
   // 将>多行 HTML（HTML、JSX、Vue、Angular）元素放在最后一行的末尾，而不是单独放在下一行（不适用于自闭合元素）。
   bracketSameLine: false,
   // 在 JSX 中使用单引号而不是双引号。
   jsxSingleQuote: false,
   // 在唯一的箭头函数参数周围始终包含括号。
-  arrowParens: 'always',
+  arrowParens: "always",
   // 插入编译指示
   insertPragma: false,
   // 需要编译指示
   requirePragma: false,
   // 如果散文超过打印宽度，则换行
-  proseWrap: 'always',
+  proseWrap: "always",
   // 所有标签周围的空格（或缺少空格）被认为是重要的。
-  htmlWhitespaceSensitivity: 'strict',
+  htmlWhitespaceSensitivity: "strict",
   // 确保在文本文件中仅使用 ( \n)换行，常见于 Linux 和 macOS 以及 git repos 内部。
-  endOfLine: 'lf',
+  endOfLine: "lf",
   // 格式化文件时，回到包含所选语句的第一行的开头。
   rangeStart: 0,
   // 每个文件格式化的范围是文件的全部内容
   rangeEnd: Infinity,
   //（默认值）允许自动格式化内嵌的代码块
-  embeddedLanguageFormatting: 'auto',
+  embeddedLanguageFormatting: "auto",
   // 不使用实验性三元语法
   experimentalTernaries: false,
   // 不将JSX括号放在同一行

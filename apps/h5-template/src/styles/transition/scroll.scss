@@ -8,20 +8,20 @@
  * 垂直方向上淡入淡出和移动的动画效果
  */
 .scroll-y-transition {
-	@include transition-default();
+    @include transition-default();
 
-	&-enter-from,
-	&-leave-to {
-		opacity: 0;
-	}
+    &-enter-from,
+    &-leave-to {
+        opacity: 0;
+    }
 
-	&-enter-from {
-		transform: translateY(-15px);
-	}
+    &-enter-from {
+        transform: translateY(-15px);
+    }
 
-	&-leave-to {
-		transform: translateY(15px);
-	}
+    &-leave-to {
+        transform: translateY(15px);
+    }
 }
 
 /**
@@ -29,20 +29,20 @@
  * 垂直（反向）方向上淡入淡出和移动的动画效果
  */
 .scroll-y-reverse-transition {
-	@include transition-default();
+    @include transition-default();
 
-	&-enter-from,
-	&-leave-to {
-		opacity: 0;
-	}
+    &-enter-from,
+    &-leave-to {
+        opacity: 0;
+    }
 
-	&-enter-from {
-		transform: translateY(15px);
-	}
+    &-enter-from {
+        transform: translateY(15px);
+    }
 
-	&-leave-to {
-		transform: translateY(-15px);
-	}
+    &-leave-to {
+        transform: translateY(-15px);
+    }
 }
 
 /**
@@ -50,20 +50,20 @@
  * 水平方向上淡入淡出和移动的动画效果
  */
 .scroll-x-transition {
-	@include transition-default();
+    @include transition-default();
 
-	&-enter-from,
-	&-leave-to {
-		opacity: 0;
-	}
+    &-enter-from,
+    &-leave-to {
+        opacity: 0;
+    }
 
-	&-enter-from {
-		transform: translateX(-15px);
-	}
+    &-enter-from {
+        transform: translateX(-15px);
+    }
 
-	&-leave-to {
-		transform: translateX(15px);
-	}
+    &-leave-to {
+        transform: translateX(15px);
+    }
 }
 
 /**
@@ -71,18 +71,18 @@
  * 水平（反向）方向上淡入淡出和移动的动画效果
  */
 .scroll-x-reverse-transition {
-	@include transition-default();
+    @include transition-default();
 
-	&-enter-from,
-	&-leave-to {
-		opacity: 0;
-	}
+    &-enter-from,
+    &-leave-to {
+        opacity: 0;
+    }
 
-	&-enter-from {
-		transform: translateX(15px);
-	}
+    &-enter-from {
+        transform: translateX(15px);
+    }
 
-	&-leave-to {
-		transform: translateX(-15px);
-	}
+    &-leave-to {
+        transform: translateX(-15px);
+    }
 }

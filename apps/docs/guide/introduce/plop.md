@@ -29,11 +29,11 @@ Plop 是一个微型生成器框架，可用于创建任何类型的文件。它
 项目根目录下的 [plopfile.js] 是 Plop 的主配置文件：
 
 ```js
-import { promises as fs } from 'node:fs';
+import { promises as fs } from "node:fs";
 
 export default async function (plop) {
-  plop.setWelcomeMessage('请选择需要创建的模式：');
-  const items = await fs.readdir('./plop-templates');
+  plop.setWelcomeMessage("请选择需要创建的模式：");
+  const items = await fs.readdir("./plop-templates");
   for (const item of items) {
     const stat = await fs.lstat(`./plop-templates/${item}`);
     if (stat.isDirectory()) {
@@ -69,42 +69,42 @@ plop-templates/
 
 ```js
 export default {
-  description: '创建页面',
+  description: "创建页面",
   prompts: [
     {
-      type: 'list',
-      name: 'directory',
-      message: '请选择页面创建目录',
-      choices: getFolder('src/views'),
+      type: "list",
+      name: "directory",
+      message: "请选择页面创建目录",
+      choices: getFolder("src/views"),
     },
     {
-      type: 'input',
-      name: 'name',
-      message: '请输入文件名',
+      type: "input",
+      name: "name",
+      message: "请输入文件名",
       validate: v => {
-        if (!v || v.trim === '') {
-          return '文件名不能为空';
+        if (!v || v.trim === "") {
+          return "文件名不能为空";
         } else {
           return true;
         }
       },
     },
     {
-      type: 'input',
-      name: 'title',
-      message: '请输入页面标题Title',
+      type: "input",
+      name: "title",
+      message: "请输入页面标题Title",
       validate: v => {
-        if (!v || v.trim === '') {
-          return '页面标题不能为空';
+        if (!v || v.trim === "") {
+          return "页面标题不能为空";
         } else {
           return true;
         }
       },
     },
     {
-      type: 'confirm',
-      name: 'keepAlive',
-      message: '是否缓存页面',
+      type: "confirm",
+      name: "keepAlive",
+      message: "是否缓存页面",
       default: false,
     },
   ],
@@ -156,30 +156,30 @@ defineOptions({ name: '{{properCase cpsName}}' })
 
 ```js
 export default {
-  description: '创建组件',
+  description: "创建组件",
   prompts: [
     {
-      type: 'confirm',
-      name: 'isGlobal',
-      message: '是否为全局组件',
+      type: "confirm",
+      name: "isGlobal",
+      message: "是否为全局组件",
       default: false,
     },
     {
-      type: 'list',
-      name: 'path',
-      message: '请选择组件创建目录',
-      choices: getFolder('src/views'),
+      type: "list",
+      name: "path",
+      message: "请选择组件创建目录",
+      choices: getFolder("src/views"),
       when: answers => {
         return !answers.isGlobal;
       },
     },
     {
-      type: 'input',
-      name: 'name',
-      message: '请输入组件名称',
+      type: "input",
+      name: "name",
+      message: "请输入组件名称",
       validate: v => {
-        if (!v || v.trim === '') {
-          return '组件名称不能为空';
+        if (!v || v.trim === "") {
+          return "组件名称不能为空";
         } else {
           return true;
         }
@@ -255,15 +255,15 @@ defineExpose({ onOpen })
 
 ```js
 export default {
-  description: '创建全局状态',
+  description: "创建全局状态",
   prompts: [
     {
-      type: 'input',
-      name: 'name',
-      message: '请输入模块名称',
+      type: "input",
+      name: "name",
+      message: "请输入模块名称",
       validate: v => {
-        if (!v || v.trim === '') {
-          return '模块名称不能为空';
+        if (!v || v.trim === "") {
+          return "模块名称不能为空";
         } else {
           return true;
         }

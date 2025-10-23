@@ -34,17 +34,17 @@
 </template>
 
 <script setup lang="ts">
-    import { useUserStore } from '@/store/modules/user'
+    import { useUserStore } from '@/store/modules/user';
 
-    const userStore = useUserStore()
-    const { username, phone } = userStore.getUserInfo
+    const userStore = useUserStore();
+    const { username, phone } = userStore.getUserInfo;
 
     function phoneDesensitize(phone: string) {
-        const reg = /(\d{3})\d{4}(\d{4})/
-        return phone.replace(reg, '$1****$2')
+        const reg = /(\d{3})\d{4}(\d{4})/;
+        return phone.replace(reg, '$1****$2');
     }
 
-    const afterPhone = computed(() => phoneDesensitize(phone))
+    const afterPhone = computed(() => phoneDesensitize(phone));
 </script>
 
 <style scoped lang="scss">

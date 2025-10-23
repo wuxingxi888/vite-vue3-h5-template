@@ -15,12 +15,12 @@
 <script setup lang="ts">
     // 设置组件名
     defineOptions({
-        name: 'LoginPage'
-    })
+        name: 'LoginPage',
+    });
 
-    import LoginTitle from './LoginTitle.vue'
-    import LoginForm from './LoginForm.vue'
-    import ForgetPasswordForm from './ForgetPasswordForm.vue'
-    import RegisterForm from './RegisterForm.vue'
-    import LoginWave from './LoginWave.vue'
+    import LoginTitle from './LoginTitle.vue';
+    import LoginForm from './LoginForm.vue';
+    import ForgetPasswordForm from './ForgetPasswordForm.vue';
+    import RegisterForm from './RegisterForm.vue';
+    import LoginWave from './LoginWave.vue';
 </script>

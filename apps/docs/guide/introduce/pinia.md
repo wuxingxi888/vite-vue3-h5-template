@@ -20,9 +20,9 @@ Pinia 是 Vue
 插件用于状态持久化：
 
 ```ts
-import type { App } from 'vue';
-import { createPinia } from 'pinia';
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+import type { App } from "vue";
+import { createPinia } from "pinia";
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 
 const store = createPinia();
 store.use(piniaPluginPersistedstate);
@@ -40,7 +40,7 @@ async function bootstrap() {
   // 挂载状态管理
   setupStore(app);
   // ...
-  app.mount('#app', true);
+  app.mount("#app", true);
 }
 ```
 
@@ -53,18 +53,18 @@ async function bootstrap() {
 管理用户相关的状态，包括用户信息和认证令牌：
 
 ```ts
-export const useUserStore = defineStore('app-user-store', {
+export const useUserStore = defineStore("app-user-store", {
   state: () => ({
     userInfo: {
-      userId: '',
-      username: '',
-      nickname: '',
-      avatar: '',
-      cover: '',
+      userId: "",
+      username: "",
+      nickname: "",
+      avatar: "",
+      cover: "",
       gender: 0,
-      phone: '',
+      phone: "",
     },
-    token: '',
+    token: "",
   }),
   getters: {
     getUserInfo: state => state.userInfo,
@@ -72,7 +72,7 @@ export const useUserStore = defineStore('app-user-store', {
   },
   actions: {
     setToken(token: string) {
-      this.token = token || '';
+      this.token = token || "";
     },
     setUserInfo(info: UserInfo) {
       this.userInfo = info;
@@ -88,7 +88,7 @@ export const useUserStore = defineStore('app-user-store', {
     },
   },
   persist: {
-    key: 'CURRENT-USER',
+    key: "CURRENT-USER",
     storage: window.localStorage,
     // 生产环境使用加密存储
   },
@@ -100,16 +100,16 @@ export const useUserStore = defineStore('app-user-store', {
 管理应用主题相关的状态：
 
 ```ts
-export const useThemeStore = defineStore('app-theme-store', {
+export const useThemeStore = defineStore("app-theme-store", {
   state: () => ({
-    themeMode: 'light', // 主题模式
-    themeColor: '#1976d2', // 主题色
+    themeMode: "light", // 主题模式
+    themeColor: "#1976d2", // 主题色
     themeColorList: [], // 主题色列表
     isPageAnimate: true, // 是否开启动画
-    pageAnimateType: 'fade-slide', // 动画类型
+    pageAnimateType: "fade-slide", // 动画类型
   }),
   getters: {
-    getThemeMode(): 'light' | 'dark' {
+    getThemeMode(): "light" | "dark" {
       return this.themeMode;
     },
     getThemeColor(): string {
@@ -118,7 +118,7 @@ export const useThemeStore = defineStore('app-theme-store', {
     // ...
   },
   actions: {
-    setThemeMode(mode: 'light' | 'dark'): void {
+    setThemeMode(mode: "light" | "dark"): void {
       this.themeMode = mode;
     },
     setPageAnimateType(type: string): void {
@@ -126,7 +126,7 @@ export const useThemeStore = defineStore('app-theme-store', {
     },
   },
   persist: {
-    key: 'THEME-SETTING',
+    key: "THEME-SETTING",
     storage: window.localStorage,
   },
 });
@@ -137,7 +137,7 @@ export const useThemeStore = defineStore('app-theme-store', {
 管理路由相关的状态，包括菜单和缓存组件：
 
 ```ts
-export const useRouteStore = defineStore('app-route-store', {
+export const useRouteStore = defineStore("app-route-store", {
   state: () => ({
     menus: [], // 菜单列表
     routers: [], // 路由列表
@@ -167,7 +167,7 @@ export const useRouteStore = defineStore('app-route-store', {
 管理全局应用状态：
 
 ```ts
-export const useAppStore = defineStore('app-global-store', {
+export const useAppStore = defineStore("app-global-store", {
   state: () => ({
     openEruda: false, // 是否开启 Eruda 调试工具
   }),
@@ -217,8 +217,8 @@ persist: {
 
 ```vue
 <script setup lang="ts">
-  import { useUserStore } from '@/store/modules/user';
-  import { useThemeStore } from '@/store/modules/theme';
+  import { useUserStore } from "@/store/modules/user";
+  import { useThemeStore } from "@/store/modules/theme";
 
   // 获取 store 实例
   const userStore = useUserStore();
@@ -229,8 +229,8 @@ persist: {
   const themeMode = themeStore.getThemeMode;
 
   // 调用 actions
-  userStore.setToken('new-token');
-  themeStore.setThemeMode('dark');
+  userStore.setToken("new-token");
+  themeStore.setThemeMode("dark");
 
   // 使用解构赋值访问状态
   const { nickname, avatar } = userStore.getUserInfo;
@@ -240,8 +240,8 @@ persist: {
 使用 computed 属性保持响应性：
 
 ```ts
-import { computed } from 'vue';
-import { useThemeStore } from '@/store/modules/theme';
+import { computed } from "vue";
+import { useThemeStore } from "@/store/modules/theme";
 
 const themeStore = useThemeStore();
 

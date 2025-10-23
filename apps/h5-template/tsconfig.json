@@ -1,29 +1,29 @@
 {
-	"extends": "@miracle/typescript-config/vue.json",
-	"compilerOptions": {
-		// 设置 baseUrl 用于模块名称和路径的解析
-		"baseUrl": "./",
-		// 定义路径映射
-		"paths": {
-			"@/*": ["src/*"],
-			"#/*": ["types/*"]
-		},
-		// 不允许隐式any类型
-		"noImplicitAny": false,
-		// 定义类型检查的入口点
-		"types": ["vite/client", "node", "vue"]
-	},
-	// 包含的文件模式
-	"include": [
-		"src/**/*",
-		"src/**/*.ts",
-		"src/**/*.tsx",
-		"src/**/*.vue",
-		"types/**/*.d.ts",
-		"mock/**/*.ts",
-		"build/**/*.ts",
-		"vite.config.ts"
-	],
-	// 排除的文件模式
-	"exclude": ["node_modules", "dist", "**/*.js"]
+    "extends": "@miracle/typescript-config/vue.json",
+    "compilerOptions": {
+        // 设置 baseUrl 用于模块名称和路径的解析
+        "baseUrl": "./",
+        // 定义路径映射
+        "paths": {
+            "@/*": ["src/*"],
+            "#/*": ["types/*"]
+        },
+        // 不允许隐式any类型
+        "noImplicitAny": false,
+        // 定义类型检查的入口点
+        "types": ["vite/client", "node", "vue"]
+    },
+    // 包含的文件模式
+    "include": [
+        "src/**/*",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "types/**/*.d.ts",
+        "mock/**/*.ts",
+        "build/**/*.ts",
+        "vite.config.ts"
+    ],
+    // 排除的文件模式
+    "exclude": ["node_modules", "dist", "**/*.js"]
 }

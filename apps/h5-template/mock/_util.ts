@@ -1,43 +1,43 @@
-import Mock from "mockjs"
-import { ResultEnum } from "@/utils/http/httpEnum"
+import Mock from 'mockjs';
+import { ResultEnum } from '@/utils/http/httpEnum';
 
-export function resultSuccess<T = Recordable>(data: T, { message = "请求成功" } = {}) {
+export function resultSuccess<T = Recordable>(data: T, { message = '请求成功' } = {}) {
     return Mock.mock({
         code: ResultEnum.SUCCESS,
         data,
-        message
-    })
+        message,
+    });
 }
 
-export function resultPageSuccess<T = any>(page: number, pageSize: number, list: T[], { message = "请求成功" } = {}) {
-    const pageData = pagination(page, pageSize, list)
+export function resultPageSuccess<T = any>(page: number, pageSize: number, list: T[], { message = '请求成功' } = {}) {
+    const pageData = pagination(page, pageSize, list);
 
     return {
         ...resultSuccess({
             page,
             pageSize,
             pageCount: list.length,
-            list: pageData
+            list: pageData,
         }),
-        message
-    }
+        message,
+    };
 }
 
-export function resultError(message = "请求失败", { code = ResultEnum.ERROR, data = null } = {}) {
+export function resultError(message = '请求失败', { code = ResultEnum.ERROR, data = null } = {}) {
     return {
         code,
         data,
-        message
-    }
+        message,
+    };
 }
 
 export function pagination<T = any>(pageNo: number, pageSize: number, array: T[]): T[] {
-    const offset = (pageNo - 1) * Number(pageSize)
+    const offset = (pageNo - 1) * Number(pageSize);
     const ret =
         offset + Number(pageSize) >= array.length
             ? array.slice(offset, array.length)
-            : array.slice(offset, offset + Number(pageSize))
-    return ret
+            : array.slice(offset, offset + Number(pageSize));
+    return ret;
 }
 
 /**
@@ -45,17 +45,17 @@ export function pagination<T = any>(pageNo: number, pageSize: number, array: T[]
  * @param {Function} callback 回调函数
  */
 export function doCustomTimes(times: number, callback: any) {
-    let i = -1
+    let i = -1;
     while (++i < times) {
-        callback(i)
+        callback(i);
     }
 }
 
 export interface requestParams {
-    method: string
-    body: any
-    headers?: { authorization?: string }
-    query: any
+    method: string;
+    body: any;
+    headers?: { authorization?: string };
+    query: any;
 }
 
 /**
@@ -63,5 +63,5 @@ export interface requestParams {
  *
  */
 export function getRequestToken({ headers }: requestParams): string | undefined {
-    return headers?.authorization
+    return headers?.authorization;
 }

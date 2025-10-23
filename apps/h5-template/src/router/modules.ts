@@ -1,121 +1,121 @@
-import type { RouteRecordRaw } from "vue-router"
+import type { RouteRecordRaw } from 'vue-router';
 
 const routeModuleList: Array<RouteRecordRaw> = [
     {
-        path: "/pullRefreshList",
-        name: "PullRefreshList",
+        path: '/pullRefreshList',
+        name: 'PullRefreshList',
         meta: {
-            title: "列表刷新加载",
-            keepAlive: false
+            title: '列表刷新加载',
+            keepAlive: false,
         },
-        component: () => import("@/views/example/pullRefreshList/index.vue")
+        component: () => import('@/views/example/pullRefreshList/index.vue'),
     },
     {
-        path: "/scrollCache",
-        name: "ScrollCache",
+        path: '/scrollCache',
+        name: 'ScrollCache',
         meta: {
-            title: "滚动缓存",
-            keepAlive: true
+            title: '滚动缓存',
+            keepAlive: true,
         },
-        component: () => import("@/views/example/scrollCache/index.vue")
+        component: () => import('@/views/example/scrollCache/index.vue'),
     },
     {
-        path: "/unoCss",
-        name: "UnoCss",
+        path: '/unoCss',
+        name: 'UnoCss',
         meta: {
-            title: "unoCss"
+            title: 'unoCss',
         },
-        component: () => import("@/views/example/unocss/index.vue")
+        component: () => import('@/views/example/unocss/index.vue'),
     },
     {
-        path: "/svgIcon",
-        name: "SvgIcon",
+        path: '/svgIcon',
+        name: 'SvgIcon',
         meta: {
-            title: "svg图标"
+            title: 'svg图标',
         },
-        component: () => import("@/views/example/svgIcon/index.vue")
+        component: () => import('@/views/example/svgIcon/index.vue'),
     },
     {
-        path: "/webview",
-        name: "Webview",
+        path: '/webview',
+        name: 'Webview',
         meta: {
-            title: "miracle-webview"
+            title: 'miracle-webview',
         },
-        component: () => import("@/components/WebSite/index.vue")
+        component: () => import('@/components/WebSite/index.vue'),
     },
     {
-        path: "/dependence",
-        name: "Dependence",
+        path: '/dependence',
+        name: 'Dependence',
         meta: {
-            title: "项目依赖"
+            title: '项目依赖',
         },
-        component: () => import("@/views/example/dependence/index.vue")
+        component: () => import('@/views/example/dependence/index.vue'),
     },
     {
-        path: "/openInstall",
-        name: "OpenInstall",
+        path: '/openInstall',
+        name: 'OpenInstall',
         meta: {
-            title: "openInstall"
+            title: 'openInstall',
         },
-        component: () => import("@/views/example/openinstall/index.vue")
+        component: () => import('@/views/example/openinstall/index.vue'),
     },
     {
-        path: "/directives",
-        name: "Directives",
+        path: '/directives',
+        name: 'Directives',
         meta: {
-            title: "指令合集"
+            title: '指令合集',
         },
-        component: () => import("@/views/example/directives/index.vue")
+        component: () => import('@/views/example/directives/index.vue'),
     },
     {
-        path: "/editUserInfo",
-        name: "EditUserInfo",
+        path: '/editUserInfo',
+        name: 'EditUserInfo',
         meta: {
-            title: "编辑个人信息"
+            title: '编辑个人信息',
         },
-        component: () => import("@/views/mine/EditUserInfo.vue")
+        component: () => import('@/views/mine/EditUserInfo.vue'),
     },
     {
-        path: "/editNickname",
-        name: "EditNickname",
+        path: '/editNickname',
+        name: 'EditNickname',
         meta: {
-            title: "修改昵称(该页面已缓存)",
-            keepAlive: true
+            title: '修改昵称(该页面已缓存)',
+            keepAlive: true,
         },
-        component: () => import("@/views/mine/EditNickname.vue")
+        component: () => import('@/views/mine/EditNickname.vue'),
     },
     {
-        path: "/editSign",
-        name: "EditSign",
+        path: '/editSign',
+        name: 'EditSign',
         meta: {
-            title: "修改签名"
+            title: '修改签名',
         },
-        component: () => import("@/views/mine/EditSign.vue")
+        component: () => import('@/views/mine/EditSign.vue'),
     },
     {
-        path: "/accountSetting",
-        name: "AccountSetting",
+        path: '/accountSetting',
+        name: 'AccountSetting',
         meta: {
-            title: "账号与安全"
+            title: '账号与安全',
         },
-        component: () => import("@/views/mine/AccountSetting.vue")
+        component: () => import('@/views/mine/AccountSetting.vue'),
     },
     {
-        path: "/changePassword",
-        name: "ChangePassword",
+        path: '/changePassword',
+        name: 'ChangePassword',
         meta: {
-            title: "修改登录密码"
+            title: '修改登录密码',
         },
-        component: () => import("@/views/mine/ChangePassword.vue")
+        component: () => import('@/views/mine/ChangePassword.vue'),
     },
     {
-        path: "/themeSetting",
-        name: "ThemeSetting",
+        path: '/themeSetting',
+        name: 'ThemeSetting',
         meta: {
-            title: "主题设置"
+            title: '主题设置',
         },
-        component: () => import("@/views/mine/ThemeSetting.vue")
-    }
-]
+        component: () => import('@/views/mine/ThemeSetting.vue'),
+    },
+];
 
-export default routeModuleList
+export default routeModuleList;

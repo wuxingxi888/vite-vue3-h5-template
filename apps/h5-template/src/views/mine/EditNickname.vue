@@ -14,8 +14,8 @@
                 :rules="[
                     {
                         validator: validateNickname(),
-                        trigger: 'onChange'
-                    }
+                        trigger: 'onChange',
+                    },
                 ]"
             />
         </mi-form>
@@ -28,30 +28,30 @@
 </template>
 
 <script setup lang="ts">
-    import type { FormInstance } from '@miracle-web/ui'
-    import { showToast } from '@miracle-web/ui'
-    import { useUserStore } from '@/store/modules/user'
+    import type { FormInstance } from '@miracle-web/ui';
+    import { showToast } from '@miracle-web/ui';
+    import { useUserStore } from '@/store/modules/user';
 
-    const userStore = useUserStore()
+    const userStore = useUserStore();
 
-    const { nickname } = userStore.getUserInfo
-    const formRef = ref<FormInstance>()
+    const { nickname } = userStore.getUserInfo;
+    const formRef = ref<FormInstance>();
 
     const formValue = reactive({
-        nickname: ''
-    })
+        nickname: '',
+    });
 
     function validateNickname() {
         return async (value: string) => {
-            const pattern = /^[\u4E00-\u9FA5A-Za-z0-9-_.·]+$/
+            const pattern = /^[\u4E00-\u9FA5A-Za-z0-9-_.·]+$/;
             if (!pattern.test(value)) {
-                return Promise.resolve('请输入正确内容')
+                return Promise.resolve('请输入正确内容');
             }
             if (value.length < 2 || value.length > 12) {
-                return Promise.resolve('长度不符合')
+                return Promise.resolve('长度不符合');
             }
-            return Promise.resolve(true)
-        }
+            return Promise.resolve(true);
+        };
     }
 
     function handleNickname() {
@@ -59,23 +59,23 @@
             ?.validate()
             .then(async () => {
                 try {
-                    const formValue = formRef.value?.getValues()
+                    const formValue = formRef.value?.getValues();
                     showToast({
-                        message: `当前表单值：${JSON.stringify(formValue)}`
-                    })
+                        message: `当前表单值：${JSON.stringify(formValue)}`,
+                    });
                     // do something
                 } finally {
                     // after successful
                 }
             })
             .catch(() => {
-                console.error('验证失败')
-            })
+                console.error('验证失败');
+            });
     }
 
     onMounted(() => {
-        formValue.nickname = nickname
-    })
+        formValue.nickname = nickname;
+    });
 </script>
 
 <style scoped lang="scss">

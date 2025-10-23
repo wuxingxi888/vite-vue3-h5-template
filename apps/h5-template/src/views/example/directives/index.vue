@@ -1,8 +1,8 @@
 <script setup lang="ts">
-    import { showToast } from '@miracle-web/ui'
-    const copyText = ref('')
+    import { showToast } from '@miracle-web/ui';
+    const copyText = ref('');
 
-    const imgUrl = ref('https://cdn.seovx.com/ha/?mom=302')
+    const imgUrl = ref('https://cdn.seovx.com/ha/?mom=302');
 </script>
 
 <template>
@@ -11,31 +11,16 @@
         <div class="p-20px">
             <mi-divider>复制指令</mi-divider>
             <mi-cell-group inset>
-                <mi-field
-                    v-model="copyText"
-                    center
-                    clearable
-                    placeholder="请输入内容用于复制"
-                >
+                <mi-field v-model="copyText" center clearable placeholder="请输入内容用于复制">
                     <template #button>
-                        <mi-button
-                            size="small"
-                            type="primary"
-                            v-copy="copyText"
-                            >复制</mi-button
-                        >
+                        <mi-button size="small" type="primary" v-copy="copyText">复制</mi-button>
                     </template>
                 </mi-field>
             </mi-cell-group>
 
             <mi-divider>拖动指令</mi-divider>
             <div class="bg-blue-400 w-full h-200px relative">
-                <div
-                    class="bg-red w-50px h-50px text-white flex-center text-14px"
-                    v-drag
-                >
-                    拖动我
-                </div>
+                <div class="bg-red w-50px h-50px text-white flex-center text-14px" v-drag> 拖动我 </div>
             </div>
 
             <mi-divider>长按指令</mi-divider>
@@ -43,7 +28,7 @@
                 class="bg-blue-400 w-full h-100px flex-center text-white"
                 v-long-press="
                     () => {
-                        showToast('长按成功')
+                        showToast('长按成功');
                     }
                 "
             >
@@ -57,11 +42,7 @@
             ></div>
 
             <mi-divider>涟漪指令</mi-divider>
-            <div
-                class="bg-blue-400 w-full h-100px flex-center text-white"
-                v-ripple
-                >请点击我</div
-            >
+            <div class="bg-blue-400 w-full h-100px flex-center text-white" v-ripple>请点击我</div>
 
             <mi-divider>防抖指令</mi-divider>
             <div class="bg-blue-400 w-full h-100px relative text-white text-center">
@@ -70,7 +51,7 @@
                     class="w-100px h-30px bg-red text-white absolute top-50px left-0 right-0 bottom-0 m-auto"
                     v-debounce="
                         () => {
-                            showToast('防抖执行成功')
+                            showToast('防抖执行成功');
                         }
                     "
                     >防抖提交</button
@@ -84,7 +65,7 @@
                     class="w-100px h-30px bg-red text-white absolute top-50px left-0 right-0 bottom-0 m-auto"
                     v-throttle="
                         () => {
-                            showToast('截流执行成功')
+                            showToast('截流执行成功');
                         }
                     "
                     >节流提交</button

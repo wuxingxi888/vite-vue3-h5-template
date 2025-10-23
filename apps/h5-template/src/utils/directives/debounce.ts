@@ -1,6 +1,6 @@
-import type { Directive, DirectiveBinding } from "vue"
+import type { Directive, DirectiveBinding } from 'vue';
 interface ElType extends HTMLElement {
-    __handleClick__: () => any
+    __handleClick__: () => any;
 }
 
 /**
@@ -11,23 +11,23 @@ interface ElType extends HTMLElement {
  */
 const debounce: Directive = {
     mounted(el: ElType, binding: DirectiveBinding) {
-        if (typeof binding.value !== "function") {
-            throw "callback must be a function"
+        if (typeof binding.value !== 'function') {
+            throw 'callback must be a function';
         }
-        let timer: NodeJS.Timeout | null = null
+        let timer: NodeJS.Timeout | null = null;
         el.__handleClick__ = function () {
             if (timer) {
-                clearInterval(timer)
+                clearInterval(timer);
             }
             timer = setTimeout(() => {
-                binding.value()
-            }, 2000)
-        }
-        el.addEventListener("click", el.__handleClick__)
+                binding.value();
+            }, 2000);
+        };
+        el.addEventListener('click', el.__handleClick__);
     },
     beforeUnmount(el: ElType) {
-        el.removeEventListener("click", el.__handleClick__)
-    }
-}
+        el.removeEventListener('click', el.__handleClick__);
+    },
+};
 
-export default debounce
+export default debounce;

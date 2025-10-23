@@ -1,23 +1,23 @@
 <script setup lang="ts">
     const addAnimation = () => {
-        const demo = document.querySelector('.demo')
-        demo?.classList.add('animate-bounce-alt', 'animate-count-infinite', 'animate-duration-1s')
-    }
+        const demo = document.querySelector('.demo');
+        demo?.classList.add('animate-bounce-alt', 'animate-count-infinite', 'animate-duration-1s');
+    };
 
     const removeAnimation = () => {
-        const demo = document.querySelector('.demo')
-        demo?.classList.remove('animate-bounce-alt', 'animate-count-infinite', 'animate-duration-1s')
-    }
+        const demo = document.querySelector('.demo');
+        demo?.classList.remove('animate-bounce-alt', 'animate-count-infinite', 'animate-duration-1s');
+    };
 
     const changeFont = () => {
-        const demo = document.querySelector('.demo')
-        demo?.classList.add('font-msz')
-    }
+        const demo = document.querySelector('.demo');
+        demo?.classList.add('font-msz');
+    };
 
     const resetFont = () => {
-        const demo = document.querySelector('.demo')
-        demo?.classList.remove('font-msz')
-    }
+        const demo = document.querySelector('.demo');
+        demo?.classList.remove('font-msz');
+    };
 </script>
 
 <template>
@@ -29,41 +29,14 @@
             </div>
 
             <div>
-                <mi-space
-                    wrap
-                    class="mt-10px"
-                >
-                    <mi-button
-                        type="primary"
-                        size="small"
-                        @click="addAnimation"
-                    >
-                        添加动画
-                    </mi-button>
+                <mi-space wrap class="mt-10px">
+                    <mi-button type="primary" size="small" @click="addAnimation"> 添加动画 </mi-button>
 
-                    <mi-button
-                        type="primary"
-                        size="small"
-                        @click="removeAnimation"
-                    >
-                        移除动画
-                    </mi-button>
+                    <mi-button type="primary" size="small" @click="removeAnimation"> 移除动画 </mi-button>
 
-                    <mi-button
-                        type="primary"
-                        size="small"
-                        @click="changeFont"
-                    >
-                        修改字体
-                    </mi-button>
+                    <mi-button type="primary" size="small" @click="changeFont"> 修改字体 </mi-button>
 
-                    <mi-button
-                        type="primary"
-                        size="small"
-                        @click="resetFont"
-                    >
-                        重置字体
-                    </mi-button>
+                    <mi-button type="primary" size="small" @click="resetFont"> 重置字体 </mi-button>
                 </mi-space>
             </div>
 

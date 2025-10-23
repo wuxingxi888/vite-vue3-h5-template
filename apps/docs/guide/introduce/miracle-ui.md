@@ -29,13 +29,13 @@
 
 ```ts
 // 函数组件的样式
-import '@miracle-web/ui/es/toast/style';
-import '@miracle-web/ui/es/dialog/style';
-import '@miracle-web/ui/es/notify/style';
-import '@miracle-web/ui/es/image-preview/style';
+import "@miracle-web/ui/es/toast/style";
+import "@miracle-web/ui/es/dialog/style";
+import "@miracle-web/ui/es/notify/style";
+import "@miracle-web/ui/es/image-preview/style";
 
 // 组件桌面端适配
-import '@miracle-web/touch-emulator';
+import "@miracle-web/touch-emulator";
 ```
 
 ## 自动按需引入
@@ -45,22 +45,22 @@ import '@miracle-web/touch-emulator';
 在 [types/components.d.ts] 文件中可以看到自动引入的组件类型定义：
 
 ```ts
-declare module 'vue' {
+declare module "vue" {
   export interface GlobalComponents {
-    MiActionSheet: (typeof import('@miracle-web/ui/es'))['ActionSheet'];
-    MiButton: (typeof import('@miracle-web/ui/es'))['Button'];
-    MiCell: (typeof import('@miracle-web/ui/es'))['Cell'];
-    MiCellGroup: (typeof import('@miracle-web/ui/es'))['CellGroup'];
-    MiCheckbox: (typeof import('@miracle-web/ui/es'))['Checkbox'];
-    MiConfigProvider: (typeof import('@miracle-web/ui/es'))['ConfigProvider'];
-    MiDivider: (typeof import('@miracle-web/ui/es'))['Divider'];
-    MiField: (typeof import('@miracle-web/ui/es'))['Field'];
-    MiForm: (typeof import('@miracle-web/ui/es'))['Form'];
-    MiImage: (typeof import('@miracle-web/ui/es'))['Image'];
-    MiSpace: (typeof import('@miracle-web/ui/es'))['Space'];
-    MiSwitch: (typeof import('@miracle-web/ui/es'))['Switch'];
-    MiTabbar: (typeof import('@miracle-web/ui/es'))['Tabbar'];
-    MiTabbarItem: (typeof import('@miracle-web/ui/es'))['TabbarItem'];
+    MiActionSheet: (typeof import("@miracle-web/ui/es"))["ActionSheet"];
+    MiButton: (typeof import("@miracle-web/ui/es"))["Button"];
+    MiCell: (typeof import("@miracle-web/ui/es"))["Cell"];
+    MiCellGroup: (typeof import("@miracle-web/ui/es"))["CellGroup"];
+    MiCheckbox: (typeof import("@miracle-web/ui/es"))["Checkbox"];
+    MiConfigProvider: (typeof import("@miracle-web/ui/es"))["ConfigProvider"];
+    MiDivider: (typeof import("@miracle-web/ui/es"))["Divider"];
+    MiField: (typeof import("@miracle-web/ui/es"))["Field"];
+    MiForm: (typeof import("@miracle-web/ui/es"))["Form"];
+    MiImage: (typeof import("@miracle-web/ui/es"))["Image"];
+    MiSpace: (typeof import("@miracle-web/ui/es"))["Space"];
+    MiSwitch: (typeof import("@miracle-web/ui/es"))["Switch"];
+    MiTabbar: (typeof import("@miracle-web/ui/es"))["Tabbar"];
+    MiTabbarItem: (typeof import("@miracle-web/ui/es"))["TabbarItem"];
     // ...
   }
 }
@@ -121,19 +121,19 @@ declare module 'vue' {
 #### Toast 轻提示
 
 ```ts
-import { showToast } from '@miracle-web/ui';
+import { showToast } from "@miracle-web/ui";
 
-showToast('提示内容');
+showToast("提示内容");
 ```
 
 #### Dialog 弹出框
 
 ```ts
-import { showDialog } from '@miracle-web/ui';
+import { showDialog } from "@miracle-web/ui";
 
 showDialog({
-  title: '标题',
-  message: '弹窗内容',
+  title: "标题",
+  message: "弹窗内容",
 });
 ```
 
@@ -191,7 +191,7 @@ const getThemeVars = (): ConfigProviderThemeVars => {
 </template>
 
 <script setup lang="ts">
-  import { useTheme } from '@/hooks/useTheme';
+  import { useTheme } from "@/hooks/useTheme";
 
   const { toggleTheme } = useTheme();
 </script>

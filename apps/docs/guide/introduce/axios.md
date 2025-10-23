@@ -89,12 +89,12 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
       {
         timeout: 10 * 1000,
         // token 前缀 Bearer
-        authenticationScheme: '',
+        authenticationScheme: "",
         // 接口前缀
         prefixUrl: urlPrefix,
 
         // 如果是json格式
-        headers: { 'Content-Type': ContentTypeEnum.JSON },
+        headers: { "Content-Type": ContentTypeEnum.JSON },
 
         // 数据处理方式
         transform,
@@ -155,11 +155,11 @@ export enum ResultEnum {
  * @description: 请求方法
  */
 export enum RequestEnum {
-  GET = 'GET',
-  POST = 'POST',
-  PATCH = 'PATCH',
-  PUT = 'PUT',
-  DELETE = 'DELETE',
+  GET = "GET",
+  POST = "POST",
+  PATCH = "PATCH",
+  PUT = "PUT",
+  DELETE = "DELETE",
 }
 
 /**
@@ -167,13 +167,13 @@ export enum RequestEnum {
  */
 export enum ContentTypeEnum {
   // json
-  JSON = 'application/json;charset=UTF-8',
+  JSON = "application/json;charset=UTF-8",
   // text
-  TEXT = 'text/plain;charset=UTF-8',
+  TEXT = "text/plain;charset=UTF-8",
   // form-data 一般配合qs
-  FORM_URLENCODED = 'application/x-www-form-urlencoded;charset=UTF-8',
+  FORM_URLENCODED = "application/x-www-form-urlencoded;charset=UTF-8",
   // form-data 上传
-  FORM_DATA = 'multipart/form-data;charset=UTF-8',
+  FORM_DATA = "multipart/form-data;charset=UTF-8",
 }
 ```
 
@@ -186,7 +186,7 @@ export enum ContentTypeEnum {
 
 ```ts
 // src/api/system/user.ts
-import { http } from '@/utils/http';
+import { http } from "@/utils/http";
 
 export interface BasicResponseModel<T = any> {
   code: number;
@@ -200,12 +200,12 @@ export interface BasicResponseModel<T = any> {
 export function login(params: any) {
   return http.request<BasicResponseModel>(
     {
-      url: '/login',
-      method: 'POST',
+      url: "/login",
+      method: "POST",
       params,
     },
     {
-      successMessageText: '登录成功，即将进入系统',
+      successMessageText: "登录成功，即将进入系统",
     }
   );
 }
@@ -215,8 +215,8 @@ export function login(params: any) {
  */
 export function getUserInfo() {
   return http.request({
-    url: '/getUserInfo',
-    method: 'get',
+    url: "/getUserInfo",
+    method: "get",
   });
 }
 ```
@@ -225,20 +225,20 @@ export function getUserInfo() {
 
 ```vue
 <script setup lang="ts">
-  import { login, getUserInfo } from '@/api/system/user';
-  import { useUserStore } from '@/store/modules/user';
+  import { login, getUserInfo } from "@/api/system/user";
+  import { useUserStore } from "@/store/modules/user";
 
   const userStore = useUserStore();
 
   const handleLogin = async () => {
     try {
-      const res = await login({ username: 'admin', password: '123456' });
+      const res = await login({ username: "admin", password: "123456" });
       if (res) {
         userStore.setToken(res.data.token);
         // 跳转到首页
       }
     } catch (error) {
-      console.error('登录失败', error);
+      console.error("登录失败", error);
     }
   };
 
@@ -247,7 +247,7 @@ export function getUserInfo() {
       const res = await getUserInfo();
       userStore.setUserInfo(res.data);
     } catch (error) {
-      console.error('获取用户信息失败', error);
+      console.error("获取用户信息失败", error);
     }
   };
 </script>
@@ -287,8 +287,8 @@ responseInterceptors: (response: AxiosResponse) => {
 
   if (code === ResultEnum.TOKEN_EXPIRED) {
     showDialog({
-      title: '提示',
-      message: '登录身份已失效，请重新登录!',
+      title: "提示",
+      message: "登录身份已失效，请重新登录!",
     }).then(() => {
       window.location.href = PageEnum.BASE_LOGIN;
     });

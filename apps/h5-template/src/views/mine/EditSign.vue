@@ -24,41 +24,41 @@
 </template>
 
 <script setup lang="ts">
-    import type { FormInstance } from '@miracle-web/ui'
-    import { showToast } from '@miracle-web/ui'
-    import { useUserStore } from '@/store/modules/user'
+    import type { FormInstance } from '@miracle-web/ui';
+    import { showToast } from '@miracle-web/ui';
+    import { useUserStore } from '@/store/modules/user';
 
-    const userStore = useUserStore()
+    const userStore = useUserStore();
 
-    const { sign } = userStore.getUserInfo
-    const formRef = ref<FormInstance>()
+    const { sign } = userStore.getUserInfo;
+    const formRef = ref<FormInstance>();
 
     const formValue = reactive({
-        sign: ''
-    })
+        sign: '',
+    });
 
     function handleNickname() {
         formRef.value
             ?.validate()
             .then(async () => {
                 try {
-                    const formValue = formRef.value?.getValues()
+                    const formValue = formRef.value?.getValues();
                     showToast({
-                        message: `当前表单值：${JSON.stringify(formValue)}`
-                    })
+                        message: `当前表单值：${JSON.stringify(formValue)}`,
+                    });
                     // do something
                 } finally {
                     // after successful
                 }
             })
             .catch(() => {
-                console.error('验证失败')
-            })
+                console.error('验证失败');
+            });
     }
 
     onMounted(() => {
-        formValue.sign = sign ?? ''
-    })
+        formValue.sign = sign ?? '';
+    });
 </script>
 
 <style scoped lang="scss"></style>

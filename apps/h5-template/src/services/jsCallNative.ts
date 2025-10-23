@@ -1,13 +1,13 @@
-import router from "@/router"
-import { judgeSystem } from "@miracle-web/utils"
+import router from '@/router';
+import { judgeSystem } from '@miracle-web/utils';
 
-const { isAndroid, isiOS, isMobile } = judgeSystem()
+const { isAndroid, isiOS, isMobile } = judgeSystem();
 
 /**
  * @description: 封装js调用原生App的方法
  */
 export default class JsCallNative {
-    static AppKey = "android"
+    static AppKey = 'android';
 
     /**
      * @description: 返回
@@ -15,18 +15,18 @@ export default class JsCallNative {
     static back() {
         try {
             if (!isMobile) {
-                router.go(-1)
+                router.go(-1);
             }
             if (isAndroid) {
-                window[this.AppKey].back()
+                window[this.AppKey].back();
             }
 
             if (isiOS) {
-                window.webkit.messageHandlers.back.postMessage({})
+                window.webkit.messageHandlers.back.postMessage({});
             }
         } catch (error) {
-            router.go(-1)
-            console.log(error)
+            router.go(-1);
+            console.log(error);
         }
     }
 
@@ -39,14 +39,14 @@ export default class JsCallNative {
     static xxx(type: number, url: string) {
         try {
             if (isAndroid) {
-                window[this.AppKey].xxx(type, url)
+                window[this.AppKey].xxx(type, url);
             }
 
             if (isiOS) {
-                window.webkit.messageHandlers.xxx.postMessage({ type, url })
+                window.webkit.messageHandlers.xxx.postMessage({ type, url });
             }
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
@@ -57,13 +57,13 @@ export default class JsCallNative {
     static vvv() {
         try {
             if (isAndroid) {
-                window[this.AppKey].vvv()
+                window[this.AppKey].vvv();
             }
             if (isiOS) {
-                window.webkit.messageHandlers.vvv.postMessage({})
+                window.webkit.messageHandlers.vvv.postMessage({});
             }
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 }

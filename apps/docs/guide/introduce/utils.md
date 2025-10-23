@@ -27,10 +27,10 @@ class inputTop {
   // 初始化事件监听
   init = () => {
     if (/iphone|ipad|ipod|ios/i.test(navigator.userAgent)) {
-      window.addEventListener('focusin', this.focusinPage);
+      window.addEventListener("focusin", this.focusinPage);
     } else {
-      window.addEventListener('click', this.handleClickPage, true);
-      window.addEventListener('resize', this.handleAndroidResize);
+      window.addEventListener("click", this.handleClickPage, true);
+      window.addEventListener("resize", this.handleAndroidResize);
     }
   };
 }
@@ -41,7 +41,7 @@ export default new inputTop();
 使用方式：
 
 ```ts
-import inputTop from '@/utils/inputTop';
+import inputTop from "@/utils/inputTop";
 
 // 在应用初始化时调用
 inputTop.init();
@@ -53,7 +53,7 @@ inputTop.init();
 
 ```ts
 class landscape {
-  evt = 'onorientationchange' in window ? 'orientationchange' : 'resize';
+  evt = "onorientationchange" in window ? "orientationchange" : "resize";
 
   // 重置屏幕方向
   reset = () => {
@@ -62,7 +62,7 @@ class landscape {
 
   // 初始化事件监听
   init = () => {
-    window.addEventListener('orientationchange', this.reset, false);
+    window.addEventListener("orientationchange", this.reset, false);
   };
 }
 
@@ -102,7 +102,7 @@ export class Updater {
     const arr = Array.from(new Set(oldArr.concat(newArr)));
     // 如果新旧length一样无更新
     if (arr.length === base) {
-      this.dispatch['no-update']?.forEach(fn => fn());
+      this.dispatch["no-update"]?.forEach(fn => fn());
     } else {
       // 否则通知更新
       this.dispatch.update?.forEach(fn => fn());
@@ -125,19 +125,19 @@ export class Updater {
 在 [src/utils/directives/index.ts] 中统一注册所有指令：
 
 ```ts
-import type { App } from 'vue';
-import lazyImage from './lazyImage';
-import draggable from './draggable';
-import copy from './copy';
+import type { App } from "vue";
+import lazyImage from "./lazyImage";
+import draggable from "./draggable";
+import copy from "./copy";
 // ... 其他指令
 
 export const useDirectives = (app: App) => {
   // 图片懒加载指令
-  app.directive('lazy', lazyImage);
+  app.directive("lazy", lazyImage);
   // 拖拽指令
-  app.directive('drag', draggable);
+  app.directive("drag", draggable);
   // 复制指令
-  app.directive('copy', copy);
+  app.directive("copy", copy);
   // ... 其他指令注册
 };
 ```
@@ -154,7 +154,7 @@ export const useDirectives = (app: App) => {
 </template>
 
 <script setup>
-  const data = ref('需要复制的内容');
+  const data = ref("需要复制的内容");
 </script>
 ```
 
@@ -179,7 +179,7 @@ export const useDirectives = (app: App) => {
 
 <script setup>
   const handleClick = () => {
-    console.log('点击事件');
+    console.log("点击事件");
   };
 </script>
 ```
@@ -205,7 +205,7 @@ export const useDirectives = (app: App) => {
 
 <script setup>
   const handleLongPress = () => {
-    console.log('长按事件触发');
+    console.log("长按事件触发");
   };
 </script>
 ```
@@ -220,7 +220,7 @@ export const useDirectives = (app: App) => {
 </template>
 
 <script setup>
-  const imageUrl = 'https://example.com/image.jpg';
+  const imageUrl = "https://example.com/image.jpg";
 </script>
 ```
 
@@ -234,7 +234,7 @@ export const useDirectives = (app: App) => {
 </template>
 
 <script setup>
-  const watermarkText = '水印文字';
+  const watermarkText = "水印文字";
 </script>
 ```
 
@@ -267,7 +267,7 @@ export const useDirectives = (app: App) => {
 ```ts
 export interface IThemeState {
   // 系统主题
-  themeMode: 'light' | 'dark';
+  themeMode: "light" | "dark";
   // 系统风格
   themeColor: string;
   // 系统内置风格
@@ -280,25 +280,25 @@ export interface IThemeState {
 
 // 动画类型列表
 export const animates = [
-  { value: 'fade', text: '淡入淡出' },
-  { value: 'fade-bottom', text: '淡入淡出-底部' },
+  { value: "fade", text: "淡入淡出" },
+  { value: "fade-bottom", text: "淡入淡出-底部" },
   // ... 其他动画类型
 ];
 
 // 主题色列表
 export const themeColorList: string[] = [
-  '#5d9dfe',
-  '#2d8cf0',
+  "#5d9dfe",
+  "#2d8cf0",
   // ... 其他颜色
 ];
 
 // 默认设置
 export const setting: IThemeState = {
-  themeMode: 'light',
-  themeColor: '#5d9dfe',
+  themeMode: "light",
+  themeColor: "#5d9dfe",
   themeColorList,
   isPageAnimate: true,
-  pageAnimateType: 'fade',
+  pageAnimateType: "fade",
 };
 ```
 
@@ -307,7 +307,7 @@ export const setting: IThemeState = {
 使用 mitt 库实现全局事件通信：
 
 ```ts
-import mitt from 'mitt';
+import mitt from "mitt";
 const emitter = mitt();
 export default emitter;
 ```
@@ -316,16 +316,16 @@ export default emitter;
 
 ```ts
 // 发送事件
-import emitter from '@/utils/emit';
-emitter.emit('event-name', data);
+import emitter from "@/utils/emit";
+emitter.emit("event-name", data);
 
 // 监听事件
-emitter.on('event-name', data => {
+emitter.on("event-name", data => {
   // 处理数据
 });
 
 // 移除监听
-emitter.off('event-name', handler);
+emitter.off("event-name", handler);
 ```
 
 ## 使用建议

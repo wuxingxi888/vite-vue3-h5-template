@@ -1,25 +1,25 @@
-import { computed } from "vue"
-import { darken, lighten } from "@miracle-web/utils"
-import { useThemeStore } from "@/store/modules/theme"
-import type { ConfigProviderThemeVars } from "@miracle-web/ui"
+import { computed } from 'vue';
+import { darken, lighten } from '@miracle-web/utils';
+import { useThemeStore } from '@/store/modules/theme';
+import type { ConfigProviderThemeVars } from '@miracle-web/ui';
 
 export function useTheme() {
-    const themeStore = useThemeStore()
+    const themeStore = useThemeStore();
 
-    const getThemeMode = computed(() => themeStore.themeMode)
+    const getThemeMode = computed(() => themeStore.themeMode);
 
-    const getThemeColor = computed(() => themeStore.themeColor)
+    const getThemeColor = computed(() => themeStore.themeColor);
 
-    const getThemeColorList = computed(() => themeStore.themeColorList)
+    const getThemeColorList = computed(() => themeStore.themeColorList);
 
-    const getIsPageAnimate = computed(() => themeStore.isPageAnimate)
+    const getIsPageAnimate = computed(() => themeStore.isPageAnimate);
 
-    const getPageAnimateType = computed(() => themeStore.pageAnimateType)
+    const getPageAnimateType = computed(() => themeStore.pageAnimateType);
 
     const getThemeVars = (): ConfigProviderThemeVars => {
-        const themeColor = unref(getThemeColor)
-        const darkenStr = darken(themeColor, 25)
-        const lightenStr = lighten(themeColor, 10)
+        const themeColor = unref(getThemeColor);
+        const darkenStr = darken(themeColor, 25);
+        const lightenStr = lighten(themeColor, 10);
 
         return {
             actionSheetCancelTextColor: themeColor,
@@ -56,20 +56,20 @@ export function useTheme() {
             tabsDefaultColor: themeColor,
             tabsBottomBarColor: themeColor,
             tabbarItemActiveColor: themeColor,
-            treeSelectItemActiveColor: themeColor
-        }
-    }
+            treeSelectItemActiveColor: themeColor,
+        };
+    };
 
     // 切换主题
     const toggleTheme = computed({
-        get: () => getThemeMode.value === "dark",
+        get: () => getThemeMode.value === 'dark',
         set: () => {
-            const htmlRoot = document.documentElement
-            htmlRoot.classList.toggle("light")
-            htmlRoot.classList.toggle("dark")
-            themeStore.setThemeMode(getThemeMode.value === "light" ? "dark" : "light")
-        }
-    })
+            const htmlRoot = document.documentElement;
+            htmlRoot.classList.toggle('light');
+            htmlRoot.classList.toggle('dark');
+            themeStore.setThemeMode(getThemeMode.value === 'light' ? 'dark' : 'light');
+        },
+    });
 
     return {
         getThemeMode,
@@ -78,6 +78,6 @@ export function useTheme() {
         getIsPageAnimate,
         getPageAnimateType,
         getThemeVars,
-        toggleTheme
-    }
+        toggleTheme,
+    };
 }

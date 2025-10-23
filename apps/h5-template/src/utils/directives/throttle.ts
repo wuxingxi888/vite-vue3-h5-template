@@ -4,34 +4,34 @@
  * v-throttle
  * <button v-throttle="throttleClick">节流提交</button>
  */
-import type { Directive, DirectiveBinding } from "vue"
+import type { Directive, DirectiveBinding } from 'vue';
 interface ElType extends HTMLElement {
-    __handleClick__: () => any
-    disabled: boolean
+    __handleClick__: () => any;
+    disabled: boolean;
 }
 const throttle: Directive = {
     mounted(el: ElType, binding: DirectiveBinding) {
-        if (typeof binding.value !== "function") {
-            throw "callback must be a function"
+        if (typeof binding.value !== 'function') {
+            throw 'callback must be a function';
         }
-        let timer: NodeJS.Timeout | null = null
+        let timer: NodeJS.Timeout | null = null;
         el.__handleClick__ = function () {
             if (timer) {
-                clearTimeout(timer)
+                clearTimeout(timer);
             }
             if (!el.disabled) {
-                el.disabled = true
-                binding.value()
+                el.disabled = true;
+                binding.value();
                 timer = setTimeout(() => {
-                    el.disabled = false
-                }, 2000)
+                    el.disabled = false;
+                }, 2000);
             }
-        }
-        el.addEventListener("click", el.__handleClick__)
+        };
+        el.addEventListener('click', el.__handleClick__);
     },
     beforeUnmount(el: ElType) {
-        el.removeEventListener("click", el.__handleClick__)
-    }
-}
+        el.removeEventListener('click', el.__handleClick__);
+    },
+};
 
-export default throttle
+export default throttle;

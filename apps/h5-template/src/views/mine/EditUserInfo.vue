@@ -13,12 +13,7 @@
         >
             <template #input>
                 <UploaderImage>
-                    <mi-image
-                        class="h-16 w-16"
-                        round
-                        fit="cover"
-                        :src="avatar"
-                    />
+                    <mi-image class="h-16 w-16" round fit="cover" :src="avatar" />
                 </UploaderImage>
             </template>
         </mi-field>
@@ -70,11 +65,7 @@
         >
             <template #input>
                 <UploaderImage>
-                    <mi-image
-                        class="bg-cover h-15 w-25"
-                        fit="cover"
-                        :src="cover ? cover : avatar"
-                    />
+                    <mi-image class="bg-cover h-15 w-25" fit="cover" :src="cover ? cover : avatar" />
                 </UploaderImage>
             </template>
         </mi-field>
@@ -91,11 +82,7 @@
             @click="showIndustryPicker = true"
         />
 
-        <mi-popup
-            v-model:show="showGenderPicker"
-            position="bottom"
-            round
-        >
+        <mi-popup v-model:show="showGenderPicker" position="bottom" round>
             <mi-picker
                 v-model="state.genderValues"
                 visible-option-num="3"
@@ -105,11 +92,7 @@
             />
         </mi-popup>
 
-        <mi-popup
-            v-model:show="showIndustryPicker"
-            position="bottom"
-            round
-        >
+        <mi-popup v-model:show="showIndustryPicker" position="bottom" round>
             <mi-picker
                 v-model="state.industryValues"
                 :columns="industryColumns"
@@ -121,17 +104,17 @@
 </template>
 
 <script setup lang="ts">
-    import { showToast } from '@miracle-web/ui'
-    import UploaderImage from './components/UploaderImage.vue'
-    import type { FormColumns } from './pickColumns'
-    import { genderColumns, industryColumns } from './pickColumns'
-    import { useUserStore } from '@/store/modules/user'
+    import { showToast } from '@miracle-web/ui';
+    import UploaderImage from './components/UploaderImage.vue';
+    import type { FormColumns } from './pickColumns';
+    import { genderColumns, industryColumns } from './pickColumns';
+    import { useUserStore } from '@/store/modules/user';
 
-    const userStore = useUserStore()
-    const { avatar, gender, industry, cover } = userStore.getUserInfo
+    const userStore = useUserStore();
+    const { avatar, gender, industry, cover } = userStore.getUserInfo;
 
-    const showGenderPicker = ref(false)
-    const showIndustryPicker = ref(false)
+    const showGenderPicker = ref(false);
+    const showIndustryPicker = ref(false);
 
     const state = reactive({
         nickname: '',
@@ -139,42 +122,42 @@
         genderText: '',
         industryText: '',
         industryValues: [0],
-        genderValues: [0]
-    })
+        genderValues: [0],
+    });
 
     function handleGender({ selectedOptions }) {
-        state.genderText = selectedOptions[0].text
-        showToast(JSON.stringify(selectedOptions))
+        state.genderText = selectedOptions[0].text;
+        showToast(JSON.stringify(selectedOptions));
         // do something
-        showGenderPicker.value = false
+        showGenderPicker.value = false;
     }
 
     function handleIndustry({ selectedOptions }) {
-        state.industryText = selectedOptions[0].text
-        showToast(JSON.stringify(selectedOptions))
+        state.industryText = selectedOptions[0].text;
+        showToast(JSON.stringify(selectedOptions));
         // do something
-        showIndustryPicker.value = false
+        showIndustryPicker.value = false;
     }
 
     function getFromText(columns: FormColumns[], value = 0) {
-        return columns.find(item => item.value === value)?.text
+        return columns.find(item => item.value === value)?.text;
     }
 
     function initState() {
         Object.keys(state).forEach(key => {
-            state[key] = userStore.getUserInfo[key]
-        })
+            state[key] = userStore.getUserInfo[key];
+        });
         // set field text value.
-        state.genderText = getFromText(genderColumns, gender) ?? ''
-        state.industryText = getFromText(industryColumns, industry) ?? ''
+        state.genderText = getFromText(genderColumns, gender) ?? '';
+        state.industryText = getFromText(industryColumns, industry) ?? '';
         // set the pick selected value.
-        state.industryValues = [industry ?? 0]
-        state.genderValues = [gender]
+        state.industryValues = [industry ?? 0];
+        state.genderValues = [gender];
     }
 
     onMounted(() => {
-        initState()
-    })
+        initState();
+    });
 </script>
 
 <style scoped lang="scss">

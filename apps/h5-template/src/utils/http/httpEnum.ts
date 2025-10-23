@@ -5,18 +5,18 @@ export enum ResultEnum {
     SUCCESS = 200,
     TOKEN_EXPIRED = 401,
     ERROR = 300,
-    TIMEOUT = 10042
+    TIMEOUT = 10042,
 }
 
 /**
  * @description: 请求方法
  */
 export enum RequestEnum {
-    GET = "GET",
-    POST = "POST",
-    PATCH = "PATCH",
-    PUT = "PUT",
-    DELETE = "DELETE"
+    GET = 'GET',
+    POST = 'POST',
+    PATCH = 'PATCH',
+    PUT = 'PUT',
+    DELETE = 'DELETE',
 }
 
 /**
@@ -24,11 +24,11 @@ export enum RequestEnum {
  */
 export enum ContentTypeEnum {
     // json
-    JSON = "application/json;charset=UTF-8",
+    JSON = 'application/json;charset=UTF-8',
     // json
-    TEXT = "text/plain;charset=UTF-8",
+    TEXT = 'text/plain;charset=UTF-8',
     // form-data 一般配合qs
-    FORM_URLENCODED = "application/x-www-form-urlencoded;charset=UTF-8",
+    FORM_URLENCODED = 'application/x-www-form-urlencoded;charset=UTF-8',
     // form-data  上传
-    FORM_DATA = "multipart/form-data;charset=UTF-8"
+    FORM_DATA = 'multipart/form-data;charset=UTF-8',
 }

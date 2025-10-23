@@ -1,18 +1,11 @@
 <template>
-    <mi-nav-bar
-        @click-left="onBack()"
-        placeholder
-        fixed
-    >
+    <mi-nav-bar @click-left="onBack()" placeholder fixed>
         <template #title>
             {{ getTitle }}
         </template>
 
         <template #left>
-            <i
-                class="i-ic:sharp-arrow-back-ios"
-                text-xl
-            />
+            <i class="i-ic:sharp-arrow-back-ios" text-xl />
         </template>
 
         <template #right>
@@ -22,20 +15,20 @@
 </template>
 
 <script setup lang="ts">
-    import JsCallNative from '@/services/jsCallNative'
+    import JsCallNative from '@/services/jsCallNative';
 
     const props = defineProps({
         title: {
             type: String,
-            default: ''
-        }
-    })
+            default: '',
+        },
+    });
 
-    const route = useRoute()
+    const route = useRoute();
 
-    const getTitle = computed(() => props.title || (route.meta.title as string))
+    const getTitle = computed(() => props.title || (route.meta.title as string));
 
-    const onBack = () => JsCallNative.back()
+    const onBack = () => JsCallNative.back();
 </script>
 
 <style scoped lang="scss">

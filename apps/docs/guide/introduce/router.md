@@ -20,14 +20,14 @@ Router 是 Vue.js 官方的路由管理器，用于构建单页面应用（SPA�
 项目在 [src/router/index.ts] 中配置了 Vue Router：
 
 ```ts
-import type { App } from 'vue';
-import type { RouteRecordRaw } from 'vue-router';
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
-import { createRouterGuards } from './router-guards';
-import routeModuleList from './modules';
-import { ErrorPageRoute, LoginRoute, RootRoute } from '@/router/base';
-import menuRouteList from './menu';
-import { useRouteStoreWidthOut } from '@/store/modules/route';
+import type { App } from "vue";
+import type { RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
+import { createRouterGuards } from "./router-guards";
+import routeModuleList from "./modules";
+import { ErrorPageRoute, LoginRoute, RootRoute } from "@/router/base";
+import menuRouteList from "./menu";
+import { useRouteStoreWidthOut } from "@/store/modules/route";
 
 // 普通路由
 export const baseRouter: RouteRecordRaw[] = [LoginRoute, RootRoute, ErrorPageRoute];
@@ -39,10 +39,10 @@ const routeStore = useRouteStoreWidthOut();
 routeStore.setMenus(menuRouteList);
 routeStore.setRouters(allRoutes);
 
-const { VITE_HASH_ROUTE = 'false', VITE_PUBLIC_PATH } = import.meta.env;
+const { VITE_HASH_ROUTE = "false", VITE_PUBLIC_PATH } = import.meta.env;
 
 const history =
-  VITE_HASH_ROUTE === 'true'
+  VITE_HASH_ROUTE === "true"
     ? createWebHashHistory(VITE_PUBLIC_PATH as string)
     : createWebHistory(VITE_PUBLIC_PATH as string);
 
@@ -70,7 +70,7 @@ async function bootstrap() {
   // 挂载路由
   setupRouter(app);
   // ...
-  app.mount('#app', true);
+  app.mount("#app", true);
 }
 ```
 
@@ -84,37 +84,37 @@ async function bootstrap() {
 
 ```ts
 export const RootRoute: RouteRecordRaw = {
-  path: '/',
-  name: 'Root',
+  path: "/",
+  name: "Root",
   redirect: PageEnum.BASE_HOME,
   meta: {
-    title: 'Root',
+    title: "Root",
   },
 };
 
 export const LoginRoute: RouteRecordRaw = {
-  path: '/login',
-  name: 'Login',
-  component: () => import('@/views/login/Login.vue'),
+  path: "/login",
+  name: "Login",
+  component: () => import("@/views/login/Login.vue"),
   meta: {
-    title: '登录',
+    title: "登录",
   },
 };
 
 export const ErrorPageRoute: RouteRecordRaw = {
-  path: '/:path(.*)*',
+  path: "/:path(.*)*",
   name: PageEnum.ERROR_PAGE_NAME,
   component: Layout,
   meta: {
-    title: 'ErrorPage',
+    title: "ErrorPage",
   },
   children: [
     {
-      path: '/:path(.*)*',
-      name: 'ErrorPageSon',
-      component: () => import('@/views/exception/404.vue'),
+      path: "/:path(.*)*",
+      name: "ErrorPageSon",
+      component: () => import("@/views/exception/404.vue"),
       meta: {
-        title: 'ErrorPage',
+        title: "ErrorPage",
       },
     },
   ],
@@ -128,20 +128,20 @@ export const ErrorPageRoute: RouteRecordRaw = {
 ```ts
 const menuRouteList: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    name: '',
-    redirect: '/dashboard',
+    path: "/",
+    name: "",
+    redirect: "/dashboard",
     component: Layout,
     children: [
       {
-        path: '/dashboard',
-        name: 'Dashboard',
+        path: "/dashboard",
+        name: "Dashboard",
         meta: {
-          title: '主控台',
-          icon: 'i-mage:dashboard-2-fill',
+          title: "主控台",
+          icon: "i-mage:dashboard-2-fill",
           keepAlive: true,
         },
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import("@/views/dashboard/index.vue"),
       },
       // 其他菜单项...
     ],
@@ -156,13 +156,13 @@ const menuRouteList: Array<RouteRecordRaw> = [
 ```ts
 const routeModuleList: Array<RouteRecordRaw> = [
   {
-    path: '/pullRefreshList',
-    name: 'PullRefreshList',
+    path: "/pullRefreshList",
+    name: "PullRefreshList",
     meta: {
-      title: '列表刷新加载',
+      title: "列表刷新加载",
       keepAlive: false,
     },
-    component: () => import('@/views/example/pullRefreshList/index.vue'),
+    component: () => import("@/views/example/pullRefreshList/index.vue"),
   },
   // 其他功能路由...
 ];
@@ -262,7 +262,7 @@ export function createRouterGuards(router: Router) {
 
 ```ts
 const history =
-  VITE_HASH_ROUTE === 'true'
+  VITE_HASH_ROUTE === "true"
     ? createWebHashHistory(VITE_PUBLIC_PATH as string)
     : createWebHistory(VITE_PUBLIC_PATH as string);
 ```
@@ -272,7 +272,7 @@ const history =
 项目支持动态导入组件，实现路由懒加载：
 
 ```ts
-component: () => import('@/views/dashboard/index.vue');
+component: () => import("@/views/dashboard/index.vue");
 ```
 
 这种方式可以将组件分割成不同的代码块，按需加载，提高应用的初始加载性能。
@@ -283,14 +283,14 @@ component: () => import('@/views/dashboard/index.vue');
 
 ```vue
 <script setup lang="ts">
-  import { useRouter, useRoute } from 'vue-router';
+  import { useRouter, useRoute } from "vue-router";
 
   const router = useRouter();
   const route = useRoute();
 
   // 编程式导航
-  router.push('/dashboard');
-  router.push({ name: 'Dashboard' });
+  router.push("/dashboard");
+  router.push({ name: "Dashboard" });
   router.go(-1);
 
   // 获取路由参数

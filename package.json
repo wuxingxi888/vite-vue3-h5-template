@@ -16,6 +16,8 @@
         "lint": "eslint",
         "lint:fix": "eslint --fix",
         "lint:lint-staged": "lint-staged",
+        "format": "prettier . --write",
+        "format:check": "prettier . --check",
         "deps:check": "pnpm outdated -r",
         "deps:update": "pnpm update --latest",
         "preinstall": "npx only-allow pnpm"
@@ -33,7 +35,8 @@
         "rimraf": "^5.0.0",
         "turbo": "^2.5.8",
         "typescript": "^5.9.3",
-        "@miracle/eslint-config": "*"
+        "@miracle/eslint-config": "*",
+        "@miracle/prettier-config": "*"
     },
     "config": {
         "commitizen": {

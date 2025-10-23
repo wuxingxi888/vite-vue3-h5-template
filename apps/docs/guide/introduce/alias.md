@@ -7,9 +7,9 @@
 在没有路径别名的情况下，我们可能会写出这样的导入语句：
 
 ```ts
-import MyComponent from '../../../components/MyComponent.vue';
-import { useUserStore } from '../../store/modules/user';
-import { http } from '../../../../utils/http';
+import MyComponent from "../../../components/MyComponent.vue";
+import { useUserStore } from "../../store/modules/user";
+import { http } from "../../../../utils/http";
 ```
 
 这种写法存在以下问题：
@@ -21,9 +21,9 @@ import { http } from '../../../../utils/http';
 通过使用路径别名，我们可以将上述导入语句简化为：
 
 ```ts
-import MyComponent from '@/components/MyComponent.vue';
-import { useUserStore } from '@/store/modules/user';
-import { http } from '@/utils/http';
+import MyComponent from "@/components/MyComponent.vue";
+import { useUserStore } from "@/store/modules/user";
+import { http } from "@/utils/http";
 ```
 
 ## 配置方式
@@ -31,8 +31,8 @@ import { http } from '@/utils/http';
 项目在 [vite.config.ts] 中配置了路径别名：
 
 ```ts
-import { defineConfig, loadEnv, type UserConfig, type ConfigEnv } from 'vite';
-import { pathResolve } from './build/utils';
+import { defineConfig, loadEnv, type UserConfig, type ConfigEnv } from "vite";
+import { pathResolve } from "./build/utils";
 
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
   // ...
@@ -42,8 +42,8 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     resolve: {
       alias: [
         {
-          find: '@',
-          replacement: pathResolve('src'),
+          find: "@",
+          replacement: pathResolve("src"),
         },
       ],
     },
@@ -55,7 +55,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 其中 [pathResolve] 是一个工具函数，用于解析路径：
 
 ```ts
-import { resolve } from 'path';
+import { resolve } from "path";
 
 /**
  * @description:  路径解析
@@ -63,7 +63,7 @@ import { resolve } from 'path';
  * @returns
  */
 export function pathResolve(dir: string) {
-  return resolve(process.cwd(), '.', dir);
+  return resolve(process.cwd(), ".", dir);
 }
 ```
 
@@ -84,25 +84,25 @@ export function pathResolve(dir: string) {
 ```vue
 <script setup lang="ts">
   // 导入组件
-  import CustomNavBar from '@/components/CustomNavBar/index.vue';
-  import PullRefreshList from '@/components/PullRefreshList/index.vue';
+  import CustomNavBar from "@/components/CustomNavBar/index.vue";
+  import PullRefreshList from "@/components/PullRefreshList/index.vue";
 
   // 导入 store
-  import { useUserStore } from '@/store/modules/user';
-  import { useThemeStore } from '@/store/modules/theme';
+  import { useUserStore } from "@/store/modules/user";
+  import { useThemeStore } from "@/store/modules/theme";
 
   // 导入工具函数
-  import { useEnv } from '@/hooks/useEnv';
-  import { useTheme } from '@/hooks/useTheme';
+  import { useEnv } from "@/hooks/useEnv";
+  import { useTheme } from "@/hooks/useTheme";
 
   // 导入 API
-  import { login, getUserInfo } from '@/api/system/user';
+  import { login, getUserInfo } from "@/api/system/user";
 
   // 导入枚举
-  import { PageEnum } from '@/enums/pageEnum';
+  import { PageEnum } from "@/enums/pageEnum";
 
   // 导入样式
-  import '@/styles/common.scss';
+  import "@/styles/common.scss";
 </script>
 ```
 
@@ -110,20 +110,20 @@ export function pathResolve(dir: string) {
 
 ```ts
 // utils/http/index.ts
-import { MAxios, axios, formatRequestDate, joinTimestamp } from '@miracle-web/utils';
-import { setObjToUrlParams, deepMerge, urlReg, isString } from '@miracle-web/utils';
-import { ContentTypeEnum, RequestEnum, ResultEnum } from '@/utils/http/httpEnum';
-import { PageEnum } from '@/enums/pageEnum';
-import { useEnv } from '@/hooks/useEnv';
-import { useUserStoreWidthOut } from '@/store/modules/user';
+import { MAxios, axios, formatRequestDate, joinTimestamp } from "@miracle-web/utils";
+import { setObjToUrlParams, deepMerge, urlReg, isString } from "@miracle-web/utils";
+import { ContentTypeEnum, RequestEnum, ResultEnum } from "@/utils/http/httpEnum";
+import { PageEnum } from "@/enums/pageEnum";
+import { useEnv } from "@/hooks/useEnv";
+import { useUserStoreWidthOut } from "@/store/modules/user";
 ```
 
 ### 在样式文件中导入
 
 ```scss
 // styles/common.scss
-@import '@/styles/variables.scss';
-@import '@/styles/mixins.scss';
+@import "@/styles/variables.scss";
+@import "@/styles/mixins.scss";
 ```
 
 ## TypeScript 支持
@@ -156,20 +156,20 @@ import { useUserStoreWidthOut } from '@/store/modules/user';
 resolve: {
   alias: [
     {
-      find: '@',
-      replacement: pathResolve('src'),
+      find: "@",
+      replacement: pathResolve("src"),
     },
     {
-      find: '@components',
-      replacement: pathResolve('src/components'),
+      find: "@components",
+      replacement: pathResolve("src/components"),
     },
     {
-      find: '@views',
-      replacement: pathResolve('src/views'),
+      find: "@views",
+      replacement: pathResolve("src/views"),
     },
     {
-      find: '@utils',
-      replacement: pathResolve('src/utils'),
+      find: "@utils",
+      replacement: pathResolve("src/utils"),
     },
   ];
 }

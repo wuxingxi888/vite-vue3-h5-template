@@ -3,18 +3,18 @@
 <!-- {{properCase name}}Ref.value?.onOpen() -->
 <!-- <{{dashCase name}} ref="{{properCase name}}Ref"></{{dashCase name}}> -->
 <script setup lang='ts'>
-	defineOptions({ name: '{{properCase name}}' }) const props = defineProps({ value: { type: Boolean, default: false }
-	}) const openModal = ref(false) const emit = defineEmits(['onClose', 'onRefresh']) const onOpen = () => {
-	openModal.value = true } const onClose = () => { emit('onClose') } const onRefresh = () => { emit('onRefresh') }
-	defineExpose({ onOpen })
+    defineOptions({ name: '{{properCase name}}' }) const props = defineProps({ value: { type: Boolean, default: false }
+    }) const openModal = ref(false) const emit = defineEmits(['onClose', 'onRefresh']) const onOpen = () => {
+    openModal.value = true } const onClose = () => { emit('onClose') } const onRefresh = () => { emit('onRefresh') }
+    defineExpose({ onOpen })
 </script>
 
 <template>
-	<mi-popup v-model:show='openModal' :close-on-click-overlay='false' round closeable @close='onClose'>
-		<div class='w-300px h-300px flex-center'>
-			<p class='text-10'>hello modal</p>
-		</div>
-	</mi-popup>
+    <mi-popup v-model:show='openModal' :close-on-click-overlay='false' round closeable @close='onClose'>
+        <div class='w-300px h-300px flex-center'>
+            <p class='text-10'>hello modal</p>
+        </div>
+    </mi-popup>
 </template>
 
 <style lang='scss' scoped></style>

@@ -25,8 +25,8 @@ JS调用原生主要通过以下方式实现：
 在`src/services/jsCallNative.ts`中封装了JS调用原生的方法：
 
 ```typescript
-import router from '@/router';
-import { judgeSystem } from '@miracle-web/utils';
+import router from "@/router";
+import { judgeSystem } from "@miracle-web/utils";
 
 const { isAndroid, isiOS, isMobile } = judgeSystem();
 
@@ -34,7 +34,7 @@ const { isAndroid, isiOS, isMobile } = judgeSystem();
  * @description: 封装js调用原生App的方法
  */
 export default class JsCallNative {
-  static AppKey = 'android';
+  static AppKey = "android";
 
   /**
    * @description: 返回
@@ -99,8 +99,8 @@ export default class JsCallNative {
 在`src/services/nativeCallJs.ts`中封装了原生调用JS的方法：
 
 ```typescript
-import emitter from '@/utils/emit';
-import { judgeSystem } from '@miracle-web/utils';
+import emitter from "@/utils/emit";
+import { judgeSystem } from "@miracle-web/utils";
 
 const { isAndroid, isiOS } = judgeSystem();
 
@@ -114,10 +114,10 @@ export default class NativeCallJs {
    */
   static xxx(data: string) {
     if (isAndroid) {
-      emitter.emit('xxx', JSON.parse(data));
+      emitter.emit("xxx", JSON.parse(data));
     }
     if (isiOS) {
-      emitter.emit('xxx', data);
+      emitter.emit("xxx", data);
     }
   }
 }
@@ -136,7 +136,7 @@ export default class NativeCallJs {
 </template>
 
 <script setup lang="ts">
-  import JsCallNative from '@/services/jsCallNative';
+  import JsCallNative from "@/services/jsCallNative";
 
   // 调用返回方法
   const goBack = () => {
@@ -145,7 +145,7 @@ export default class NativeCallJs {
 
   // 调用原生方法（带参数）
   const callNativeMethod = () => {
-    JsCallNative.xxx(1, 'https://example.com');
+    JsCallNative.xxx(1, "https://example.com");
   };
 </script>
 ```
@@ -176,29 +176,29 @@ webView.evaluateJavaScript("NativeCallJs.xxx('data')", completionHandler: nil)
 
 ```typescript
 // 首先在main.ts挂载NativeCallJs类
-import NativeCallJs from '@/services/nativeCallJs';
+import NativeCallJs from "@/services/nativeCallJs";
 window.NativeCallJs = NativeCallJs;
 ```
 
 ```vue
 <script setup lang="ts">
-  import { onMounted, onUnmounted } from 'vue';
-  import emitter from '@/utils/emit';
+  import { onMounted, onUnmounted } from "vue";
+  import emitter from "@/utils/emit";
 
   // 监听原生调用JS事件
   const handleNativeCall = data => {
-    console.log('接收到原生调用:', data);
+    console.log("接收到原生调用:", data);
     // 处理原生传递的数据
   };
 
   onMounted(() => {
     // 注册事件监听
-    emitter.on('xxx', handleNativeCall);
+    emitter.on("xxx", handleNativeCall);
   });
 
   onUnmounted(() => {
     // 移除事件监听（重要：避免内存泄漏）
-    emitter.off('xxx', handleNativeCall);
+    emitter.off("xxx", handleNativeCall);
   });
 </script>
 ```

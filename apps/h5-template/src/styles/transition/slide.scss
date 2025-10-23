@@ -8,13 +8,13 @@
  * 垂直方向从上到下的滑动效果
  */
 .slide-y-transition {
-	@include transition-default();
+    @include transition-default();
 
-	&-enter-from,
-	&-leave-to {
-		opacity: 0;
-		transform: translateY(-15px);
-	}
+    &-enter-from,
+    &-leave-to {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
 }
 
 /**
@@ -22,13 +22,13 @@
  * 垂直滑动（反向）的过渡动画效果
  */
 .slide-y-reverse-transition {
-	@include transition-default();
+    @include transition-default();
 
-	&-enter-from,
-	&-leave-to {
-		opacity: 0;
-		transform: translateY(15px);
-	}
+    &-enter-from,
+    &-leave-to {
+        opacity: 0;
+        transform: translateY(15px);
+    }
 }
 
 /**
@@ -36,13 +36,13 @@
  * 水平滑动的过渡动画
  */
 .slide-x-transition {
-	@include transition-default();
+    @include transition-default();
 
-	&-enter-from,
-	&-leave-to {
-		opacity: 0;
-		transform: translateX(-15px);
-	}
+    &-enter-from,
+    &-leave-to {
+        opacity: 0;
+        transform: translateX(-15px);
+    }
 }
 
 /**
@@ -50,11 +50,11 @@
  * 水平滑动（反向）的过渡动画
  */
 .slide-x-reverse-transition {
-	@include transition-default();
+    @include transition-default();
 
-	&-enter-from,
-	&-leave-to {
-		opacity: 0;
-		transform: translateX(15px);
-	}
+    &-enter-from,
+    &-leave-to {
+        opacity: 0;
+        transform: translateX(15px);
+    }
 }

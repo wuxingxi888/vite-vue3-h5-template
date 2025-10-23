@@ -1,4 +1,4 @@
-import type { Directive } from "vue"
+import type { Directive } from 'vue';
 
 /**
  * 图片懒加载指令
@@ -9,51 +9,51 @@ import type { Directive } from "vue"
 const lazyImage: Directive = {
     mounted(el, { value }) {
         // 默认占位图 URL
-        const placeholderUrl = "https://dummyimage.com/300/&text=miracle-web/ui"
+        const placeholderUrl = 'https://dummyimage.com/300/&text=miracle-web/ui';
 
         const observer = new IntersectionObserver(([{ isIntersecting }]) => {
             if (isIntersecting) {
                 // 判断当前元素是不是img标签
-                if (el.tagName === "IMG") {
-                    el.src = value
+                if (el.tagName === 'IMG') {
+                    el.src = value;
                     el.onload = () => {
-                        el.style.animation = "lazy-img-blur-in 0.2s linear both"
-                    }
+                        el.style.animation = 'lazy-img-blur-in 0.2s linear both';
+                    };
                 } else {
-                    const imgEl = el.getElementsByTagName("img")
+                    const imgEl = el.getElementsByTagName('img');
 
                     for (const el of imgEl) {
-                        el.src = value
+                        el.src = value;
                         el.onload = () => {
-                            el.style.animation = "lazy-img-blur-in 0.2s linear both"
-                        }
+                            el.style.animation = 'lazy-img-blur-in 0.2s linear both';
+                        };
                     }
                 }
 
                 el.addEventListener(
-                    "animationend",
+                    'animationend',
                     () => {
-                        el.style.animation = ""
+                        el.style.animation = '';
                     },
                     { once: true }
-                )
+                );
 
-                observer.unobserve(el)
+                observer.unobserve(el);
             }
-        })
+        });
 
         // 设置占位图
-        if (el.tagName === "IMG") {
-            el.src = placeholderUrl
+        if (el.tagName === 'IMG') {
+            el.src = placeholderUrl;
         } else {
-            const imgEl = el.getElementsByTagName("img")
+            const imgEl = el.getElementsByTagName('img');
             for (const el of imgEl) {
-                el.src = placeholderUrl
+                el.src = placeholderUrl;
             }
         }
 
-        observer.observe(el)
-    }
-}
+        observer.observe(el);
+    },
+};
 
-export default lazyImage
+export default lazyImage;

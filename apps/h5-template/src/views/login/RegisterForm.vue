@@ -1,14 +1,6 @@
 <template>
-    <mi-form
-        v-if="getShow"
-        ref="formRef"
-        class="flex flex-col"
-        @submit="handleRegister"
-    >
-        <mi-cell-group
-            inset
-            class="enter-y !mx-0 !mb-10"
-        >
+    <mi-form v-if="getShow" ref="formRef" class="flex flex-col" @submit="handleRegister">
+        <mi-cell-group inset class="enter-y !mx-0 !mb-10">
             <mi-field
                 v-model="formData.username"
                 class="enter-y items-center !rounded-md"
@@ -45,12 +37,7 @@
                     <i class="i-material-symbols:edit-square-outline-rounded mr-2 text-lg" />
                 </template>
                 <template #button>
-                    <mi-button
-                        size="small"
-                        type="primary"
-                    >
-                        发送验证码
-                    </mi-button>
+                    <mi-button size="small" type="primary"> 发送验证码 </mi-button>
                 </template>
             </mi-field>
 
@@ -67,14 +54,8 @@
                     <i class="i-iconamoon:lock-bold mr-2 text-lg" />
                 </template>
                 <template #right-icon>
-                    <i
-                        v-if="switchPassType"
-                        class="i-mdi:eye-outline mr-2 text-lg"
-                    />
-                    <i
-                        v-else
-                        class="i-mdi:eye-off mr-2 text-lg"
-                    />
+                    <i v-if="switchPassType" class="i-mdi:eye-outline mr-2 text-lg" />
+                    <i v-else class="i-mdi:eye-off mr-2 text-lg" />
                 </template>
             </mi-field>
 
@@ -91,66 +72,38 @@
                     <i class="i-iconamoon:lock-bold mr-2 text-lg" />
                 </template>
                 <template #right-icon>
-                    <i
-                        v-if="switchConfirmPassType"
-                        class="i-mdi:eye-outline mr-2 text-lg"
-                    />
-                    <i
-                        v-else
-                        class="i-mdi:eye-off mr-2 text-lg"
-                    />
+                    <i v-if="switchConfirmPassType" class="i-mdi:eye-outline mr-2 text-lg" />
+                    <i v-else class="i-mdi:eye-off mr-2 text-lg" />
                 </template>
             </mi-field>
 
-            <mi-field
-                name="policy"
-                class="enter-y items-center !rounded-md"
-                :rules="getFormRules.policy"
-            >
+            <mi-field name="policy" class="enter-y items-center !rounded-md" :rules="getFormRules.policy">
                 <template #input>
-                    <mi-checkbox
-                        v-model="formData.policy"
-                        icon-size="14px"
-                        shape="square"
-                    >
+                    <mi-checkbox v-model="formData.policy" icon-size="14px" shape="square">
                         我同意 xxx 隐私政策
                     </mi-checkbox>
                 </template>
             </mi-field>
         </mi-cell-group>
 
-        <mi-button
-            class="enter-y !mb-4 !rounded-md"
-            type="primary"
-            block
-            native-type="submit"
-            :loading="loading"
-        >
+        <mi-button class="enter-y !mb-4 !rounded-md" type="primary" block native-type="submit" :loading="loading">
             注 册
         </mi-button>
 
-        <mi-button
-            class="enter-y !rounded-md"
-            plain
-            type="primary"
-            block
-            @click="handleBackLogin"
-        >
-            返 回
-        </mi-button>
+        <mi-button class="enter-y !rounded-md" plain type="primary" block @click="handleBackLogin"> 返 回 </mi-button>
     </mi-form>
 </template>
 
 <script setup lang="ts">
-    import type { FormInstance } from '@miracle-web/ui'
+    import type { FormInstance } from '@miracle-web/ui';
 
-    import { LoginStateEnum, useFormRules, useLoginState } from './useLogin'
+    import { LoginStateEnum, useFormRules, useLoginState } from './useLogin';
 
-    const { handleBackLogin, getLoginState } = useLoginState()
-    const getShow = computed(() => unref(getLoginState) === LoginStateEnum.REGISTER)
+    const { handleBackLogin, getLoginState } = useLoginState();
+    const getShow = computed(() => unref(getLoginState) === LoginStateEnum.REGISTER);
 
-    const loading = ref(false)
-    const formRef = ref<FormInstance>()
+    const loading = ref(false);
+    const formRef = ref<FormInstance>();
 
     const formData = reactive({
         username: '',
@@ -158,32 +111,32 @@
         sms: '',
         password: '',
         confirmPassword: '',
-        policy: false
-    })
+        policy: false,
+    });
 
-    const { getFormRules } = useFormRules(formData)
+    const { getFormRules } = useFormRules(formData);
 
-    const switchPassType = ref(true)
-    const switchConfirmPassType = ref(true)
+    const switchPassType = ref(true);
+    const switchConfirmPassType = ref(true);
 
     function handleRegister() {
         formRef.value
             ?.validate()
             .then(async () => {
                 try {
-                    loading.value = true
+                    loading.value = true;
                     // do something
 
-                    console.log('%c [  ]-167', 'font-size:13px; background:pink; color:#bf2c9f;')
+                    console.log('%c [  ]-167', 'font-size:13px; background:pink; color:#bf2c9f;');
                 } finally {
-                    loading.value = false
+                    loading.value = false;
 
-                    console.log('%c [  ]-171', 'font-size:13px; background:pink; color:#bf2c9f;')
+                    console.log('%c [  ]-171', 'font-size:13px; background:pink; color:#bf2c9f;');
                 }
             })
             .catch(() => {
-                console.error('验证失败')
-            })
+                console.error('验证失败');
+            });
     }
 </script>
 

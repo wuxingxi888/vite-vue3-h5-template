@@ -1,62 +1,59 @@
 <template>
     <div class="my-card m-[20px] rounded-2xl p-[30px] shadow-xl">
-        <div
-            ref="chartRef"
-            :style="{ height: '350px' }"
-        />
+        <div ref="chartRef" :style="{ height: '350px' }" />
     </div>
 </template>
 
 <script setup lang="ts">
-    import type { EChartsOption } from 'echarts'
-    import { useECharts } from '@/hooks/useECharts'
+    import type { EChartsOption } from 'echarts';
+    import { useECharts } from '@/hooks/useECharts';
 
-    const chartRef = ref<HTMLDivElement | null>(null)
-    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
+    const chartRef = ref<HTMLDivElement | null>(null);
+    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
 
     const chartOptions: EChartsOption = {
         title: {
             text: 'Stacked Area Chart',
-            top: '1%'
+            top: '1%',
         },
         tooltip: {
             trigger: 'axis',
             axisPointer: {
                 type: 'cross',
                 label: {
-                    backgroundColor: '#6a7985'
-                }
-            }
+                    backgroundColor: '#6a7985',
+                },
+            },
         },
         legend: {
             data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine'],
-            top: '10%'
+            top: '10%',
         },
         toolbox: {
             feature: {
                 saveAsImage: {
-                    show: true
-                }
-            }
+                    show: true,
+                },
+            },
         },
         grid: {
             top: '30%',
             left: '3%',
             right: '4%',
             bottom: '3%',
-            containLabel: true
+            containLabel: true,
         },
         xAxis: [
             {
                 type: 'category',
                 boundaryGap: false,
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-            }
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            },
         ],
         yAxis: [
             {
-                type: 'value'
-            }
+                type: 'value',
+            },
         ],
         series: [
             {
@@ -65,9 +62,9 @@
                 stack: 'Total',
                 areaStyle: {},
                 emphasis: {
-                    focus: 'series'
+                    focus: 'series',
                 },
-                data: [120, 132, 101, 134, 90, 230, 210]
+                data: [120, 132, 101, 134, 90, 230, 210],
             },
             {
                 name: 'Union Ads',
@@ -75,9 +72,9 @@
                 stack: 'Total',
                 areaStyle: {},
                 emphasis: {
-                    focus: 'series'
+                    focus: 'series',
                 },
-                data: [220, 182, 191, 234, 290, 330, 310]
+                data: [220, 182, 191, 234, 290, 330, 310],
             },
             {
                 name: 'Video Ads',
@@ -85,9 +82,9 @@
                 stack: 'Total',
                 areaStyle: {},
                 emphasis: {
-                    focus: 'series'
+                    focus: 'series',
                 },
-                data: [150, 232, 201, 154, 190, 330, 410]
+                data: [150, 232, 201, 154, 190, 330, 410],
             },
             {
                 name: 'Direct',
@@ -95,9 +92,9 @@
                 stack: 'Total',
                 areaStyle: {},
                 emphasis: {
-                    focus: 'series'
+                    focus: 'series',
                 },
-                data: [320, 332, 301, 334, 390, 330, 320]
+                data: [320, 332, 301, 334, 390, 330, 320],
             },
             {
                 name: 'Search Engine',
@@ -105,20 +102,20 @@
                 stack: 'Total',
                 label: {
                     show: true,
-                    position: 'top'
+                    position: 'top',
                 },
                 areaStyle: {},
                 emphasis: {
-                    focus: 'series'
+                    focus: 'series',
                 },
-                data: [820, 932, 901, 934, 1290, 1330, 1320]
-            }
-        ]
-    }
+                data: [820, 932, 901, 934, 1290, 1330, 1320],
+            },
+        ],
+    };
 
     onMounted(() => {
-        setOptions(chartOptions)
-    })
+        setOptions(chartOptions);
+    });
 </script>
 
 <style scoped></style>

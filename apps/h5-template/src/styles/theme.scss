@@ -2,18 +2,18 @@
 
 // 主题
 $themes: (
-	// 白亮
-	light: (
-			main-bg-color: #f8f8f8,
-			main-card-color: rgba(255, 255, 255, 0.7),
-			main-text-color: var(--mi-gray-8)
-		),
-	// 暗黑
-	dark: (
-			main-bg-color: #121212,
-			main-card-color: rgba(30, 30, 30, 0.7),
-			main-text-color: var(--mi-text-color)
-		)
+    // 白亮
+    light: (
+            main-bg-color: #f8f8f8,
+            main-card-color: rgba(255, 255, 255, 0.7),
+            main-text-color: var(--mi-gray-8),
+        ),
+    // 暗黑
+    dark: (
+            main-bg-color: #121212,
+            main-card-color: rgba(30, 30, 30, 0.7),
+            main-text-color: var(--mi-text-color),
+        )
 );
 
 // 当前主题
@@ -21,18 +21,18 @@ $curTheme: light;
 
 // 混合优化（遍历上面的主题）
 @mixin useTheme() {
-	@each $key, $value in $themes {
-		$curTheme: $key !global; // 当前的主题
+    @each $key, $value in $themes {
+        $curTheme: $key !global; // 当前的主题
 
-		// html 添加class 属性
-		html.#{$key} & {
-			@content;
-		}
-	}
+        // html 添加class 属性
+        html.#{$key} & {
+            @content;
+        }
+    }
 }
 
 // 生成对应主题的变量
 @function getVar($key) {
-	$themeMap: map.get($themes, $curTheme);
-	@return map.get($themeMap, $key);
+    $themeMap: map.get($themes, $curTheme);
+    @return map.get($themeMap, $key);
 }

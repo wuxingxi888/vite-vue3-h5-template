@@ -43,7 +43,7 @@ Vite 内置了代理功能，基于 [node-http-proxy](https://github.com/http-pa
 /**
  * Used to parse the .env.development proxy configuration
  */
-import type { ProxyOptions } from 'vite';
+import type { ProxyOptions } from "vite";
 
 type ProxyItem = [string, string];
 type ProxyList = ProxyItem[];
@@ -65,7 +65,7 @@ export function createProxy(list: ProxyList = []) {
       target,
       changeOrigin: true,
       ws: true,
-      rewrite: path => path.replace(new RegExp(`^${prefix}`), ''),
+      rewrite: path => path.replace(new RegExp(`^${prefix}`), ""),
       // https is require secure=false
       // 如果您secure="true"只允许来自 HTTPS 的请求，则secure="false"意味着允许来自 HTTP 和 HTTPS 的请求。
       ...(isHttps ? { secure: false } : {}),
@@ -79,7 +79,7 @@ export function createProxy(list: ProxyList = []) {
 在 [vite.config.ts] 中使用该函数：
 
 ```ts
-import { createProxy } from './build/vite/proxy';
+import { createProxy } from "./build/vite/proxy";
 
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
   const viteEnv = wrapperEnv(env);
@@ -125,7 +125,7 @@ VITE_PROXY=[["/api","http://localhost:8080"]]
 // 原本的请求地址: http://localhost:8080/api/users
 // 实际请求地址: http://localhost:3000/api/users (开发服务器)
 // 代理转发到: http://localhost:8080/api/users (后端服务器)
-const response = await fetch('/api/users');
+const response = await fetch("/api/users");
 ```
 
 ### 多路径代理配置
@@ -149,7 +149,7 @@ VITE_PROXY=[["/api","http://localhost:8080"],["/upload","http://localhost:8001/u
 ret[prefix] = {
   target,
   changeOrigin: true,
-  rewrite: path => path.replace(new RegExp(`^${prefix}`), ''),
+  rewrite: path => path.replace(new RegExp(`^${prefix}`), ""),
   // ...
 };
 ```
