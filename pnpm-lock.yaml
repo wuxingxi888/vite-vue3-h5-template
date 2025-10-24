@@ -25,12 +25,6 @@ importers:
             eslint:
                 specifier: ^9.35.0
                 version: 9.38.0
-            eslint-config-prettier:
-                specifier: ^10.1.8
-                version: 10.1.8(eslint@9.38.0)
-            eslint-plugin-prettier:
-                specifier: ^5.5.4
-                version: 5.5.4(eslint-config-prettier@10.1.8)(eslint@9.38.0)(prettier@3.6.2)
             husky:
                 specifier: ^9.1.7
                 version: 9.1.7
@@ -275,9 +269,18 @@ importers:
             '@eslint/js':
                 specifier: ^9.35.0
                 version: 9.38.0
+            '@typescript-eslint/eslint-plugin':
+                specifier: ^8.43.0
+                version: 8.46.1(@typescript-eslint/parser@8.46.1)(eslint@9.38.0)(typescript@5.9.3)
+            '@typescript-eslint/parser':
+                specifier: ^8.43.0
+                version: 8.46.1(eslint@9.38.0)(typescript@5.9.3)
             eslint:
                 specifier: ^9.35.0
                 version: 9.38.0
+            eslint-config-prettier:
+                specifier: ^10.1.8
+                version: 10.1.8(eslint@9.38.0)
             eslint-plugin-prettier:
                 specifier: ^5.5.4
                 version: 5.5.4(eslint-config-prettier@10.1.8)(eslint@9.38.0)(prettier@3.6.2)
@@ -287,9 +290,9 @@ importers:
             globals:
                 specifier: ^16.4.0
                 version: 16.4.0
-            typescript-eslint:
-                specifier: ^8.43.0
-                version: 8.46.1(eslint@9.38.0)(typescript@5.9.3)
+            vue-eslint-parser:
+                specifier: ^10.2.0
+                version: 10.2.0(eslint@9.38.0)
 
     packages/prettier-config:
         dependencies:
@@ -8178,7 +8181,10 @@ packages:
         dev: true
 
     /fill-range@4.0.0:
-        resolution: { integrity: sha1-1USBHUKPmOsGpj3EAtJAPDKMOPc= }
+        resolution:
+            {
+                integrity: sha512-VcpLTWqWDiTerugjj8e3+esbg+skS3M9e54UuR3iCeIDMXCLTsAH8hTSzDQU/X6/6t3eYkOKoZSef2PlU6U1XQ==,
+            }
         engines: { node: '>=0.10.0' }
         dependencies:
             extend-shallow: 2.0.1
@@ -9755,7 +9761,10 @@ packages:
         dev: true
 
     /is-number@3.0.0:
-        resolution: { integrity: sha1-JP1iAaR4LPUFYcgQJ2r8fRLXEZU= }
+        resolution:
+            {
+                integrity: sha512-4cboCqIpliH+mAvFNegjZQ4kgKc3ZUhQVr3HvWbSh5q3WH2v82ct+T2Y1hdU5Gdtorx/cLifQjqCbL7bpznLTg==,
+            }
         engines: { node: '>=0.10.0' }
         dependencies:
             kind-of: 3.2.2
@@ -14192,6 +14201,7 @@ packages:
             typescript: 5.9.3
         transitivePeerDependencies:
             - supports-color
+        dev: true
 
     /typescript@5.9.3:
         resolution:
@@ -14616,7 +14626,10 @@ packages:
         dev: true
 
     /util-deprecate@1.0.2:
-        resolution: { integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8= }
+        resolution:
+            {
+                integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==,
+            }
 
     /utils-merge@1.0.1:
         resolution:

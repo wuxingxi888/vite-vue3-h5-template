@@ -1,16 +1,17 @@
 import vueBaseConfig from '@miracle/eslint-config/src/vue.js';
 import fs from 'fs';
 import path from 'path';
-import eslintConfigPrettier from 'eslint-config-prettier';
+import { fileURLToPath } from 'url';
 
 // 读取自动导入的全局变量配置
 let autoImportGlobals = {};
-const autoImportPath = './types/.eslintrc-auto-import.json';
+// Resolve path relative to this file, not process.cwd().
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const autoImportPath = path.resolve(__dirname, 'types', '.eslintrc-auto-import.json');
 
 try {
-    const resolvedPath = path.resolve(autoImportPath);
-    if (fs.existsSync(resolvedPath)) {
-        const autoImportConfig = JSON.parse(fs.readFileSync(resolvedPath, 'utf8'));
+    if (fs.existsSync(autoImportPath)) {
+        const autoImportConfig = JSON.parse(fs.readFileSync(autoImportPath, 'utf8'));
         autoImportGlobals = autoImportConfig.globals || {};
     }
 } catch (error) {
@@ -26,6 +27,4 @@ export default [
             },
         },
     },
-    // 添加 eslint-config-prettier 来禁用所有与 prettier 冲突的规则
-    eslintConfigPrettier,
 ];
