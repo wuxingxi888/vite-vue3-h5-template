@@ -4,6 +4,9 @@ settings:
     autoInstallPeers: true
     excludeLinksFromLockfile: false
 
+overrides:
+    bin-wrapper: npm:bin-wrapper-china
+
 importers:
     .:
         devDependencies:
@@ -46,6 +49,9 @@ importers:
 
     apps/docs:
         devDependencies:
+            '@miracle/eslint-config':
+                specifier: '*'
+                version: link:../../packages/eslint-config
             '@miracle/prettier-config':
                 specifier: '*'
                 version: link:../../packages/prettier-config
@@ -5444,17 +5450,19 @@ packages:
             find-versions: 3.2.0
         dev: true
 
-    /bin-wrapper@4.1.0:
+    /bin-wrapper-china@0.1.0:
         resolution:
             {
-                integrity: sha512-hfRmo7hWIXPkbpi0ZltboCMVrU+0ClXR/JgbCKKjlDjQf6igXa7OwdqNcFWQZPZTgiY7ZpzE3+LjjkLiTN2T7Q==,
+                integrity: sha512-1UCm17WYEbgry50tup+AQN+JGVEVzoW4f8HMl899k1lvuFxWKGZXl/G2fgxQxAckRjnloO3ijLVVEsv8zescUg==,
             }
-        engines: { node: '>=6' }
+        engines: { node: '>=8.3' }
+        hasBin: true
         dependencies:
             bin-check: 4.1.0
             bin-version-check: 4.0.0
+            binary-mirror-config: 1.41.0
             download: 7.1.0
-            import-lazy: 3.1.0
+            import-lazy: 4.0.0
             os-filter-obj: 2.0.0
             pify: 4.0.1
         dev: true
@@ -5465,6 +5473,13 @@ packages:
                 integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==,
             }
         engines: { node: '>=8' }
+        dev: true
+
+    /binary-mirror-config@1.41.0:
+        resolution:
+            {
+                integrity: sha512-ZiIhR1s6Sv1Fv6qCQqfPjx0Cj86BgFlhqNxZgHkQOWcxJcMbO3mj1iqsuVjowYqJqeZL8e52+IEv7IRnSX6T6w==,
+            }
         dev: true
 
     /birpc@2.6.1:
@@ -6457,7 +6472,7 @@ packages:
         requiresBuild: true
         dependencies:
             bin-build: 3.0.0
-            bin-wrapper: 4.1.0
+            bin-wrapper: /bin-wrapper-china@0.1.0
         dev: true
 
     /cz-git@1.12.0:
@@ -8126,7 +8141,10 @@ packages:
         dev: true
 
     /file-type@4.4.0:
-        resolution: { integrity: sha1-G2AOX8ofvcboDApwxxyNul95BsU= }
+        resolution:
+            {
+                integrity: sha512-f2UbFQEk7LXgWpi5ntcO86OeA/cC80fuDDDaX/fZ2ZGel+AF7leRQqBBW1eJNiiQkrZlAoM6P+VYP5P6bOlDEQ==,
+            }
         engines: { node: '>=4' }
         dev: true
 
@@ -8632,7 +8650,7 @@ packages:
         requiresBuild: true
         dependencies:
             bin-build: 3.0.0
-            bin-wrapper: 4.1.0
+            bin-wrapper: /bin-wrapper-china@0.1.0
             execa: 5.1.1
             logalot: 2.1.0
         dev: true
@@ -9315,12 +9333,12 @@ packages:
             parent-module: 1.0.1
             resolve-from: 4.0.0
 
-    /import-lazy@3.1.0:
+    /import-lazy@4.0.0:
         resolution:
             {
-                integrity: sha512-8/gvXvX2JMn0F+CDlSC4l6kOmVaLOO3XLkksI7CI3Ud95KDYJuYur2b9P/PUt/i/pDAMd/DulQsNbbbmRRsDIQ==,
+                integrity: sha512-rKtvo6a868b5Hu3heneU+L4yEQ4jYKLtjpnPeUdK7h0yzXGmyBTypknlkCvHFBqfX9YlorEiMM6Dnq/5atfHkw==,
             }
-        engines: { node: '>=6' }
+        engines: { node: '>=8' }
         dev: true
 
     /import-meta-resolve@4.2.0:
@@ -9426,7 +9444,10 @@ packages:
         dev: true
 
     /into-stream@3.1.0:
-        resolution: { integrity: sha1-lvsKk2wSur1v8XUqF9BWFqvQlMY= }
+        resolution:
+            {
+                integrity: sha512-TcdjPibTksa1NQximqep2r17ISRiNE9fwlfbg3F8ANdvP5/yrFTew86VcO//jk4QTaMlbjypPBq76HN2zaKfZQ==,
+            }
         engines: { node: '>=4' }
         dependencies:
             from2: 2.3.0
@@ -10125,7 +10146,7 @@ packages:
         requiresBuild: true
         dependencies:
             bin-build: 3.0.0
-            bin-wrapper: 4.1.0
+            bin-wrapper: /bin-wrapper-china@0.1.0
             logalot: 2.1.0
         dev: true
 
@@ -10139,7 +10160,7 @@ packages:
         requiresBuild: true
         dependencies:
             bin-build: 3.0.0
-            bin-wrapper: 4.1.0
+            bin-wrapper: /bin-wrapper-china@0.1.0
         dev: true
 
     /js-base64@2.6.4:
@@ -11023,7 +11044,7 @@ packages:
         requiresBuild: true
         dependencies:
             bin-build: 3.0.0
-            bin-wrapper: 4.1.0
+            bin-wrapper: /bin-wrapper-china@0.1.0
         dev: true
 
     /mrmime@2.0.1:
@@ -11450,7 +11471,7 @@ packages:
         requiresBuild: true
         dependencies:
             bin-build: 3.0.0
-            bin-wrapper: 4.1.0
+            bin-wrapper: /bin-wrapper-china@0.1.0
         dev: true
 
     /ora@5.4.1:
@@ -12045,7 +12066,7 @@ packages:
         requiresBuild: true
         dependencies:
             bin-build: 3.0.0
-            bin-wrapper: 4.1.0
+            bin-wrapper: /bin-wrapper-china@0.1.0
             execa: 4.1.0
         dev: true
 
@@ -12189,7 +12210,10 @@ packages:
         dev: true
 
     /prepend-http@2.0.0:
-        resolution: { integrity: sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc= }
+        resolution:
+            {
+                integrity: sha512-ravE6m9Atw9Z/jjttRUZ+clIXogdghyZAuWJ3qEzjT+jI/dL1ifAqhZeC5VHzQp1MSt1+jxKkFNemj/iO7tVUA==,
+            }
         engines: { node: '>=4' }
         dev: true
 

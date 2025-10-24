@@ -107,9 +107,6 @@
     "peerDependencies": {
         "postcss": "^8.5.6"
     },
-    "resolutions": {
-        "bin-wrapper": "npm:bin-wrapper-china"
-    },
     "engines": {
         "node": "^20.0.0 || >=22.0.0",
         "pnpm": ">=8.15.6"

@@ -36,6 +36,9 @@
         "turbo": "^2.5.8",
         "typescript": "^5.9.3"
     },
+    "resolutions": {
+        "bin-wrapper": "npm:bin-wrapper-china"
+    },
     "config": {
         "commitizen": {
             "path": "node_modules/cz-git"
