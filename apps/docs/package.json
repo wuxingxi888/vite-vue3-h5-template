@@ -1,24 +1,24 @@
 {
-  "name": "docs",
-  "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vitepress dev",
-    "build": "vitepress build",
-    "preview": "vitepress preview",
-    "clean": "rimraf .vitepress/dist && rimraf node_modules",
-    "type-check": "vue-tsc --noEmit"
-  },
-  "devDependencies": {
-    "@miracle/prettier-config": "*",
-    "@miracle/typescript-config": "*",
-    "@types/node": "^24.4.0",
-    "rimraf": "^5.0.0",
-    "typescript": "^5.9.3",
-    "vitepress": "^1.6.4",
-    "vue": "^3.5.12",
-    "vue-tsc": "^3.0.7"
-  },
-  "prettier": "@miracle/prettier-config"
+    "name": "docs",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vitepress dev",
+        "build": "vitepress build && echo 'Building h5-template...' && cd ../h5-template && pnpm build && echo 'Copying h5-template dist to docs site-h5...' && cd .. && mkdir -p docs/.vitepress/dist/site-h5/ && cp -r h5-template/dist/* docs/.vitepress/dist/site-h5/ && echo 'Build complete!'",
+        "preview": "vitepress preview",
+        "clean": "rimraf .vitepress/dist && rimraf node_modules",
+        "type-check": "vue-tsc --noEmit"
+    },
+    "devDependencies": {
+        "@miracle/eslint-config": "*",
+        "@miracle/prettier-config": "*",
+        "@miracle/typescript-config": "*",
+        "@types/node": "^24.4.0",
+        "rimraf": "^5.0.0",
+        "typescript": "^5.9.3",
+        "vitepress": "^1.6.4",
+        "vue": "^3.5.12",
+        "vue-tsc": "^3.0.7"
+    }
 }
