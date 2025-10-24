@@ -24,7 +24,7 @@ dist-ssr
 *.sw?
 
 types/components.d.ts
-types/auto-imports.d.ts
+types/auto-import.d.ts
 types/.eslintrc-auto-import.json
 tsconfig.tsbuildinfo
 .eslintcache
