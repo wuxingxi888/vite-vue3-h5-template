@@ -60,13 +60,20 @@
 </template>
 
 <script setup>
-    import { ref, onMounted, onUnmounted } from 'vue';
+    import { ref, onMounted, onUnmounted, computed } from 'vue';
 
     const showPreview = ref(false);
     const showBadge = ref(true);
-    const previewUrl = ref('/site-h5/'); // 修改为本地H5应用路径
     const phoneContainer = ref(null);
     const showCloseButton = ref(false);
+
+    // 动态计算预览URL：开发环境用相对路径，生产环境用完整URL
+    const previewUrl = computed(() => {
+        if (import.meta.env.DEV) {
+            return '/site-h5/';
+        }
+        return 'https://wuxingxi.top/vite-vue3-h5-template/site-h5/';
+    });
 
     // 定义常量
     const HEADER_HEIGHT = 44; // header高度
