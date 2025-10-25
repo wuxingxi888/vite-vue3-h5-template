@@ -49,6 +49,7 @@ jobs:
               run: |
                   cd apps/h5-template
                   pnpm build:test
+                  ls -la dist # 检查构建输出
 
             - name: Build docs
               run: |
@@ -57,8 +58,10 @@ jobs:
 
             - name: Copy h5-template dist to docs site-h5
               run: |
-                  mkdir -p apps/docs/.vitepress/dist/site-h5/
+                  mkdir -p apps/docs/.vitepress/dist/site-h5
                   cp -r apps/h5-template/dist/* apps/docs/.vitepress/dist/site-h5/
+                  # 确保资源文件权限正确
+                  chmod -R 755 apps/docs/.vitepress/dist/site-h5
 
             - name: Show directory structure
               run: |
