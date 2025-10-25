@@ -48,8 +48,7 @@ jobs:
             - name: Build h5-template with correct base path
               run: |
                   cd apps/h5-template
-                  echo "VITE_PUBLIC_PATH=/vite-vue3-h5-template/site-h5/" > .env.production.local
-                  pnpm build
+                  pnpm build:test
 
             - name: Build docs
               run: |
@@ -60,6 +59,15 @@ jobs:
               run: |
                   mkdir -p apps/docs/.vitepress/dist/site-h5/
                   cp -r apps/h5-template/dist/* apps/docs/.vitepress/dist/site-h5/
+
+            - name: Show directory structure
+              run: |
+                  echo "=== Full directory structure of apps/docs/.vitepress/dist ==="
+                  ls -laR apps/docs/.vitepress/dist
+                  echo "=== Checking site-h5 directory ==="
+                  ls -la apps/docs/.vitepress/dist/site-h5/
+                  echo "=== Checking site-h5 subdirectories ==="
+                  find apps/docs/.vitepress/dist/site-h5/ -type d -exec ls -la {} \;
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
