@@ -14,8 +14,8 @@ export function createBuild(viteEnv: ViteEnv): BuildOptions {
         rollupOptions: {
             output: {
                 // 拆分js到模块文件夹
-                chunkFileNames: 'static/js/[name]-[hash].js',
-                entryFileNames: 'static/js/[name]-[hash].js',
+                chunkFileNames: './static/js/[name]-[hash].js',
+                entryFileNames: './static/js/[name]-[hash].js',
                 // 拆分静态资源文件夹，[ext]表示文件扩展名
                 assetFileNames: chunkInfo => {
                     if (chunkInfo.name) {
@@ -28,9 +28,9 @@ export function createBuild(viteEnv: ViteEnv): BuildOptions {
                         } else if (/\.(woff2?|eot|ttf|otf)(\?.*)?$/i.test(chunkInfo.name)) {
                             extType = 'fonts';
                         }
-                        return `static/${extType}/[name]-[hash][extname]`;
+                        return `./static/${extType}/[name]-[hash][extname]`;
                     }
-                    return 'static/[ext]/[name]-[hash].[ext]';
+                    return './static/[ext]/[name]-[hash].[ext]';
                 },
                 manualChunks(id) {
                     // 最小化拆分包

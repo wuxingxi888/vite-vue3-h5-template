@@ -35,6 +35,11 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
         base: VITE_PUBLIC_PATH,
         root,
         plugins: createVitePlugins(viteEnv, isBuild),
+        experimental: {
+            renderBuiltUrl(filename: string) {
+                return VITE_PUBLIC_PATH + filename;
+            },
+        },
         resolve: {
             alias: [
                 {
