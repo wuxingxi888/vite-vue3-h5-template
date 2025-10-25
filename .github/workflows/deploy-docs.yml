@@ -58,13 +58,32 @@ jobs:
 
             - name: Copy h5-template dist to docs site-h5
               run: |
+                  # 确保目标目录存在并清空
+                  rm -rf apps/docs/.vitepress/dist/site-h5
                   mkdir -p apps/docs/.vitepress/dist/site-h5
-                  cp -r apps/h5-template/dist/* apps/docs/.vitepress/dist/site-h5/
+
+                  # 显示h5-template/dist的内容
+                  echo "=== Contents of apps/h5-template/dist ==="
+                  ls -la apps/h5-template/dist
+
+                  # 使用rsync确保所有内容都被复制
+                  rsync -av --progress apps/h5-template/dist/ apps/docs/.vitepress/dist/site-h5/
+
+                  # 检查static目录是否存在并显示内容
+                  echo "=== Checking static directory ==="
+                  ls -la apps/h5-template/dist/static || echo "Static directory not found in source"
+                  ls -la apps/docs/.vitepress/dist/site-h5/static || echo "Static directory not found in destination"
+
                   # 复制loading相关文件
                   mkdir -p apps/docs/.vitepress/dist/site-h5/loading
                   cp -r apps/h5-template/public/loading/* apps/docs/.vitepress/dist/site-h5/loading/
-                  # 确保资源文件权限正确
+
+                  # 确保所有目录和文件都有正确的权限
                   chmod -R 755 apps/docs/.vitepress/dist/site-h5
+
+                  # 验证复制结果
+                  echo "=== Contents of site-h5 after copy ==="
+                  find apps/docs/.vitepress/dist/site-h5 -type f | sort
 
             - name: Show directory structure
               run: |
