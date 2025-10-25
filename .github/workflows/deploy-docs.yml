@@ -56,34 +56,41 @@ jobs:
                   cd apps/docs
                   pnpm run build
 
-            - name: Copy h5-template dist to docs site-h5
+            - name: Prepare deployment directory
               run: |
-                  # 确保目标目录存在并清空
-                  rm -rf apps/docs/.vitepress/dist/site-h5
-                  mkdir -p apps/docs/.vitepress/dist/site-h5
+                  # 创建根目录
+                  mkdir -p dist
 
-                  # 显示h5-template/dist的内容
-                  echo "=== Contents of apps/h5-template/dist ==="
-                  ls -la apps/h5-template/dist
+                  # 移动文档到 site-docs 目录
+                  mv apps/docs/.vitepress/dist dist/site-docs
 
-                  # 使用rsync确保所有内容都被复制
-                  rsync -av --progress apps/h5-template/dist/ apps/docs/.vitepress/dist/site-h5/
+                  # 移动 H5 应用到 site-h5 目录
+                  mv apps/h5-template/dist dist/site-h5
 
-                  # 检查static目录是否存在并显示内容
-                  echo "=== Checking static directory ==="
-                  ls -la apps/h5-template/dist/static || echo "Static directory not found in source"
-                  ls -la apps/docs/.vitepress/dist/site-h5/static || echo "Static directory not found in destination"
+                  # 创建重定向页面
+                  cat > dist/index.html << 'EOF'
+                  <!DOCTYPE html>
+                  <html>
+                  <head>
+                    <meta charset="utf-8">
+                    <title>Redirecting...</title>
+                    <meta http-equiv="refresh" content="0; url=./site-docs/">
+                    <script>window.location.href = "./site-docs/";</script>
+                  </head>
+                  <body>
+                    <p>Redirecting to documentation...</p>
+                    <p>If you are not redirected automatically, follow these links:</p>
+                    <ul>
+                      <li><a href="./site-docs/">Documentation</a></li>
+                      <li><a href="./site-h5/">H5 Application</a></li>
+                    </ul>
+                  </body>
+                  </html>
+                  EOF
 
-                  # 复制loading相关文件
-                  mkdir -p apps/docs/.vitepress/dist/site-h5/loading
-                  cp -r apps/h5-template/public/loading/* apps/docs/.vitepress/dist/site-h5/loading/
-
-                  # 确保所有目录和文件都有正确的权限
-                  chmod -R 755 apps/docs/.vitepress/dist/site-h5
-
-                  # 验证复制结果
-                  echo "=== Contents of site-h5 after copy ==="
-                  find apps/docs/.vitepress/dist/site-h5 -type f | sort
+                  # 显示最终的目录结构
+                  echo "=== Final directory structure ==="
+                  ls -laR dist/
 
             - name: Show directory structure
               run: |
@@ -97,8 +104,7 @@ jobs:
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                  #   path: apps/docs/.vitepress/dist
-                  path: apps/h5-template/dist
+                  path: dist
 
     deploy:
         environment:

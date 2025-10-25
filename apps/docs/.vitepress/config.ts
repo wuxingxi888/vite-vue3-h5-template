@@ -6,7 +6,7 @@ export default defineConfig({
     title: 'Vite Vue3 H5 Template',
     lang: 'zh-CN',
     description: '基于 Turborepo 的 Monorepo 项目模板',
-    base: '/vite-vue3-h5-template/',
+    base: '/vite-vue3-h5-template/site-docs/',
     lastUpdated: true,
     markdown: {
         lineNumbers: true,
