@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "vitepress dev",
-        "build": "vitepress build && echo 'Building h5-template...' && cd ../h5-template && pnpm build && echo 'Copying h5-template dist to docs site-h5...' && cd .. && mkdir -p docs/.vitepress/dist/site-h5/ && cp -r h5-template/dist/* docs/.vitepress/dist/site-h5/ && echo 'Build complete!'",
+        "build": "vitepress build",
         "preview": "vitepress preview",
         "clean": "rimraf .vitepress/dist && rimraf node_modules",
         "type-check": "vue-tsc --noEmit"

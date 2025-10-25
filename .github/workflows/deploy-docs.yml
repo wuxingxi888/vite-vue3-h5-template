@@ -6,6 +6,7 @@ on:
             - main
         paths:
             - 'apps/docs/**'
+            - 'apps/h5-template/**'
             - 'packages/**'
             - 'package.json'
             - 'pnpm-lock.yaml'
@@ -44,8 +45,19 @@ jobs:
             - name: Install dependencies
               run: pnpm install
 
+            - name: Build h5-template
+              run: |
+                  cd apps/h5-template
+                  echo "VITE_PUBLIC_PATH=/vite-vue3-h5-template/site-h5/" > .env.production.local
+                  pnpm build
+
             - name: Build docs
               run: pnpm run build:docs
+
+            - name: Copy h5-template dist to docs site-h5
+              run: |
+                  mkdir -p apps/docs/.vitepress/dist/site-h5/
+                  cp -r apps/h5-template/dist/* apps/docs/.vitepress/dist/site-h5/
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
