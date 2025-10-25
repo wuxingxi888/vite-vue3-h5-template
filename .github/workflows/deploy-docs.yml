@@ -97,7 +97,8 @@ jobs:
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: apps/docs/.vitepress/dist
+                  #   path: apps/docs/.vitepress/dist
+                  path: apps/h5-template/dist
 
     deploy:
         environment:
