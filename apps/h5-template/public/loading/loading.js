@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingContainer = document.getElementById('loadingContainer');
 
     // 使用 fetch 动态加载当前目录下 loading.html 的内容
-    fetch('/loading/loading.html')
+    fetch('./loading/loading.html')
         .then(response => response.text())
         .then(htmlContent => {
             // 将加载的 HTML 内容插入到 loadingContainer 中
