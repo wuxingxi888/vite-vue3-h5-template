@@ -1,43 +1,56 @@
 import type { BuildOptions } from 'vite';
 
+/**
+ * 创建 Vite 构建配置
+ * @param viteEnv - Vite 环境变量对象，包含构建所需的各种环境配置
+ * @returns 构建配置选项，用于配置 Vite 的构建行为
+ */
 export function createBuild(viteEnv: ViteEnv): BuildOptions {
     const { VITE_OUTPUT_DIR } = viteEnv;
     return {
-        sourcemap: false, // 是否启用
+        // 是否生成 source map 文件，用于调试和错误追踪
+        sourcemap: false,
+        // 指定输出路径，从环境变量中获取
         outDir: VITE_OUTPUT_DIR,
-        cssCodeSplit: false, // 禁用 CSS 代码拆分,将整个项目中的所有 CSS 将被提取到一个 CSS 文件中
-        target: 'modules', // esnext
-        minify: 'esbuild', // 项目压缩 :boolean | 'terser' | 'esbuild'
-        assetsInlineLimit: 4096, // 小于此阈值的导入或引用资源将内联为 base64 编码，以避免额外的 http 请求。设置为 0 可以完全禁用此项
-        chunkSizeWarningLimit: 2000, // chunk 大小警告的限制（以 kbs 为单位）
-        // rollup 打包配置
+        // 启用/禁用 CSS 代码拆分，禁用时整个项目的所有 CSS 将被内联到一个文件中
+        cssCodeSplit: false,
+        // 移除或修改 target 配置
+        target: 'esnext',
+        // 指定使用的压缩器，'esbuild' 比 'terser' 构建速度更快但打包体积略大
+        minify: 'esbuild',
+        // 静态资源在编码为 base64 字符串之前的最小大小（以字节为单位），小于此大小的资源将内联为 base64
+        assetsInlineLimit: 4096,
+        // 警告消息阈值，chunk 大小超过此阈值时会显示警告
+        chunkSizeWarningLimit: 2000,
+        // 添加静态资源处理配置
+        // 指定生成静态资源的存放目录，相对于 outDir
+        assetsDir: 'static',
+        // Rollup 打包相关配置
         rollupOptions: {
             output: {
-                // 拆分js到模块文件夹
+                // 指定非入口 chunk 文件的名称，用于代码分割
                 chunkFileNames: 'static/js/[name]-[hash].js',
+                // 指定入口文件的名称
                 entryFileNames: 'static/js/[name]-[hash].js',
-                // 拆分静态资源文件夹，[ext]表示文件扩展名
-                assetFileNames: chunkInfo => {
-                    if (chunkInfo.name) {
-                        const info = chunkInfo.name.split('.');
-                        let extType = info[info.length - 1];
-                        if (/\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/i.test(chunkInfo.name)) {
-                            extType = 'media';
-                        } else if (/\.(png|jpe?g|gif|svg)(\?.*)?$/.test(chunkInfo.name)) {
-                            extType = 'images';
-                        } else if (/\.(woff2?|eot|ttf|otf)(\?.*)?$/i.test(chunkInfo.name)) {
-                            extType = 'fonts';
-                        }
-                        return `static/${extType}/[name]-[hash][extname]`;
+                // 静态资源文件命名规则
+                assetFileNames: assetInfo => {
+                    const extType = assetInfo.name?.split('.').pop()?.toLowerCase();
+                    if (!extType) return 'static/assets/[name]-[hash][extname]';
+
+                    // 处理不同资源类型
+                    if (/png|jpe?g|gif|svg|webp|avif|ico|bmp/i.test(extType)) {
+                        return 'static/images/[name]-[hash][extname]';
                     }
-                    return 'static/[ext]/[name]-[hash].[ext]';
-                },
-                manualChunks(id) {
-                    // 最小化拆分包
-                    if (id.includes('node_modules')) {
-                        return id.toString().split('node_modules/')[1].split('/')[0].toString();
+                    if (/woff2?|eot|ttf|otf/i.test(extType)) {
+                        return 'static/fonts/[name]-[hash][extname]';
                     }
-                    return;
+                    if (/mp4|webm|ogg|mp3|wav|flac|aac/i.test(extType)) {
+                        return 'static/media/[name]-[hash][extname]';
+                    }
+                    if (/css/i.test(extType)) {
+                        return 'static/css/[name]-[hash][extname]';
+                    }
+                    return 'static/assets/[name]-[hash][extname]';
                 },
             },
         },
