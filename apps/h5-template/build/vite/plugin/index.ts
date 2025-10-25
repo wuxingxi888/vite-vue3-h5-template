@@ -11,7 +11,7 @@ import { configImageminCompressPlugin } from './imageminCompress';
 import { configVisualizerConfig } from './visualizer';
 import { configProgressPlugin } from './progress';
 import { configLegacyPlugin } from './legacy';
-import { configCdnImportPlugin } from './cdnImport';
+// import { configCdnImportPlugin } from './cdnImport';
 import { configSvgIconsPlugin } from './svgSprite';
 import { configMockPlugin } from './mock';
 import { configHtmlPlugin } from './injectHtml';
@@ -66,8 +66,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
         // 图片压缩（此插件需使用魔法下载，根据实际情况使用）
         vitePlugins.push(configImageminCompressPlugin());
 
-        // CDN导入
-        vitePlugins.push(configCdnImportPlugin());
+        // 暂时禁用 CDN 导入，使用本地资源
+        // vitePlugins.push(configCdnImportPlugin());
     }
 
     return vitePlugins;
