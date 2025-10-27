@@ -25,7 +25,9 @@ jobs:
                   cache: 'pnpm'
 
             - name: Install pnpm
-              run: npm install -g pnpm@8.15.6
+              uses: pnpm/action-setup@v2
+              with:
+                  version: 8.15.6
 
             - name: Get pnpm store directory
               id: pnpm-cache
