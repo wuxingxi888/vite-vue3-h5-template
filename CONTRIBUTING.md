@@ -6,19 +6,19 @@
 
 本项目使用两个主要分支：
 
-- `[main](file:///Users/wuxingxi/Desktop/node-libs/vite-vue3-h5-template/node_modules/.pnpm/@vue+runtime-dom@3.5.22/node_modules/@vue/runtime-dom/dist/runtime-dom.d.ts#L1153-L1153)`: 稳定分支，包含已发布或即将发布的稳定代码
-- `[test](file:///Users/wuxingxi/Desktop/node-libs/vite-vue3-h5-template/apps/h5-template/src/views/test/index.vue#L1-L17)`: 开发分支，用于集成新功能和 bug 修复
+- main: 稳定分支，包含已发布或即将发布的稳定代码
+- test: 开发分支，用于集成新功能和 bug 修复
 
-所有贡献都应该提交到 [test](file:///Users/wuxingxi/Desktop/node-libs/vite-vue3-h5-template/apps/h5-template/src/views/test/index.vue#L1-L17) 分支，我们会定期将测试通过的更改合并到 [main](file:///Users/wuxingxi/Desktop/node-libs/vite-vue3-h5-template/node_modules/.pnpm/@vue+runtime-dom@3.5.22/node_modules/@vue/runtime-dom/dist/runtime-dom.d.ts#L1153-L1153) 分支。
+所有贡献都应该提交到 test 分支，我们会定期将测试通过的更改合并到 main 分支。
 
 ## 贡献方式
 
 我们欢迎各种形式的贡献！参与方式：
 
-1. Fork 项目并在 [test](file:///Users/wuxingxi/Desktop/node-libs/vite-vue3-h5-template/apps/h5-template/src/views/test/index.vue#L1-L17) 分支基础上创建特性分支
+1. Fork 项目并在 test 分支基础上创建特性分支
 2. 运行 `pnpm install` 确保开发环境正常
 3. 遵循约定式提交规范
-4. 向 [test](file:///Users/wuxingxi/Desktop/node-libs/vite-vue3-h5-template/apps/h5-template/src/views/test/index.vue#L1-L17) 分支提交 Pull Request 并详细描述变更内容
+4. 向 test 分支提交 Pull Request 并详细描述变更内容
 
 您可以参与的工作包括但不限于：
 
@@ -52,7 +52,7 @@
 
 当您准备好提交 Pull Request 时，请确保：
 
-1. 目标分支是 [test](file:///Users/wuxingxi/Desktop/node-libs/vite-vue3-h5-template/apps/h5-template/src/views/test/index.vue#L1-L17) 分支
+1. 目标分支是 test 分支
 2. 包含清晰的描述，说明所做的更改及其目的
 3. 包含相关的测试（如果适用）
 4. 已经通过了所有 CI 检查

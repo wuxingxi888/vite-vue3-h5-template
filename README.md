@@ -84,6 +84,16 @@
 3. 遵循约定式提交规范
 4. 向 `test` 分支提交 Pull Request 并详细描述变更内容
 
+### 自动化质量检查
+
+所有推送到 `test` 分支或针对 `test` 分支的 Pull Request 都会自动触发 GitHub Actions 工作流，执行以下检查：
+
+- 代码类型检查 (TypeScript)
+- 代码风格检查 (ESLint/Prettier)
+- 项目构建测试
+
+只有通过所有检查的代码才能被合并到 `test` 分支。
+
 您可以参与的工作包括但不限于：
 
 - 修复 bug

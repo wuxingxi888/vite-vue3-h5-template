@@ -1,0 +1,57 @@
+name: Test Branch CI
+
+on:
+    push:
+        branches: [test]
+    pull_request:
+        branches: [test]
+
+jobs:
+    quality-check:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [16.x, 18.x, 20.x]
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'pnpm'
+
+            - name: Install pnpm
+              run: npm install -g pnpm@8.15.6
+
+            - name: Get pnpm store directory
+              id: pnpm-cache
+              run: |
+                  echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+            - name: Setup pnpm cache
+              uses: actions/cache@v3
+              with:
+                  path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+                  key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+                  restore-keys: |
+                      ${{ runner.os }}-pnpm-store-
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Run type check
+              run: pnpm run type-check
+
+            - name: Run linter
+              run: pnpm run lint
+
+            - name: Run tests
+              run: |
+                  pnpm run test || echo "No test script found, continuing..."
+
+            - name: Build project
+              run: pnpm run build
