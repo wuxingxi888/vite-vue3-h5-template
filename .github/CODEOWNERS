@@ -1,0 +1,29 @@
+# 这个文件定义了谁负责项目的哪些部分
+# 更多信息请查看: https://help.github.com/articles/about-codeowners/
+
+# 默认所有文件的所有者
+* @wuxingxi888
+
+# apps/h5-template 相关文件的所有者
+/apps/h5-template/* @wuxingxi888
+/apps/h5-template/**/* @wuxingxi888
+
+# apps/docs 相关文件的所有者
+/apps/docs/* @wuxingxi888
+/apps/docs/**/* @wuxingxi888
+
+# packages 相关文件的所有者
+/packages/* @wuxingxi888
+/packages/**/* @wuxingxi888
+
+# 配置文件的所有者
+package.json @wuxingxi888
+pnpm-lock.yaml @wuxingxi888
+turbo.json @wuxingxi888
+pnpm-workspace.yaml @wuxingxi888
+tsconfig.json @wuxingxi888
+eslint.config.js @wuxingxi888
+prettier.config.js @wuxingxi888
+
+# 工作流文件的所有者
+/.github/workflows/* @wuxingxi888
