@@ -51,4 +51,12 @@ export default defineConfig({
             },
         },
     },
+    vite: {
+        server: {
+            host: true,
+            open: true,
+            hmr: true,
+            port: 8889,
+        },
+    },
 });

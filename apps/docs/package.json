@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "vitepress dev",
-        "build": "vitepress build",
+        "build": "vitepress build --mode production",
         "preview": "vitepress preview",
         "clean": "rimraf .vitepress/dist && rimraf node_modules",
         "type-check": "vue-tsc --noEmit"

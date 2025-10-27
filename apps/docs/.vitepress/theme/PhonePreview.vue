@@ -69,10 +69,8 @@
 
     // 动态计算预览URL：开发环境用相对路径，生产环境用完整URL
     const previewUrl = computed(() => {
-        if (import.meta.env.DEV) {
-            return '/site-h5/';
-        }
-        return 'https://wuxingxi.top/vite-vue3-h5-template/site-h5/';
+        // 使用环境变量配置的预览URL
+        return import.meta.env.VITE_H5_PREVIEW_URL || 'http://localhost:8888/vite-vue3-h5-template/site-h5/';
     });
 
     // 定义常量
@@ -84,6 +82,11 @@
     // 减去 header 和 底部安全区域
     const BASE_HEIGHT = 812 - HEADER_HEIGHT - BOTTOM_SAFE_AREA;
     const MAX_WIDTH = 500; // 最大宽度限制
+
+    // 检测是否为移动端设备
+    const isMobile = () => {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    };
 
     // 手机尺寸
     const phoneSize = ref({
@@ -267,10 +270,13 @@
         // 初始化尺寸和位置
         updateWindowSize();
 
-        // 延迟一点时间显示弹窗，让用户先看到文档页面
-        setTimeout(() => {
-            showPreview.value = true;
-        }, 1000);
+        // 只在非移动端设备上默认显示预览弹窗
+        if (!isMobile()) {
+            // 延迟一点时间显示弹窗，让用户先看到文档页面
+            setTimeout(() => {
+                showPreview.value = true;
+            }, 1000);
+        }
     });
 
     onUnmounted(() => {
