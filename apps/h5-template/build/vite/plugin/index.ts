@@ -50,7 +50,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     vitePlugins.push(configVisualizerConfig());
 
     // mock数据
-    vitePlugins.push(configMockPlugin(VITE_USE_MOCK));
+    vitePlugins.push(configMockPlugin(VITE_USE_MOCK, isBuild));
 
     // svgIcon
     vitePlugins.push(configSvgIconsPlugin(isBuild));
