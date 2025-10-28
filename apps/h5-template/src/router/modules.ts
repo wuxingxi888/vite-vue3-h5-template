@@ -2,6 +2,15 @@ import type { RouteRecordRaw } from 'vue-router';
 
 const routeModuleList: Array<RouteRecordRaw> = [
     {
+        path: '/requestAnimationFrame',
+        name: 'RequestAnimationFrame',
+        meta: {
+            title: '渲染性能优化',
+            keepAlive: false,
+        },
+        component: () => import('@/views/example/requestAnimationFrame/index.vue'),
+    },
+    {
         path: '/pullRefreshList',
         name: 'PullRefreshList',
         meta: {
