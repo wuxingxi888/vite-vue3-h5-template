@@ -192,8 +192,8 @@
                 position.value.y = windowSize.value.height - phoneSize.value.height;
             }
         } else {
-            // 初始化位置为居中
-            position.value.x = windowSize.value.width / 2 - phoneSize.value.width / 2;
+            // 初始化位置为靠右
+            position.value.x = windowSize.value.width - phoneSize.value.width - 24;
             position.value.y = windowSize.value.height / 2 - phoneSize.value.height / 2;
         }
     };

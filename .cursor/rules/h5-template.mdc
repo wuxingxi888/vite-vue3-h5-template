@@ -1,10 +1,6 @@
-```
-h5-template.mdc
 ---
-globs: apps/h5-template/src/**/*.ts,apps/h5-template/src/**/*.tsx,apps/h5-template/src/**/*.vue,apps/h5-template/src/**/*.js,apps/h5-template/src/**/*.jsx,apps/h5-template/types/**/*.d.ts
-alwaysApply: false
+alwaysApply: true
 ---
-
 # 项目描述
 
 该项目是一个基于 Vue3、TypeScript、Vite 构建的移动端 H5 模板项目，集成了现代化的前端技术栈和工程化配置。
@@ -266,5 +262,3 @@ export const useUserStore = defineStore('user', {
         }
     }
 })
-```
-```
